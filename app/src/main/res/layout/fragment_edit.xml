@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#001430"
+    tools:ignore="HardcodedText">
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#001430"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <View
+        android:layout_width="40dp"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:background="#80FFFFFF" />
+
+    <ImageView
+        android:id="@+id/editIcon"
+        android:layout_width="54dp"
+        android:layout_height="61dp"
+        android:padding="8dp"
+        android:src="@drawable/ic_arrow_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="EDIT BANK"
+            android:textColor="#FFC107"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Wallet Name"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/editCategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#FFC107"
+        android:paddingBottom="12dp"
+        android:text="Bank"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Starting at"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/editCategoryLimit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="#FFC107"
+        android:paddingBottom="12dp"
+        android:text="1200"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Search Currencies"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EDE8D7"
+        android:contentDescription="hh">
+
+    </SearchView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="731dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/interestsCard"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:elevation="16dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="#D11E3254"
+            app:cardCornerRadius="16dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="162dp"
+                android:layout_height="75dp"
+                android:gravity="center"
+                android:text="ZAR"
+                android:textAllCaps="true"
+
+                android:textColor="#F2EFE4"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="194dp"
+                android:layout_height="122dp">
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="62dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="R"
+                    android:textAllCaps="true"
+
+                    android:textColor="#F2EFE4"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="50dp"
+                    tools:layout_editor_absoluteY="53dp" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="120dp"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:text="South Africa"
+                    android:textAllCaps="true"
+
+                    android:textColor="#F2EFE4"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    tools:layout_editor_absoluteX="31dp"
+                    tools:layout_editor_absoluteY="83dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/interestsCard"
+            android:layout_width="163dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:elevation="16dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardBackgroundColor="#D11E3254"
+            app:cardCornerRadius="16dp">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="162dp"
+                android:layout_height="75dp"
+                android:gravity="center"
+                android:text="USD"
+                android:textAllCaps="true"
+
+                android:textColor="#F2EFE4"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView31"
+                    android:layout_width="62dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="$"
+                    android:textAllCaps="true"
+
+                    android:textColor="#F2EFE4"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="50dp"
+                    tools:layout_editor_absoluteY="53dp" />
+
+                <TextView
+                    android:id="@+id/textView32"
+                    android:layout_width="120dp"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:text="United States"
+                    android:textAllCaps="true"
+
+                    android:textColor="#F2EFE4"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    tools:layout_editor_absoluteX="31dp"
+                    tools:layout_editor_absoluteY="83dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#EDE8D7"
+        android:text="View All Currencies"
+        android:textColor="#6A675E" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="2"
+            android:backgroundTint="#FFC107"
+            android:text="SAVE CHANGES"
+            android:textColor="#F6F3ED"
+            android:textStyle="bold"
+            app:cornerRadius="15dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+    </ScrollView>
+
+<com.google.android.material.bottomnavigation.BottomNavigationView
+android:id="@+id/bottom_navigation"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:background="#FFFFFF"
+android:elevation="8dp"
+app:menu="@menu/bottom_nav_menu"
+app:itemIconTint="#008000"
+app:itemTextColor="#008000"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:labelVisibilityMode="labeled"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
