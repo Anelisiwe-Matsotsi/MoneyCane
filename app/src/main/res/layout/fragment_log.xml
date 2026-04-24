@@ -28,6 +28,7 @@
 
 
             <ImageView
+                android:id="@+id/imgLogin"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="start|center_vertical"
@@ -37,6 +38,7 @@
 
             <!-- Title -->
             <TextView
+                android:id="@+id/tvLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start|center_vertical"
@@ -83,6 +85,7 @@
                         android:src="@drawable/blue_and_yellow_abstract_investment_logo__8_" />
 
                     <TextView
+                        android:id="@+id/tvHeading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -127,6 +130,7 @@
                         android:paddingBottom="11dp">
 
                         <TextView
+                            android:id="@+id/tvUsername"
                             android:layout_width="wrap_content"
                             android:layout_height="45dp"
                             android:layout_alignParentStart="true"
@@ -136,6 +140,7 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/tbUsername"
                             android:layout_width="108dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -163,6 +168,7 @@
                         android:paddingBottom="11dp">
 
                         <TextView
+                            android:id="@+id/tvPassword"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
@@ -172,6 +178,7 @@
                             android:textStyle="bold" />
 
                         <EditText
+                            android:id="@+id/tbPassword"
                             android:layout_width="104dp"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -237,6 +244,7 @@
 
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
@@ -251,7 +259,7 @@
                 app:iconTint="@color/white" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton"
+                android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"
@@ -268,7 +276,7 @@
                 app:strokeWidth="1dp" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/tvText"
                 android:layout_width="389dp"
                 android:layout_height="40dp"
                 android:text="Don't have an account?"
@@ -277,6 +285,7 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="8dp"

@@ -13,7 +13,7 @@
         android:layout_width="376dp"
         android:layout_height="750dp"
         android:src="@drawable/blue_and_yellow_abstract_investment_logo__5_"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="114dp" />
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="-10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
