@@ -33,10 +33,9 @@
         tools:layout_editor_absoluteY="7dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="389dp"
         android:layout_height="134dp"
         android:orientation="horizontal"
-        android:visibility="visible"
         tools:layout_editor_absoluteX="4dp"
         tools:layout_editor_absoluteY="112dp">
 
@@ -47,9 +46,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:elevation="12dp"
-            android:foreground="@drawable/bg_black_border"
             app:cardBackgroundColor="#03142E"
             app:cardCornerRadius="16dp"
+            android:foreground="@drawable/bg_black_border"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="70dp">
@@ -371,7 +370,7 @@
                 </LinearLayout>
 
                 <ImageButton
-                    android:id="@+id/profileB5"
+                    android:id="@+id/imgProfile"
                     android:layout_width="70dp"
                     android:layout_height="67dp"
                     android:background="?attr/selectableItemBackground"
@@ -382,7 +381,7 @@
                     tools:layout_editor_absoluteY="2dp" />
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/tvTransactions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5 Transactions"
@@ -393,7 +392,7 @@
                     tools:layout_editor_absoluteY="69dp" />
 
                 <TextView
-                    android:id="@+id/textView25"
+                    android:id="@+id/tvMoney"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-R400,57 ZAR"
@@ -404,7 +403,7 @@
                     tools:layout_editor_absoluteY="34dp" />
 
                 <View
-                    android:id="@+id/view4"
+                    android:id="@+id/vwRectangle"
                     android:layout_width="18dp"
                     android:layout_height="139dp"
                     android:angle="270"
@@ -416,7 +415,7 @@
                     tools:layout_editor_absoluteY="2dp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tvWallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CASH WALLET"
@@ -427,7 +426,7 @@
                     tools:layout_editor_absoluteY="2dp" />
 
                 <ImageButton
-                    android:id="@+id/profileB8"
+                    android:id="@+id/imgEdit"
                     android:layout_width="70dp"
                     android:layout_height="67dp"
                     android:background="?attr/selectableItemBackground"
@@ -438,7 +437,7 @@
                     tools:layout_editor_absoluteY="2dp" />
 
                 <TextView
-                    android:id="@+id/textView35"
+                    android:id="@+id/tvProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/baseline_person_24"
@@ -479,7 +478,7 @@
         tools:layout_editor_absoluteY="689dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
+        android:id="@+id/fabtnAdd"
         android:layout_width="69dp"
         android:layout_height="71dp"
         android:clickable="true"

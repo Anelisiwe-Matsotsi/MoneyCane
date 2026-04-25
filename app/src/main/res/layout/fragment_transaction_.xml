@@ -337,7 +337,7 @@
                 android:textSize="15sp"
                 app:backgroundTint="#CED5C5"
                 app:cornerRadius="12dp"
-                app:icon="@drawable/save"
+                app:icon="@android:drawable/ic_menu_save"
                 app:iconGravity="textStart"
                 app:iconPadding="8dp"
                 app:iconTint="@color/white" />
@@ -352,7 +352,7 @@
                 android:textSize="15sp"
                 app:backgroundTint="#1B5E20"
                 app:cornerRadius="12dp"
-                app:icon="@drawable/save"
+                app:icon="@android:drawable/ic_menu_save"
                 app:iconGravity="textStart"
                 app:iconPadding="8dp"
                 app:iconTint="@color/white" />

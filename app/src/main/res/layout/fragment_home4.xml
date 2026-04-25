@@ -283,7 +283,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cardView2"
+                    android:id="@+id/cvCategory"
                     android:layout_width="379dp"
                     android:layout_height="47dp"
                     android:background="#F6F6F6"
@@ -291,7 +291,7 @@
                     tools:layout_editor_absoluteY="198dp">
 
                     <TextView
-                        android:id="@+id/textView27"
+                        android:id="@+id/tvDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2 March"
@@ -302,7 +302,7 @@
                         tools:layout_editor_absoluteY="29dp" />
 
                     <ImageView
-                        android:id="@+id/image_view"
+                        android:id="@+id/imgCategory"
                         android:layout_width="68dp"
                         android:layout_height="38dp"
                         android:src="@drawable/shopping_bag_24dp_e3e3e3_fill0_wght400_grad0_opsz24"
@@ -311,7 +311,7 @@
                         tools:layout_editor_absoluteY="5dp" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/tvCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="76dp"
