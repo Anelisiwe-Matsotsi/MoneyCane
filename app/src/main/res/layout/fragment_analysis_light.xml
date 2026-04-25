@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/cl_main_analysis"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#FCF5FD"
+tools:context=".AnalysisLight">
+
+<ScrollView
+    android:id="@+id/sv_analysis"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="#FFFEFE"
+    app:layout_constraintBottom_toTopOf="@+id/bnv_main"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header: back arrow, title, month selector, filter -->
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_header_bg"
+                android:layout_width="match_parent"
+                android:layout_height="119dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <View
+                    android:id="@+id/v_header_bg"
+                    android:layout_width="0dp"
+                    android:layout_height="118dp"
+                    android:background="@drawable/custome_rectangle"
+                    android:backgroundTint="#008000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_back_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="#FAF7F7"
+                    android:foregroundTint="#E4E0E0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/outline_arrow_back_24"
+                    app:tint="#000000" />
+
+                <TextView
+                    android:id="@+id/tv_analysis_title"
+                    android:layout_width="174dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center_vertical"
+                    android:text="Analysis"
+                    android:textColor="#040303"
+                    android:textSize="34sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_month_prev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#03FFFFFF"
+                    android:text="<"
+                    android:textColor="#020101"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_month_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_month_name" />
+
+                <Button
+                    android:id="@+id/btn_month_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#03FFFFFF"
+                    android:text=">"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
+                    app:layout_constraintStart_toEndOf="@+id/tv_month_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_month_name" />
+
+                <TextView
+                    android:id="@+id/tv_month_name"
+                    android:layout_width="102dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="March"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/icons8_filter_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#000000" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <!-- Income/Expense top row and chart -->
+        <LinearLayout
+            android:id="@+id/ll_income_expense_chart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_net_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <View
+                    android:id="@+id/v_net_total_bg"
+                    android:layout_width="414dp"
+                    android:layout_height="119dp"
+                    android:background="@drawable/circle_rectangle"
+                    android:backgroundTint="#98008000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_income"
+                    android:layout_width="133dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="32dp"
+                    android:backgroundTint="#008000"
+                    android:text="Income"
+                    android:textColor="#050404"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg" />
+
+                <Button
+                    android:id="@+id/btn_expenses"
+                    android:layout_width="133dp"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="34dp"
+                    android:backgroundTint="#BC3F3F"
+                    android:text="Expenses"
+                    android:textColor="#090606"
+                    app:iconPadding="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg" />
+
+                <TextView
+                    android:id="@+id/tv_net_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Net total  +100"
+                    android:textColor="#000000"
+                    android:textColorLink="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_net_total_bg"
+                    app:layout_constraintEnd_toEndOf="@+id/v_net_total_bg"
+                    app:layout_constraintStart_toStartOf="@+id/v_net_total_bg"
+                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg" />
+
+                <TextView
+                    android:id="@+id/tv_income_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="+R200"
+                    android:textColor="#007F00"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_net_total_bg"
+                    app:layout_constraintStart_toStartOf="@+id/v_net_total_bg"
+                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg"
+                    app:layout_constraintVertical_bias="0.7" />
+
+                <TextView
+                    android:id="@+id/tv_expenses_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="-R100"
+                    android:textColor="#DC0202"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/v_net_total_bg"
+                    app:layout_constraintEnd_toEndOf="@+id/v_net_total_bg"
+                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg"
+                    app:layout_constraintVertical_bias="0.7" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_chart"
+                android:layout_width="336dp"
+                android:layout_height="307dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:elevation="12dp"
+                android:gravity="center"
+                app:cardBackgroundColor="#98008000"
+                app:cardCornerRadius="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_chart"
+                    android:layout_width="278dp"
+                    android:layout_height="257dp"
+                    android:layout_gravity="center"
+                    tools:srcCompat="@drawable/whatsapp_image_2026_03_16_at_20_00_13" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!-- TabLayout + list items -->
+        <LinearLayout
+            android:id="@+id/ll_tabs_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_income_expense_chart">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="366dp"
+                android:layout_height="44dp"
+                android:backgroundTint="#98008000"
+                app:tabIndicatorColor="#E4B528"
+                app:tabSelectedTextColor="#E4B528"
+                app:tabTextColor="#0B0906">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_expenses"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expenses" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab_incomes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Incomes" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_tab_chart"
+                android:layout_width="333dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:elevation="12dp"
+                android:gravity="center"
+                app:cardBackgroundColor="#98008000"
+                app:cardCornerRadius="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_chart"
+                    android:layout_width="290dp"
+                    android:layout_height="261dp"
+                    android:layout_gravity="center"
+                    tools:srcCompat="@drawable/screenshot_2026_03_17_184048" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Expense items list -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_expense_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cv_expense_shopping"
+                    android:layout_width="0dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="#F6F6F6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_expense_icon_shopping"
+                        android:layout_width="68dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="6dp"
+                        android:src="?attr/actionModePasteDrawable"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#FFC107" />
+
+                    <TextView
+                        android:id="@+id/tv_expense_category_shopping"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="72dp"
+                        android:text="Shopping"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_expense_amount_shopping"
+                        android:layout_width="69dp"
+                        android:layout_height="29dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="-R50"
+                        android:textColor="#FB0000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cv_expense_groceries"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#E9F4EA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_expense_shopping">
+
+                    <ImageView
+                        android:id="@+id/iv_expense_icon_groceries"
+                        android:layout_width="68dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="6dp"
+                        android:src="?attr/actionModePasteDrawable"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#FFC107" />
+
+                    <TextView
+                        android:id="@+id/tv_expense_category_groceries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="72dp"
+                        android:text="Groceries"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_expense_amount_groceries"
+                        android:layout_width="65dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="-R60"
+                        android:textColor="#FF0000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cv_expense_food"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#E9F4EA"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_expense_groceries">
+
+                    <ImageView
+                        android:id="@+id/iv_expense_icon_food"
+                        android:layout_width="68dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="4dp"
+                        android:src="?attr/actionModePasteDrawable"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#FFC107" />
+
+                    <TextView
+                        android:id="@+id/tv_expense_category_food"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="80dp"
+                        android:text="food"
+                        android:textColor="#070707"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_expense_amount_food"
+                        android:layout_width="50dp"
+                        android:layout_height="27dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="-R5"
+                        android:textColor="#F20000"
+                        android:textColorLink="#FF0000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <!-- Top Expenses section -->
+        <LinearLayout
+            android:id="@+id/ll_top_expenses"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="#2B2D30"
+            android:backgroundTint="#FFFFFF"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_tabs_list">
+
+            <TextView
+                android:id="@+id/tv_top_expenses_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="Top Expenses"
+                android:textColor="#008000"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_top_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_top_groceries"
+                    android:layout_width="0dp"
+                    android:layout_height="101dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="16dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_top_groceries"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#98008000">
+
+                        <ImageView
+                            android:id="@+id/iv_top_groceries_icon"
+                            android:layout_width="91dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/screenshot_2026_03_16_230435" />
+
+                        <TextView
+                            android:id="@+id/tv_top_groceries_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Groceries"
+                            android:textColor="#E4DEDE"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@+id/iv_top_groceries_icon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_chainStyle="packed" />
+
+                        <TextView
+                            android:id="@+id/tv_top_groceries_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-R60"
+                            android:textColor="#FB0707"
+                            android:textColorLink="#FDFBFB"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@+id/tv_top_groceries_label"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_top_groceries_label" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_top_shopping"
+                    android:layout_width="0dp"
+                    android:layout_height="101dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="16dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_top_shopping"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#98008000">
+
+                        <ImageView
+                            android:id="@+id/iv_top_shopping_icon"
+                            android:layout_width="91dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/screenshot_2026_03_17_091918" />
+
+                        <TextView
+                            android:id="@+id/tv_top_shopping_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Shopping"
+                            android:textColor="#E4DEDE"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toEndOf="@+id/iv_top_shopping_icon"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_top_shopping_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="-R50"
+                            android:textColor="#FB0707"
+                            android:textColorLink="#FDFBFB"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@+id/tv_top_shopping_label"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_top_shopping_label" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bnv_main"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:elevation="8dp"
+    app:itemIconTint="#008000"
+    app:itemTextColor="#008000"
+    app:labelVisibilityMode="labeled"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:menu="@menu/bottom_nav_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
