@@ -34,7 +34,9 @@ class ExpensesFragment : Fragment() {
         rvTransactions = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(requireContext())
 
+        adapter= TransactionAdapter(transactionList) {transaction ->
 
+        }
         rvTransactions.adapter = adapter
 
         //(Android Developers, 2026)

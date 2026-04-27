@@ -9,7 +9,7 @@
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
-    <View
+  <!--  <View
         android:id="@+id/view"
         android:layout_width="412dp"
         android:layout_height="165dp"
@@ -572,7 +572,7 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
+-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"

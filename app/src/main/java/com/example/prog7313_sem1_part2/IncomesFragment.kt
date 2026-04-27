@@ -33,7 +33,9 @@ class IncomesFragment : Fragment() {
         // setting up recycler view
         rvTransactions = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(requireContext())
+        adapter= TransactionAdapter(transactionList) {transaction ->
 
+        }
 
         rvTransactions.adapter = adapter
 

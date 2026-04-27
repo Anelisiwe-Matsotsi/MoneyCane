@@ -9,7 +9,7 @@
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
-    <View
+   <!-- <View
         android:id="@+id/view"
         android:layout_width="412dp"
         android:layout_height="165dp"
@@ -505,5 +505,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>
