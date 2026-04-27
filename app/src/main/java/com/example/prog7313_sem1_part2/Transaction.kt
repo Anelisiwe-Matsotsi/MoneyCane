@@ -5,7 +5,9 @@ package com.example.prog7313_sem1_part2
 val id: String = "",
 val name: String = "",
 val type: String = "expense", //or income
-val amount: Double = 0.0 //sent or earned
+val amount: Double = 0.0, //sent or earned
+val date: String="",
+val imageUrl: String=""
 )
 /*
 References
