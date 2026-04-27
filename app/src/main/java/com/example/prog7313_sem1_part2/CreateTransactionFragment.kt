@@ -36,7 +36,7 @@ class CreateTransactionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit, container, false)
+        return inflater.inflate(R.layout.fragment_wallet_edit_dark, container, false)
     }
 
     companion object {

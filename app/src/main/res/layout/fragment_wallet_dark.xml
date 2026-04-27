@@ -96,19 +96,19 @@
                     tools:layout_editor_absoluteX="56dp"
                     tools:layout_editor_absoluteY="76dp" />
 
-                <ImageButton
-                    android:id="@+id/profileB"
-                    android:layout_width="36dp"
-                    android:layout_height="38dp"
-                    android:background="?attr/selectableItemBackground"
+<!--                <ImageButton-->
+<!--                    android:id="@+id/profileB"-->
+<!--                    android:layout_width="36dp"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:background="?attr/selectableItemBackground"-->
 
-                    android:scaleType="center"
-                    android:scaleX="2f"
-                    android:scaleY="2f"
-                    android:src="@drawable/ic_account_balance_wallet"
-                    app:tint="#D3B65C"
-                    tools:layout_editor_absoluteX="277dp"
-                    tools:layout_editor_absoluteY="17dp" />
+<!--                    android:scaleType="center"-->
+<!--                    android:scaleX="2f"-->
+<!--                    android:scaleY="2f"-->
+<!--                    android:src="@drawable/ic_account_balance_wallet"-->
+<!--                    app:tint="#D3B65C"-->
+<!--                    tools:layout_editor_absoluteX="277dp"-->
+<!--                    tools:layout_editor_absoluteY="17dp" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
