@@ -5,8 +5,10 @@ plugins {
 
 android {
     namespace = "com.example.prog7313_sem1_part2"
+
     compileSdk {
         version = release(36)
+
     }
 
     defaultConfig {
@@ -43,6 +45,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.database)
+    implementation(libs.androidx.viewpager2)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
