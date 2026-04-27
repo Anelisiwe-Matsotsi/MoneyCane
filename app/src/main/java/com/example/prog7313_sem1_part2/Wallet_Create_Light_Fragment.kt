@@ -36,7 +36,7 @@ class Wallet_Create_Light_Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wallet__create__light_, container, false)
+        return inflater.inflate(R.layout.fragment_wallet_create_light_, container, false)
     }
 
     companion object {
