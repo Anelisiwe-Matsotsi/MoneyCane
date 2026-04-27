@@ -4,22 +4,22 @@
     <item
         android:title="Home"
         android:id = "@+id/nav_home"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/home_white"/>
     <item
         android:title="Budget"
         android:id = "@+id/nav_budget"
-        android:icon="@drawable/budgets"/>
+        android:icon="@drawable/budgets_white"/>
     <item
         android:title="Analysis"
         android:id = "@+id/nav_analysis"
-        android:icon="@drawable/analysis"/>
+        android:icon="@drawable/analysis_gold"/>
     <item
         android:title="Rewards"
         android:id = "@+id/nav_achievement"
-        android:icon="@drawable/achievement"/>
+        android:icon="@drawable/achievements"/>
     <item
         android:title="More"
         android:id = "@+id/nav_more"
-        android:icon="@drawable/more" />
+        android:icon="@drawable/more_white" />
 </menu>
 
