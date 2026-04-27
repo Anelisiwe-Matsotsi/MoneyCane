@@ -78,8 +78,8 @@
                 android:max="100"
                 android:progress="100"
                 android:progressDrawable="@drawable/custom_progress_bar"
-                android:scaleX="2f"
-                android:scaleY="2f"
+                android:scaleX="2.0"
+                android:scaleY="2.0"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="214dp" />
 
@@ -247,18 +247,6 @@
         tools:layout_editor_absoluteX="346dp"
         tools:layout_editor_absoluteY="104dp" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
-        app:itemIconTint="#008000"
-        app:itemTextColor="#008000"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

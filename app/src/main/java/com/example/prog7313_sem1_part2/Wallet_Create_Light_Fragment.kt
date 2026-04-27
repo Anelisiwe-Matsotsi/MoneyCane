@@ -5,57 +5,42 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.navigation.fragment.findNavController
 import kotlin.apply
 import kotlin.let
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Wallet_Create_Light_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Wallet_Create_Light_Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class Wallet_Create_Light_Fragment : Fragment(R.layout.fragment_wallet__create__light_) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        val btn_create_wallet = view.findViewById<Button>(R.id.editProfileB)
+
+        val btn_edit_wallet = view.findViewById<ImageButton>(R.id.profileB6)
+
+        val btn_back = view.findViewById<ImageButton>(R.id.profileB2)
+
+
+
+
+
+        btn_create_wallet.setOnClickListener {
+            findNavController().navigate(R.id.action_wallet_Create_Light_Fragment2_to_createBudgetFragment2)//to create wallet(light)
         }
-    }
+        btn_edit_wallet.setOnClickListener {
+            findNavController().navigate(R.id.action_wallet_Create_Light_Fragment2_to_edit_Light_Fragment2)//to edit wallet(light)
+        }
+        btn_back.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wallet__create__light_, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Wallet_Create_Light_Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Wallet_Create_Light_Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+
+
     }
 }
+//editProfileB
+//profileB6

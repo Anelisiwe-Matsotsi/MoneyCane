@@ -68,8 +68,8 @@
                 android:max="100"
                 android:progress="50"
                 android:progressDrawable="@drawable/custom_progress_bar"
-                android:scaleX="2f"
-                android:scaleY="2f"
+                android:scaleX="2.0"
+                android:scaleY="2.0"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="214dp" />
 

@@ -13,8 +13,8 @@
 
 
         <action
-            android:id="@+id/action_logFragment_to_home2"
-            app:destination="@id/home2" />
+            android:id="@+id/action_logFragment_to_home"
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/budgetLight"
@@ -24,12 +24,6 @@
         <action
             android:id="@+id/action_budgetLight_to_analysisLight"
             app:destination="@id/analysisLight" />
-        <action
-            android:id="@+id/action_budgetLight_to_createBudgetFragment2"
-            app:destination="@id/createBudgetFragment2" />
-        <action
-            android:id="@+id/action_budgetLight_to_edit_Light_Fragment2"
-            app:destination="@id/edit_Light_Fragment2" />
     </fragment>
     <fragment
         android:id="@+id/analysisLight"
@@ -42,7 +36,7 @@
         android:label="Light_Achievment_Fragment"
         tools:layout="@layout/fragment_light__achievment_"/>
     <fragment
-        android:id="@+id/home2"
+        android:id="@+id/home"
         android:name="com.example.prog7313_sem1_part2.home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
@@ -56,6 +50,9 @@
         <action
             android:id="@+id/action_home2_to_wallet_Create_Light_Fragment2"
             app:destination="@id/wallet_Create_Light_Fragment2" />
+        <action
+            android:id="@+id/action_home_to_profileLight"
+            app:destination="@id/profileLight" />
     </fragment>
     <fragment
         android:id="@+id/more_Light_Fragment"
@@ -71,6 +68,12 @@
         <action
             android:id="@+id/action_more_Light_Fragment_to_wallet_Create_Light_Fragment2"
             app:destination="@id/wallet_Create_Light_Fragment2" />
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_budgetLight"
+            app:destination="@id/budgetLight" />
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_createTransactionFragment"
+            app:destination="@id/createTransactionFragment" />
     </fragment>
     <fragment
         android:id="@+id/createTransactionFragment"
@@ -115,7 +118,14 @@
         android:id="@+id/wallet_Create_Light_Fragment2"
         android:name="com.example.prog7313_sem1_part2.Wallet_Create_Light_Fragment"
         android:label="Wallet_Create_Light_Fragment"
-        tools:layout="@layout/fragment_wallet__create__light_"/>
+        tools:layout="@layout/fragment_wallet__create__light_">
+        <action
+            android:id="@+id/action_wallet_Create_Light_Fragment2_to_createBudgetFragment2"
+            app:destination="@id/createBudgetFragment2" />
+        <action
+            android:id="@+id/action_wallet_Create_Light_Fragment2_to_edit_Light_Fragment2"
+            app:destination="@id/edit_Light_Fragment2" />
+    </fragment>
 
 
 </navigation>

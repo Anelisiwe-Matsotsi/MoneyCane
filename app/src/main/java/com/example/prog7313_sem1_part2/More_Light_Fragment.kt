@@ -5,55 +5,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.navigation.fragment.findNavController
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [More_Light_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class More_Light_Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        val BtnBudget = view.findViewById<ImageButton>(R.id.btn_budget)
+        val BtnCatagory = view.findViewById<ImageButton>(R.id.btn_catagory)
+        val BtnTransaction = view.findViewById<ImageButton>(R.id.btn_transaction)
+        //val goal = view.findViewById<Button>(R.id.btn_set_goal)
+        //dont know what this is for yet
+        val BtnWallet = view.findViewById<ImageButton>(R.id.btn_wallet)
+        val profile = view.findViewById<ImageButton>(R.id.btn_account)
+
+
+
+
+
+        BtnBudget.setOnClickListener {
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_budgetLight)//to profile(light)
         }
-    }
+        BtnCatagory.setOnClickListener {
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_categoryFragment)//to wallet(light)
+        }
+        BtnTransaction.setOnClickListener {
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_createTransactionFragment)//to budgets(light)
+        }
+        BtnWallet.setOnClickListener {
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_wallet_Create_Light_Fragment2)//to transaction(light)
+        }
+        profile.setOnClickListener {
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_profileLight)//to transaction(light)
+        }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more__light_, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment More_Light_Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            More_Light_Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+
     }
 }

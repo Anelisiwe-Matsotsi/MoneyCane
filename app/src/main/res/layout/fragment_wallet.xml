@@ -103,8 +103,8 @@
                     android:background="?attr/selectableItemBackground"
 
                     android:scaleType="center"
-                    android:scaleX="2f"
-                    android:scaleY="2f"
+                    android:scaleX="2.0"
+                    android:scaleY="2.0"
                     android:src="@drawable/ic_account_balance_wallet"
                     app:tint="#D3B65C"
                     tools:layout_editor_absoluteX="277dp"
