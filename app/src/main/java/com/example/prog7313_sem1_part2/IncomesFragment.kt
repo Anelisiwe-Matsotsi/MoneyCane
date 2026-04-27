@@ -28,7 +28,7 @@ class IncomesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_light_category, container, false)
+        val view = inflater.inflate(R.layout.fragment_incomes, container, false)
 
         // setting up recycler view
         rvTransactions = view.findViewById(R.id.rvTransactions)
@@ -39,7 +39,7 @@ class IncomesFragment : Fragment() {
 
         //(Android Developers, 2026)
         //add icon: navigates to Create Category interface ---
-        val iconAddTransaction = view.findViewById<FloatingActionButton>(R.id.btnSave)
+        val iconAddTransaction = view.findViewById<FloatingActionButton>(R.id.iconAddTransaction)
         iconAddTransaction.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, Transaction_Fragment())
@@ -47,13 +47,13 @@ class IncomesFragment : Fragment() {
                 .commit()
         }
 
-        listenToCategories()
+        listenToTransactions()
 
         return view
     }
 
     //recycler view updates everytime if a category is added or edited
-    private fun listenToCategories() {
+    private fun listenToTransactions() {
         database.addValueEventListener(object : ValueEventListener {
 
             //(Firebase, 2026b)
@@ -62,11 +62,13 @@ class IncomesFragment : Fragment() {
                 transactionList.clear()
                 for (child in snapshot.children) {
                     val transaction = child.getValue(Transaction::class.java)
-                    if (transaction != null) {
+
+                    if(transaction !=null && transaction.type == "income") {
                         transactionList.add(transaction)
                     }
                 }
                 adapter.notifyDataSetChanged()
+
             }
 
             //database error

@@ -57,6 +57,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="61dp"
                     android:backgroundTint="#98008000"
