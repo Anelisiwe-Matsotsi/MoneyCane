@@ -43,7 +43,7 @@ adapter= TransactionAdapter(transactionList) {transaction ->
         //add icon: navigates to Create Category interface ---
         val iconAddTransaction = view.findViewById<FloatingActionButton>(R.id.iconAddTransaction)
         iconAddTransaction.setOnClickListener {
-            parentFragmentManager.beginTransaction()
+            requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, Transaction_Fragment())
                 .addToBackStack(null)
                 .commit()

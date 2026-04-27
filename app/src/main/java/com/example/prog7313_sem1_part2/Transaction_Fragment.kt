@@ -63,11 +63,11 @@ class Transaction_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // val sharedPref =
-           // requireActivity().getSharedPreferences("TransactionPrefs", Context.MODE_PRIVATE)
+        // val sharedPref =
+        // requireActivity().getSharedPreferences("TransactionPrefs", Context.MODE_PRIVATE)
         // retrieve the user that is currently "logged in" to ensure that only that user's data is saved
         //val currentUser = sharedPref.getString("username", "Guest")
-       // val userKey = "entries_$currentUser"
+        // val userKey = "entries_$currentUser"
         val etAmount = view.findViewById<EditText>(R.id.tbAmount)
         val etWallet = view.findViewById<EditText>(R.id.tbWallet)
         val etDate = view.findViewById<EditText>(R.id.tbDate)
