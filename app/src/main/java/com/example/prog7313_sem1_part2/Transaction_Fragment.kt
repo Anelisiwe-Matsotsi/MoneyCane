@@ -62,6 +62,12 @@ class Transaction_Fragment : Fragment() {
 
 
     // TODO: Rename and change types of parameters
+    //(Gaurav, 2025)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_transaction_, container, false)}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -122,15 +128,21 @@ class Transaction_Fragment : Fragment() {
         // user created, this will also be linked to that user with shared preferences
 
         btnSave.setOnClickListener {
-            val name=etName.toString()
+            val name=etName.text.toString().trim()
             val amountText = etAmount.text.toString().trim()
             val content = etDescription.text.toString()
             val imageUrl = uploadedImageUrl ?: ""// if no image is uploaded empty string is returned
+
+            if (content.isEmpty()) {
+                etDescription.error = "EnterDescription"
+                return@setOnClickListener
+            }
 
             if (amountText.isEmpty()) {
                 etAmount.error = "Enter Amount"
                 return@setOnClickListener
             }
+
 
             val amount = amountText.toDoubleOrNull()
             if (amount == null || amount <= 0) {
