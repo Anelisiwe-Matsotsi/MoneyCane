@@ -248,7 +248,8 @@ class Transaction_Fragment : Fragment() {
                         txtStatus.text = "Status: Upload successful"
                         Log.d("ProfileBadge", "Upload success: $it")
                     }.onFailure {
-                        txtStatus.text = "Status: Upload failed"
+                        txtStatus.text = "Status: ${it.message}"
+
                         Log.e("ProfileBadge", "Upload failed", it)
                     }
                 }
