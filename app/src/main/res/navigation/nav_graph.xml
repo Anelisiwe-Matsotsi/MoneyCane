@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/logFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/logFragment"
@@ -125,6 +125,14 @@
         <action
             android:id="@+id/action_wallet_Create_Light_Fragment2_to_edit_Light_Fragment2"
             app:destination="@id/edit_Light_Fragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.prog7313_sem1_part2.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_logFragment"
+            app:destination="@id/logFragment" />
     </fragment>
 
 

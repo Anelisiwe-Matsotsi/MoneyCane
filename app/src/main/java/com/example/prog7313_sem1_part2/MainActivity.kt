@@ -1,6 +1,7 @@
 package com.example.prog7313_sem1_part2
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -31,6 +32,19 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bnv_main)
         bottomNav.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            when(destination.id) {
+
+                R.id.logFragment,R.id.splashFragment -> { bottomNav.visibility = View.GONE
+                }
+
+                else -> {
+                    bottomNav.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -40,3 +54,4 @@ class MainActivity : AppCompatActivity() {
     }
 }
 //reference https://www.youtube.com/watch?v=0LLlMz2NPhE
+//https://www.linkedin.com/posts/chauhan-paresh-915340236_androiddevelopment-kotlin-navigationcomponent-activity-7377347549923409920-t3b9
