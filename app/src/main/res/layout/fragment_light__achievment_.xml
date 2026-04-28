@@ -246,7 +246,6 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="346dp"
         tools:layout_editor_absoluteY="104dp" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
