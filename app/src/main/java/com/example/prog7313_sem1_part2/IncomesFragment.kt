@@ -33,17 +33,17 @@ class IncomesFragment : Fragment() {
         // setting up recycler view
         rvTransactions = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(requireContext())
+
         adapter= TransactionAdapter(transactionList) {transaction ->
 
         }
-
         rvTransactions.adapter = adapter
 
         //(Android Developers, 2026)
         //add icon: navigates to Create Category interface ---
         val iconAddTransaction = view.findViewById<FloatingActionButton>(R.id.iconAddTransaction)
         iconAddTransaction.setOnClickListener {
-            parentFragmentManager.beginTransaction()
+            requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, Transaction_Fragment())
                 .addToBackStack(null)
                 .commit()
@@ -65,7 +65,7 @@ class IncomesFragment : Fragment() {
                 for (child in snapshot.children) {
                     val transaction = child.getValue(Transaction::class.java)
 
-                    if(transaction !=null && transaction.type == "income") {
+                    if(transaction !=null ) {
                         transactionList.add(transaction)
                     }
                 }

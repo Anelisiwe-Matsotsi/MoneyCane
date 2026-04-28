@@ -43,7 +43,7 @@ class ExpensesFragment : Fragment() {
         //add icon: navigates to Create Category interface ---
         val iconAddTransaction = view.findViewById<FloatingActionButton>(R.id.iconAddTransaction)
         iconAddTransaction.setOnClickListener {
-            parentFragmentManager.beginTransaction()
+            requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, Transaction_Fragment())
                 .addToBackStack(null)
                 .commit()
@@ -65,7 +65,7 @@ class ExpensesFragment : Fragment() {
                 for (child in snapshot.children) {
                     val transaction = child.getValue(Transaction::class.java)
 
-                    if(transaction !=null && transaction.type == "expense") {
+                    if(transaction !=null ) {
                         transactionList.add(transaction)
                     }
                 }
