@@ -409,7 +409,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_view_all"
+                    android:id="@+id/btnViewTransactions"
                     android:layout_width="69dp"
                     android:layout_height="23dp"
                     android:layout_marginTop="4dp"

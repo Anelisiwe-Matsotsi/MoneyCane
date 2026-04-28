@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="@drawable/custom_rectangle"
+
         android:backgroundTint="#008000">
 
         <ImageButton
@@ -29,10 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="CREATE Transaction"
+            android:text="Add Transaction"
             android:textColor="#001430"
-            android:textStyle="bold"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <!-- SCROLLABLE FORM CONTENT -->
@@ -49,12 +49,13 @@
 
             <!-- Transaction Name -->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="92dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Transaction Name"
-                android:textColor="#121212"
-                android:textSize="16sp" />
+                android:text="Title"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/tbTransactionName"
@@ -74,9 +75,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Transaction Amount (R)"
-                android:textColor="#121212"
-                android:textSize="16sp" />
+                android:text="Amount (R)"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/tbAmount"
@@ -97,9 +99,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Date of transaction"
-                android:textColor="#121212"
-                android:textSize="16sp" />
+                android:text="Today"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <DatePicker
                 android:id="@+id/datePicker"
@@ -113,38 +116,51 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Notes -->
-            <TextView
-                android:id="@+id/textViewDate2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Notes"
-                android:textColor="#121212"
-                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/tbDescription"
                 android:layout_width="match_parent"
                 android:layout_height="153dp"
                 android:ems="10"
-                android:inputType="text"
-                android:text="..." />
+                android:hint="Add Notes"
+                android:inputType="text" />
 
             <!-- Add Image -->
-            <TextView
-                android:id="@+id/textViewImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="Add Image(optional)"
-                android:textColor="#121212"
-                android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/btnChooseImage"
-                android:layout_width="351dp"
-                android:layout_height="wrap_content"
-                android:text="Choose" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp">
+
+                <TextView
+                    android:id="@+id/tvImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="36dp"
+                    android:text="Add an image (optional)"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnChooseImage"
+                    android:layout_width="178dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="16dp"
+                    android:backgroundTint="#94F9FAF8"
+                    android:drawableTint="#009688"
+                    android:text="choose image"
+                    android:textColor="#050505"
+                    app:icon="@android:drawable/ic_input_add"
+                    app:iconSize="30dp"
+                    app:iconTint="#050505" />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/txtUploadStatus"
@@ -154,7 +170,7 @@
 
             <ImageView
                 android:id="@+id/imgSelected"
-                android:layout_width="372dp"
+                android:layout_width="435dp"
                 android:layout_height="110dp"
                 app:srcCompat="@android:drawable/ic_menu_gallery" />
 
@@ -162,6 +178,7 @@
                 android:id="@+id/btnUploadImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#CED5C5"
                 android:text="Upload Image" />
 
             <!-- Expense Type RadioGroup -->
@@ -171,7 +188,8 @@
                 android:layout_marginBottom="12dp"
                 android:text="Expense Type"
                 android:textColor="#121212"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/radioGroupType"
@@ -214,7 +232,7 @@
 
             <!-- Select Category Button -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_select_catagory"
+                android:id="@+id/btn_select_category"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
@@ -230,7 +248,7 @@
 
             <!-- Save Button (Material style) -->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton2"
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
@@ -245,16 +263,6 @@
                 app:iconTint="@color/white" />
 
             <!-- Final ADD Transaction Button -->
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:backgroundTint="#008000"
-                android:text="ADD Transaction"
-                android:textColor="#001430"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:cornerRadius="15dp" />
 
         </LinearLayout>
     </ScrollView>

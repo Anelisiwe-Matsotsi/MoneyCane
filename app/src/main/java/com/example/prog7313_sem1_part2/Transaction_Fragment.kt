@@ -1,10 +1,8 @@
 package com.example.prog7313_sem1_part2
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,15 +16,13 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.prog7313_sem1_part2.FileUtils
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.firebase.database.FirebaseDatabase
 import java.util.Calendar
-import kotlin.apply
 import kotlin.concurrent.thread
-import kotlin.io.readBytes
-import kotlin.let
-
-
 
 
 class Transaction_Fragment : Fragment() {
@@ -40,6 +36,10 @@ class Transaction_Fragment : Fragment() {
 
     // Firebase Realtime Database reference
     private val database = FirebaseDatabase.getInstance().getReference("transactions")
+    private val categorygoryDatabase = FirebaseDatabase.getInstance().getReference("categories")
+    private val categoryList= ArrayList<Category>()
+
+    private  var selectedCategoryId: String=""
     private lateinit var btnChoose: Button
     private lateinit var btnUpload: Button
     // private lateinit var btnDownload: Button
@@ -86,6 +86,8 @@ class Transaction_Fragment : Fragment() {
         val radioExpense = view.findViewById<RadioButton>(R.id.radioExpense)
         val radioIncome = view.findViewById<RadioButton>(R.id.radioIncome)
 
+        val btnSelectCategory = view.findViewById<Button>(R.id.btn_select_category)
+        val btnSave = view.findViewById<Button>(R.id.btnSave)
 //Image upload code
         imgSelected = view.findViewById(R.id.imgSelected)
         btnChoose = view.findViewById(R.id.btnChooseImage)
@@ -121,7 +123,15 @@ class Transaction_Fragment : Fragment() {
 
 
 
-        val btnSave = view.findViewById<Button>(R.id.btnSave)
+
+
+
+
+        btnSelectCategory.setOnClickListener {
+            showBottomView()
+        }
+
+
         // val btnLogout = view.findViewById<Button>(R.id.btnLogout)
 
         // next we are doing the save button. this will save the transaction entry that the logged in
@@ -163,14 +173,19 @@ class Transaction_Fragment : Fragment() {
                 else -> "expense"
             }
 
-            saveTransaction(name,amount, selectedType, date, imageUrl)
+            if (selectedCategoryId.isEmpty()) {
+                Toast.makeText(requireContext(),"Please pick a category for your transaction",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            saveTransaction(name,amount, selectedType, date, imageUrl, selectedCategoryId )
         }
 
     }
             //Firebase, 2026)
             //transaction is saved in firebase DB
             private fun saveTransaction(name: String, amount: Double, type: String,
-           date: String, imageUrl: String ) {
+           date: String, imageUrl: String, category: String ) {
             // push creates a unique key for the new transaction
 
             val transactionRef = database.push()
@@ -182,7 +197,8 @@ class Transaction_Fragment : Fragment() {
                 type = type,
                 amount = amount,
                 date=date,
-                imageUrl=imageUrl
+                imageUrl=imageUrl,
+                categoryId = category
             )
 
             transactionRef.setValue(newTransaction)
@@ -213,7 +229,39 @@ class Transaction_Fragment : Fragment() {
 
             }*/
         }
+    //choose category code
+    private fun showBottomView() {
+        /*GeekForGeeks
+           * Inflate layout */
+        val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_dialog, null)
+        val chipGroup = bottomSheetView.findViewById<ChipGroup>(R.id.cgCategories)
+        val dialog = BottomSheetDialog(requireContext())
 
+        //load firebase
+        categorygoryDatabase.get().addOnSuccessListener { snapshot ->
+            chipGroup.removeAllViews()
+            for (child in snapshot.children) {
+                val category = child.getValue(Category::class.java)
+                val categoryId = child.key ?: continue
+
+
+                if (category != null) {
+                    val chip = Chip(requireContext())
+                    chip.text = category.name
+                    chip.tag = categoryId
+
+                    chip.setOnClickListener {
+                        selectedCategoryId = chip.tag.toString()
+                        dialog.dismiss()
+                    }
+                    chipGroup.addView(chip)
+
+                }
+            }
+        }
+        dialog.setContentView(bottomSheetView)
+        dialog.show()
+    }
 
 
 
