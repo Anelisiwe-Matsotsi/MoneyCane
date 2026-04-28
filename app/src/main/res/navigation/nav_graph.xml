@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_logFragment_to_home"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_logFragment_to_registerFragmentLight"
+            app:destination="@id/registerFragmentLight" />
     </fragment>
     <fragment
         android:id="@+id/budgetLight"
@@ -88,7 +91,7 @@
         android:id="@+id/edit_Light_Fragment2"
         android:name="com.example.prog7313_sem1_part2.Edit_Light_Fragment2"
         android:label="Edit_Light_Fragment2"
-        tools:layout="@layout/fragment_edit__light_2"/>
+        tools:layout="@layout/fragment_wallet_edit_light"/>
     <fragment
         android:id="@+id/editCategoryFragment"
         android:name="com.example.prog7313_sem1_part2.EditCategoryFragment"
@@ -101,7 +104,7 @@
         tools:layout="@layout/fragment_create_budget"/>
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.prog7313_sem1_part2.CategoryFragment"
+        android:name="com.example.prog7313_sem1_part2.LightCategoryFragment"
         android:label="CategoryFragment"
         tools:layout="@layout/fragment_category">
         <action
@@ -134,6 +137,11 @@
             android:id="@+id/action_splashFragment_to_logFragment"
             app:destination="@id/logFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/registerFragmentLight"
+        android:name="com.example.prog7313_sem1_part2.RegisterFragmentLight"
+        android:label="fragment_register_light"
+        tools:layout="@layout/fragment_register_light" />
 
 
 </navigation>
