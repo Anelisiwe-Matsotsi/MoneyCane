@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 android:background="#FCF5FD"
 tools:context=".AnalysisLight">
 
-<!--<ScrollView
+<ScrollView
     android:id="@+id/sv_analysis"
     android:layout_width="0dp"
     android:layout_height="0dp"
@@ -613,7 +613,6 @@ tools:context=".AnalysisLight">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
--->
 <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/bnv_main"
     android:layout_width="0dp"

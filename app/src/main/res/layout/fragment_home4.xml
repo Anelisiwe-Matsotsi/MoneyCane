@@ -9,7 +9,7 @@
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
-    <!--<View
+    <View
         android:id="@+id/view"
         android:layout_width="412dp"
         android:layout_height="165dp"
@@ -430,7 +430,6 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
--->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"

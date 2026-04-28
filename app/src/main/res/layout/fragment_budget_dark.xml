@@ -8,7 +8,7 @@ android:layout_height="match_parent"
 android:background="#000B2E"
 tools:context=".BudgetDark">
 
-<!--<View
+<View
     android:id="@+id/v_top_green_bar"
     android:layout_width="0dp"
     android:layout_height="139dp"
@@ -247,7 +247,6 @@ tools:context=".BudgetDark">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/v_top_green_bar"
     app:layout_constraintVertical_bias="0.855" />
--->
 <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/bnv_main"
     android:layout_width="0dp"
