@@ -2,36 +2,35 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/cl_main_analysis"
+android:id="@+id/cl_main_analysis_light"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="#FCF5FD"
 tools:context=".AnalysisLight">
 
-<ScrollView
-    android:id="@+id/sv_analysis"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:background="#FFFEFE"
-    app:layout_constraintBottom_toTopOf="@+id/bnv_main"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    <ScrollView
+        android:id="@+id/sv_analysis"
+        android:layout_width="413dp"
+        android:layout_height="match_parent"
+        android:background="#FFFEFE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_scroll_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_scroll_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-
-        <LinearLayout
-            android:id="@+id/ll_header"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <!-- Header: back arrow, title, month selector, filter -->
+            <LinearLayout
+                android:id="@+id/ll_header"
+                android:layout_width="413dp"
+                android:layout_height="145dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_header_bg"
@@ -40,29 +39,28 @@ tools:context=".AnalysisLight">
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp">
 
-                <View
-                    android:id="@+id/v_header_bg"
-                    android:layout_width="0dp"
-                    android:layout_height="118dp"
-                    android:background="@drawable/custome_rectangle"
-                    android:backgroundTint="#008000"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <View
+                        android:id="@+id/v_header_bg"
+                        android:layout_width="409dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/custome_rectangle"
+                        android:backgroundTint="#008000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/iv_back_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:layout_marginTop="5dp"
-                    android:backgroundTint="#FAF7F7"
-                    android:foregroundTint="#E4E0E0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/outline_arrow_back_24"
-                    app:tint="#000000" />
+                    <ImageButton
+                        android:id="@+id/iv_back_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="20dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/outline_arrow_back_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_analysis_title"
@@ -78,59 +76,61 @@ tools:context=".AnalysisLight">
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Button
-                    android:id="@+id/btn_month_prev"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#03FFFFFF"
-                    android:text="<"
-                    android:textColor="#020101"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_month_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_month_name" />
+                    <Button
+                        android:id="@+id/btn_month_prev"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#03FFFFFF"
+                        android:text="&lt;"
+                        android:textColor="#020101"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_month_name"
+                        app:layout_constraintTop_toTopOf="@+id/tv_month_name" />
 
-                <Button
-                    android:id="@+id/btn_month_next"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#03FFFFFF"
-                    android:text=">"
-                    android:textColor="#000000"
-                    android:textSize="20dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
-                    app:layout_constraintStart_toEndOf="@+id/tv_month_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_month_name" />
+                    <Button
+                        android:id="@+id/btn_month_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#03FFFFFF"
+                        android:text="&gt;"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
+                        app:layout_constraintStart_toEndOf="@+id/tv_month_name"
+                        app:layout_constraintTop_toTopOf="@+id/tv_month_name" />
 
-                <TextView
-                    android:id="@+id/tv_month_name"
-                    android:layout_width="102dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="March"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/tv_month_name"
+                        android:layout_width="102dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:text="March"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.501"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.911" />
 
-                <ImageView
-                    android:id="@+id/iv_filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/icons8_filter_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="#000000" />
+                    <ImageView
+                        android:id="@+id/iv_filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/icons8_filter_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#000000" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-
+        <!-- Income/Expense top row and chart -->
         <LinearLayout
             android:id="@+id/ll_income_expense_chart"
             android:layout_width="0dp"
@@ -169,17 +169,17 @@ tools:context=".AnalysisLight">
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/v_net_total_bg" />
 
-                <Button
-                    android:id="@+id/btn_expenses"
-                    android:layout_width="133dp"
-                    android:layout_height="46dp"
-                    android:layout_marginTop="34dp"
-                    android:backgroundTint="#BC3F3F"
-                    android:text="Expenses"
-                    android:textColor="#090606"
-                    app:iconPadding="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg" />
+                    <Button
+                        android:id="@+id/btn_expenses"
+                        android:layout_width="133dp"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="#BC3F3F"
+                        android:text="Expenses"
+                        android:textColor="#090606"
+                        app:iconPadding="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/v_net_total_bg" />
 
                 <TextView
                     android:id="@+id/tv_net_total"
@@ -196,33 +196,35 @@ tools:context=".AnalysisLight">
                     app:layout_constraintStart_toStartOf="@+id/v_net_total_bg"
                     app:layout_constraintTop_toTopOf="@+id/v_net_total_bg" />
 
-                <TextView
-                    android:id="@+id/tv_income_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="+R200"
-                    android:textColor="#007F00"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/v_net_total_bg"
-                    app:layout_constraintStart_toStartOf="@+id/v_net_total_bg"
-                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg"
-                    app:layout_constraintVertical_bias="0.7" />
+                    <TextView
+                        android:id="@+id/tv_income_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="48dp"
+                        android:gravity="center"
+                        android:text="+R200"
+                        android:textColor="#007F00"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/v_net_total_bg"
+                        app:layout_constraintStart_toStartOf="@+id/v_net_total_bg"
+                        app:layout_constraintTop_toTopOf="@+id/v_net_total_bg"
+                        app:layout_constraintVertical_bias="0.826" />
 
-                <TextView
-                    android:id="@+id/tv_expenses_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="-R100"
-                    android:textColor="#DC0202"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/v_net_total_bg"
-                    app:layout_constraintEnd_toEndOf="@+id/v_net_total_bg"
-                    app:layout_constraintTop_toTopOf="@+id/v_net_total_bg"
-                    app:layout_constraintVertical_bias="0.7" />
+                    <TextView
+                        android:id="@+id/tv_expenses_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="48dp"
+                        android:gravity="center"
+                        android:text="-R100"
+                        android:textColor="#DC0202"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/v_net_total_bg"
+                        app:layout_constraintEnd_toEndOf="@+id/v_net_total_bg"
+                        app:layout_constraintTop_toTopOf="@+id/v_net_total_bg"
+                        app:layout_constraintVertical_bias="0.793" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -248,7 +250,7 @@ tools:context=".AnalysisLight">
 
         </LinearLayout>
 
-
+        <!-- TabLayout + list items -->
         <LinearLayout
             android:id="@+id/ll_tabs_list"
             android:layout_width="0dp"
@@ -302,7 +304,7 @@ tools:context=".AnalysisLight">
 
             </androidx.cardview.widget.CardView>
 
-
+            <!-- Expense items list -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_expense_items"
                 android:layout_width="match_parent"
@@ -470,6 +472,7 @@ tools:context=".AnalysisLight">
 
         </LinearLayout>
 
+        <!-- Top Expenses section -->
         <LinearLayout
             android:id="@+id/ll_top_expenses"
             android:layout_width="0dp"
@@ -613,6 +616,7 @@ tools:context=".AnalysisLight">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+
 <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/bnv_main"
     android:layout_width="0dp"

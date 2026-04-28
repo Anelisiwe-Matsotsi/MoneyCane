@@ -3,23 +3,23 @@
 
     <item
         android:title="Home"
-        android:id = "@+id/nav_home"
+        android:id = "@+id/home"
         android:icon="@drawable/home_white"/>
     <item
         android:title="Budget"
-        android:id = "@+id/nav_budget"
+        android:id = "@+id/budgetLight"
         android:icon="@drawable/budgets_white"/>
     <item
         android:title="Analysis"
-        android:id = "@+id/nav_analysis"
+        android:id = "@+id/analysisLight"
         android:icon="@drawable/analysis_gold"/>
     <item
         android:title="Rewards"
-        android:id = "@+id/nav_achievement"
+        android:id = "@+id/light_Achievment_Fragment"
         android:icon="@drawable/achievements"/>
     <item
         android:title="More"
-        android:id = "@+id/nav_more"
+        android:id = "@+id/more_Light_Fragment"
         android:icon="@drawable/more_white" />
 </menu>
 

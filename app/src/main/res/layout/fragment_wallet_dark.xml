@@ -18,6 +18,9 @@
         android:backgroundTint="#E4B528"
         android:endColor="#FFDF01"
         android:startColor="#A57C01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="-2dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-2dp" />
 
@@ -26,9 +29,12 @@
         android:layout_width="59dp"
         android:layout_height="49dp"
         android:background="?attr/selectableItemBackground"
-
         android:src="@drawable/ic_arrow_back"
         app:tint="#FAF6F6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="-12dp"
+        android:layout_marginTop="7dp"
         tools:layout_editor_absoluteX="-12dp"
         tools:layout_editor_absoluteY="7dp" />
 
@@ -36,6 +42,10 @@
         android:layout_width="389dp"
         android:layout_height="134dp"
         android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="112dp"
         tools:layout_editor_absoluteX="4dp"
         tools:layout_editor_absoluteY="112dp">
 
@@ -56,7 +66,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:backgroundTint="#FFC107">
 
                 <TextView
@@ -66,6 +75,10 @@
                     android:text="Total Available Balance"
                     android:textColor="#F2EFE4"
                     android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="36dp"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="36dp" />
 
@@ -74,7 +87,6 @@
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="Add Wallet"
                     android:textColor="#E4B528"
                     android:textColorLink="#FF9800"
@@ -82,6 +94,10 @@
                     app:iconPadding="4dp"
                     app:iconSize="30dp"
                     app:iconTint="#FFC107"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="206dp"
+                    android:layout_marginTop="74dp"
                     tools:layout_editor_absoluteX="206dp"
                     tools:layout_editor_absoluteY="74dp" />
 
@@ -93,22 +109,29 @@
                     android:textColor="#FFC107"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginTop="76dp"
                     tools:layout_editor_absoluteX="56dp"
                     tools:layout_editor_absoluteY="76dp" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/profileB"-->
-<!--                    android:layout_width="36dp"-->
-<!--                    android:layout_height="38dp"-->
-<!--                    android:background="?attr/selectableItemBackground"-->
-
-<!--                    android:scaleType="center"-->
-<!--                    android:scaleX="2f"-->
-<!--                    android:scaleY="2f"-->
-<!--                    android:src="@drawable/ic_account_balance_wallet"-->
-<!--                    app:tint="#D3B65C"-->
-<!--                    tools:layout_editor_absoluteX="277dp"-->
-<!--                    tools:layout_editor_absoluteY="17dp" />-->
+                <ImageButton
+                    android:id="@+id/profileB"
+                    android:layout_width="36dp"
+                    android:layout_height="38dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:scaleType="center"
+                    android:scaleX="2.0"
+                    android:scaleY="2.0"
+                    android:src="@drawable/ic_account_balance_wallet"
+                    app:tint="#D3B65C"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="277dp"
+                    android:layout_marginTop="17dp"
+                    tools:layout_editor_absoluteX="277dp"
+                    tools:layout_editor_absoluteY="17dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -121,12 +144,15 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="345dp"
         tools:layout_editor_absoluteX="22dp"
         tools:layout_editor_absoluteY="345dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
-
+            android:id="@+id/cardView9"
             android:layout_width="match_parent"
             android:layout_height="118dp"
             android:layout_marginStart="16dp"
@@ -141,18 +167,19 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="135dp"
-
-                >
+                android:layout_height="135dp">
 
                 <ImageButton
                     android:id="@+id/profileB6"
                     android:layout_width="70dp"
                     android:layout_height="67dp"
                     android:background="?attr/selectableItemBackground"
-
                     android:src="@android:drawable/ic_menu_edit"
                     app:tint="#EDE8D7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="213dp"
+                    android:layout_marginTop="2dp"
                     tools:layout_editor_absoluteX="213dp"
                     tools:layout_editor_absoluteY="2dp" />
 
@@ -161,20 +188,27 @@
                     android:layout_width="70dp"
                     android:layout_height="67dp"
                     android:background="?attr/selectableItemBackground"
-
                     android:src="@android:drawable/ic_menu_delete"
                     app:tint="#EDE8D7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="249dp"
+                    android:layout_marginTop="2dp"
                     tools:layout_editor_absoluteX="249dp"
                     tools:layout_editor_absoluteY="2dp" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BANK WALLET"
                     android:textColor="#F2EFE4"
                     android:textSize="14sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="0dp"
                     tools:layout_editor_absoluteX="44dp"
                     tools:layout_editor_absoluteY="0dp" />
 
@@ -186,6 +220,10 @@
                     android:textColor="#F0EFE8"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="34dp"
                     tools:layout_editor_absoluteX="44dp"
                     tools:layout_editor_absoluteY="34dp" />
 
@@ -197,6 +235,10 @@
                     android:textColor="#CEC9C0"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="68dp"
                     tools:layout_editor_absoluteX="44dp"
                     tools:layout_editor_absoluteY="68dp" />
 
@@ -209,6 +251,10 @@
                     android:backgroundTint="#E4B528"
                     android:endColor="#FFDF01"
                     android:startColor="#A57C01"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
                     tools:layout_editor_absoluteX="2dp"
                     tools:layout_editor_absoluteY="2dp" />
 
@@ -225,15 +271,22 @@
         android:textColor="#FAF6F6"
         android:textSize="30dp"
         android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="49dp"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="49dp" />
 
     <SearchView
         android:layout_width="361dp"
-
         android:layout_height="52dp"
         android:background="@drawable/bg_white_rounded"
         android:backgroundTint="#EDE8D7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="273dp"
         tools:layout_editor_absoluteX="26dp"
         tools:layout_editor_absoluteY="273dp" />
 
@@ -243,12 +296,15 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="486dp"
         tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="486dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
-
             android:layout_width="333dp"
             android:layout_height="152dp"
             android:layout_marginStart="16dp"
@@ -263,9 +319,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="355dp"
-                android:layout_height="134dp"
-
-                >
+                android:layout_height="134dp">
 
                 <LinearLayout
                     android:layout_width="367dp"
@@ -273,12 +327,15 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     android:weightSum="2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="524dp"
                     tools:layout_editor_absoluteX="25dp"
                     tools:layout_editor_absoluteY="524dp">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardView3"
-
+                        android:id="@+id/cardView7"
                         android:layout_width="match_parent"
                         android:layout_height="118dp"
                         android:layout_marginStart="16dp"
@@ -293,18 +350,19 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="355dp"
-                            android:layout_height="134dp"
-
-                            >
+                            android:layout_height="134dp">
 
                             <ImageButton
                                 android:id="@+id/profileB7"
                                 android:layout_width="70dp"
                                 android:layout_height="67dp"
                                 android:background="?attr/selectableItemBackground"
-
                                 android:src="@android:drawable/ic_menu_edit"
                                 app:tint="#EDE8D7"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_marginStart="213dp"
+                                android:layout_marginTop="2dp"
                                 tools:layout_editor_absoluteX="213dp"
                                 tools:layout_editor_absoluteY="2dp" />
 
@@ -313,9 +371,12 @@
                                 android:layout_width="70dp"
                                 android:layout_height="67dp"
                                 android:background="?attr/selectableItemBackground"
-
                                 android:src="@android:drawable/ic_menu_delete"
                                 app:tint="#D3B65C"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_marginStart="249dp"
+                                android:layout_marginTop="2dp"
                                 tools:layout_editor_absoluteX="249dp"
                                 tools:layout_editor_absoluteY="2dp" />
 
@@ -327,6 +388,10 @@
                                 android:textColor="#CEC9C0"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_marginStart="44dp"
+                                android:layout_marginTop="68dp"
                                 tools:layout_editor_absoluteX="44dp"
                                 tools:layout_editor_absoluteY="68dp" />
 
@@ -338,6 +403,10 @@
                                 android:textColor="#F0EFE8"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_marginStart="44dp"
+                                android:layout_marginTop="34dp"
                                 tools:layout_editor_absoluteX="44dp"
                                 tools:layout_editor_absoluteY="34dp" />
 
@@ -350,17 +419,25 @@
                                 android:backgroundTint="#E4B528"
                                 android:endColor="#FFDF01"
                                 android:startColor="#A57C01"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_marginStart="2dp"
+                                android:layout_marginTop="2dp"
                                 tools:layout_editor_absoluteX="2dp"
                                 tools:layout_editor_absoluteY="2dp" />
 
                             <TextView
-                                android:id="@+id/textView3"
+                                android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="CASH WALLET"
                                 android:textColor="#F2EFE4"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_marginStart="43dp"
+                                android:layout_marginTop="2dp"
                                 tools:layout_editor_absoluteX="43dp"
                                 tools:layout_editor_absoluteY="2dp" />
 
@@ -374,9 +451,12 @@
                     android:layout_width="70dp"
                     android:layout_height="67dp"
                     android:background="?attr/selectableItemBackground"
-
                     android:src="@android:drawable/ic_menu_delete"
                     app:tint="#EDE8D7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="249dp"
+                    android:layout_marginTop="2dp"
                     tools:layout_editor_absoluteX="249dp"
                     tools:layout_editor_absoluteY="2dp" />
 
@@ -388,6 +468,10 @@
                     android:textColor="#CEC9C0"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="37dp"
+                    android:layout_marginTop="69dp"
                     tools:layout_editor_absoluteX="37dp"
                     tools:layout_editor_absoluteY="69dp" />
 
@@ -399,6 +483,10 @@
                     android:textColor="#F0EFE8"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="43dp"
+                    android:layout_marginTop="34dp"
                     tools:layout_editor_absoluteX="43dp"
                     tools:layout_editor_absoluteY="34dp" />
 
@@ -411,6 +499,10 @@
                     android:backgroundTint="#E4B528"
                     android:endColor="#FFDF01"
                     android:startColor="#A57C01"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
                     tools:layout_editor_absoluteX="2dp"
                     tools:layout_editor_absoluteY="2dp" />
 
@@ -422,6 +514,10 @@
                     android:textColor="#F2EFE4"
                     android:textSize="14sp"
                     android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="43dp"
+                    android:layout_marginTop="2dp"
                     tools:layout_editor_absoluteX="43dp"
                     tools:layout_editor_absoluteY="2dp" />
 
@@ -430,9 +526,12 @@
                     android:layout_width="70dp"
                     android:layout_height="67dp"
                     android:background="?attr/selectableItemBackground"
-
                     android:src="@android:drawable/ic_menu_edit"
                     app:tint="#EDE8D7"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="2dp"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="2dp" />
 
@@ -444,6 +543,10 @@
                     android:drawableTint="#FFC107"
                     android:text="Ethan Danials"
                     android:textColor="#F2EFE4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginTop="94dp"
                     tools:layout_editor_absoluteX="210dp"
                     tools:layout_editor_absoluteY="94dp" />
 
@@ -453,6 +556,10 @@
                     android:layout_height="wrap_content"
                     android:text="Shared wallet"
                     android:textColor="#F2EFE4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="37dp"
+                    android:layout_marginTop="99dp"
                     tools:layout_editor_absoluteX="37dp"
                     tools:layout_editor_absoluteY="99dp" />
 
@@ -466,7 +573,6 @@
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Add  Shared Wallet"
         android:textColor="#E4B528"
         android:textColorLink="#FF9800"
@@ -474,6 +580,10 @@
         app:iconPadding="4dp"
         app:iconSize="30dp"
         app:iconTint="#FFC107"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="689dp"
         tools:layout_editor_absoluteX="104dp"
         tools:layout_editor_absoluteY="689dp" />
 
@@ -487,6 +597,10 @@
         app:fabCustomSize="80dp"
         app:maxImageSize="30dp"
         app:rippleColor="#EDE8D7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="324dp"
+        android:layout_marginTop="727dp"
         tools:layout_editor_absoluteX="324dp"
         tools:layout_editor_absoluteY="727dp" />
 

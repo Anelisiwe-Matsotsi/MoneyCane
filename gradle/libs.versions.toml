@@ -9,13 +9,17 @@ material = "1.13.0"
 activity = "1.13.0"
 constraintlayout = "2.2.1"
 navigationFragmentKtx = "2.9.8"
+navigationFragmentKtxVersion = "2.5.0"
 navigationUiKtx = "2.9.8"
+navigationUiKtxVersion = "2.5.0"
 googleGmsGoogleServices = "4.4.4"
 firebaseDatabase = "22.0.1"
 viewpager2 = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-navigation-fragment-ktx-v250 = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtxVersion" }
+androidx-navigation-ui-ktx-v250 = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtxVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
