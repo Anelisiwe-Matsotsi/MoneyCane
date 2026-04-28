@@ -65,7 +65,7 @@ class IncomesFragment : Fragment() {
                 for (child in snapshot.children) {
                     val transaction = child.getValue(Transaction::class.java)
 
-                    if(transaction !=null ) {
+                    if(transaction !=null && transaction.type == "income") {
                         transactionList.add(transaction)
                     }
                 }

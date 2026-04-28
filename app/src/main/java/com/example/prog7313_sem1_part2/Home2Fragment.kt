@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlin.apply
 import kotlin.let
 
-val flowersArray = arrayOf(
+val transactionArray = arrayOf(
     "AllTransactions",
     "Expenses",
     "Incomes"
@@ -31,7 +31,7 @@ class Home2Fragment : Fragment(R.layout.fragment_home2) {
         viewPager.adapter=adapter
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = flowersArray[position]
+            tab.text = transactionArray[position]
         }.attach()
     }
 }

@@ -1,12 +1,10 @@
 package com.example.prog7313_sem1_part2
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
 //(Android Knowledge, 2023)
@@ -40,6 +38,14 @@ class TransactionAdapter (
         holder.tvType.text = transaction.type.replaceFirstChar { it.uppercase() } //first letter always capital letter
         holder.tvSpent.text = "R${transaction.amount.toInt()}"
 
+        //StackOverflow,2019
+        if(transaction.type == "income"){
+            holder.tvSpent.setTextColor(Color.GREEN)
+            holder.tvType.setTextColor(Color.GREEN)
+        } else {
+            holder.tvSpent.setTextColor(Color.RED)
+            holder.tvType.setTextColor(Color.RED)
+        }
 
 
     }
@@ -56,4 +62,7 @@ Gaurav. 2025. Mastering RecyclerView: Optimizing onCreateViewHolder and onBindVi
 GeeksforGeeks. 2025. RecyclerView in Android with Example. (Version 8) [source code]. Available at: < https://www.geeksforgeeks.org/android/android-recyclerview/ > [Accessed 26 April 2026]
 Kotlin Programming Language. 2026. coerceIn | Core API. (Version 8) [source code]. Available at: < https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/coerce-in.html > [Accessed 26 April 2026]
 Pathak, A. 2025. Kotlin Series: Nested and Inner Classes. (Version 8) [source code]. Available at: < https://medium.com/@myofficework000/kotlin-series-nested-and-inner-classes-0f76f6a13abd > [Accessed 26 April 2026]
+Stack Overflow.2019. How to conditionally change text color in Android? (Version 8) [source code]  Available at:< https://stackoverflow.com/questions/57913995/how-to-conditionally-change-text-color-in-android.
+
+‌ > [Accessed 28 April 2026]
  */
