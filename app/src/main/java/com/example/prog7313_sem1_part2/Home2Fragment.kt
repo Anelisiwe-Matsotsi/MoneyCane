@@ -34,4 +34,6 @@ class Home2Fragment : Fragment(R.layout.fragment_home2) {
             tab.text = transactionArray[position]
         }.attach()
     }
-}
+}/*References
+Ipek Birinci.2024. Usage of ViewPager2 with TabLayout. [source code] . Available at: <https://medium.com/@ipek.birinci8/usage-of-viewpager2-with-tablayout-72c4a5a1ad64> [Accessed 28 Apr. 2026].
+*/
