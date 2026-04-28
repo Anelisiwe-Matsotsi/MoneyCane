@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioButton
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.prog7313_sem1_part2.FileUtils
 import com.google.firebase.database.FirebaseDatabase
+import java.util.Calendar
 import kotlin.apply
 import kotlin.concurrent.thread
 import kotlin.io.readBytes
@@ -68,9 +70,11 @@ class Transaction_Fragment : Fragment() {
         // retrieve the user that is currently "logged in" to ensure that only that user's data is saved
         //val currentUser = sharedPref.getString("username", "Guest")
         // val userKey = "entries_$currentUser"
+        val  etName= view.findViewById<EditText>(R.id.tbTransactionName)
         val etAmount = view.findViewById<EditText>(R.id.tbAmount)
-        val etWallet = view.findViewById<EditText>(R.id.tbWallet)
-        val etDate = view.findViewById<EditText>(R.id.tbDate)
+      //  val etWallet = view.findViewById<EditText>(R.id.tbWallet)
+        // Initialize DatePicker from layout
+        val datePicker: DatePicker = view.findViewById(R.id.datePicker)
         val etDescription = view.findViewById<EditText>(R.id.tbDescription)
         val radioGroupType = view.findViewById<RadioGroup>(R.id.radioGroupType)
         val radioExpense = view.findViewById<RadioButton>(R.id.radioExpense)
@@ -93,6 +97,24 @@ class Transaction_Fragment : Fragment() {
         }
 
 
+
+
+        // Get today's date using Calendar instance
+        val today = Calendar.getInstance()
+
+        // Initialize DatePicker with the current date
+        datePicker.init(
+            today.get(Calendar.YEAR),
+            today.get(Calendar.MONTH),
+            today.get(Calendar.DAY_OF_MONTH)
+        ) { view, year, month, day ->
+            // Display selected date in Toast message
+            val msg = "You Selected: $day/${month+1}/$year"
+            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        }
+
+
+
         val btnSave = view.findViewById<Button>(R.id.btnSave)
         // val btnLogout = view.findViewById<Button>(R.id.btnLogout)
 
@@ -100,8 +122,8 @@ class Transaction_Fragment : Fragment() {
         // user created, this will also be linked to that user with shared preferences
 
         btnSave.setOnClickListener {
+            val name=etName.toString()
             val amountText = etAmount.text.toString().trim()
-            val date = etDate.text.toString()
             val content = etDescription.text.toString()
             val imageUrl = uploadedImageUrl ?: ""// if no image is uploaded empty string is returned
 
@@ -116,10 +138,10 @@ class Transaction_Fragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (date.isEmpty()) {
-                etDate.error = "Please enter date"
-                return@setOnClickListener
-            }
+            val day=datePicker.dayOfMonth
+            val month=datePicker.month + 1
+            val year =datePicker.year
+          val date= "$day/$month/$year"
 
 
             // Determine selected type from the RadioGroup
@@ -129,7 +151,7 @@ class Transaction_Fragment : Fragment() {
                 else -> "expense"
             }
 
-            saveTransaction(content, amount, selectedType, date, imageUrl)
+            saveTransaction(name,amount, selectedType, date, imageUrl)
         }
 
     }
