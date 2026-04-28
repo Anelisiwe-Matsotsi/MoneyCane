@@ -442,7 +442,8 @@ tools:ignore="HardcodedText">
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <ImageButton
+                            android:id="@+id/btn_logout"
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:src="@drawable/login"
@@ -452,7 +453,7 @@ tools:ignore="HardcodedText">
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Login"
+                            android:text="Logout"
                             android:textSize="14sp" />
 
                     </LinearLayout>

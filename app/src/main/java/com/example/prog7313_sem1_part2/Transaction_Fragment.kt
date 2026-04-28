@@ -18,7 +18,9 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.findNavController
 import com.example.prog7313_sem1_part2.FileUtils
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.Calendar
 import kotlin.apply
@@ -173,6 +175,13 @@ class Transaction_Fragment : Fragment() {
            date: String, imageUrl: String ) {
             // push creates a unique key for the new transaction
 
+                val uid = FirebaseAuth.getInstance().currentUser?.uid
+
+                if(uid == null){
+                    Toast.makeText(requireContext(),"User not logged in",Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()//goes to previous fragment
+                }
+
             val transactionRef = database.push()
             val transactionId = transactionRef.key ?: return
 
@@ -184,6 +193,7 @@ class Transaction_Fragment : Fragment() {
                 date=date,
                 imageUrl=imageUrl
             )
+
 
             transactionRef.setValue(newTransaction)
                 .addOnSuccessListener {
