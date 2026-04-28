@@ -33,7 +33,7 @@
         tools:layout_editor_absoluteY="58dp" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardView1"
         android:layout_width="396dp"
         android:layout_height="495dp"
         android:elevation="12dp"
@@ -119,7 +119,7 @@
         tools:layout_editor_absoluteY="731dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/interestsCard"
+            android:id="@+id/interestsCard1"
             android:layout_width="182dp"
             android:layout_height="118dp"
             android:layout_margin="8dp"

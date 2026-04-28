@@ -9,87 +9,109 @@
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
+    <!-- Top header shape (original: x=0, y=-2, width=412, height=165) -->
     <View
-        android:id="@+id/view"
-        android:layout_width="412dp"
+        android:id="@+id/v_header_bg"
+        android:layout_width="0dp"
         android:layout_height="165dp"
-        android:angle="270"
         android:background="@drawable/custom_rectangle"
         android:backgroundTint="#E4B528"
-        android:endColor="#FFDF01"
-        android:startColor="#A57C01"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-2dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Light mode toggle button (original: x=16, y=-2) -->
     <ImageButton
-        android:id="@+id/profileB3"
+        android:id="@+id/btn_light_mode"
         android:layout_width="41dp"
         android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-2dp"
         android:background="?attr/selectableItemBackground"
-
         android:scaleType="center"
         android:scaleX="2.0"
         android:scaleY="2.0"
         android:src="@drawable/ic_light_mode"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-2dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Notification bell (original: x=351, y=0) -->
     <ImageButton
-        android:id="@+id/imgWifi"
+        android:id="@+id/btn_notification"
         android:layout_width="44dp"
         android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="0dp"
         android:background="?attr/selectableItemBackground"
-
         android:scaleType="center"
         android:scaleX="2.0"
         android:scaleY="2.0"
         android:src="@drawable/ic_notification_bell"
-        tools:layout_editor_absoluteX="351dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- "Home" title (original: x=28, y=56) -->
+    <TextView
+        android:id="@+id/tv_home_title"
+        android:layout_width="94dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="56dp"
+        android:text="Home"
+        android:textColor="#F2EFE4"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Wallet balance card container (original: x=4, y=112, width=389, height=134) -->
     <LinearLayout
-        android:layout_width="389dp"
+        android:id="@+id/ll_wallet_container"
+        android:layout_width="0dp"
         android:layout_height="134dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="4dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="112dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView1"
-            android:layout_width="367dp"
+            android:id="@+id/cv_wallet_balance"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:elevation="12dp"
+            android:foreground="@drawable/bg_black_border"
             app:cardBackgroundColor="#03142E"
             app:cardCornerRadius="16dp"
-            android:foreground="@drawable/bg_black_border"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="70dp">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:backgroundTint="#FFC107">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_wallet_balance_label"
                     android:layout_width="146dp"
                     android:layout_height="19dp"
                     android:text="Your wallet balance"
                     android:textColor="#F2EFE4"
                     android:textSize="14sp"
-                    tools:layout_editor_absoluteX="60dp"
-                    tools:layout_editor_absoluteY="55dp" />
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="55dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/editProfileB"
+                    android:id="@+id/btn_add_wallet"
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="Add Wallet"
                     android:textColor="#E4B528"
                     android:textColorLink="#FF9800"
@@ -97,59 +119,70 @@
                     app:iconPadding="4dp"
                     app:iconSize="30dp"
                     app:iconTint="#FFC107"
-                    tools:layout_editor_absoluteX="206dp"
-                    tools:layout_editor_absoluteY="74dp" />
+                    android:layout_marginStart="206dp"
+                    android:layout_marginTop="74dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/tv_wallet_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="R23453,65"
                     android:textColor="#FFC107"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:layout_editor_absoluteX="76dp"
-                    tools:layout_editor_absoluteY="81dp" />
+                    android:layout_marginStart="76dp"
+                    android:layout_marginTop="81dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/tv_welcome_name"
                     android:layout_width="144dp"
                     android:layout_height="28dp"
                     android:text="Hi Natty"
                     android:textColor="#F2EFE4"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="16dp" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/profileB"
+                    android:id="@+id/btn_arrow_forward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?attr/selectableItemBackground"
-
                     android:src="@drawable/ic_arrow_foward"
                     app:tint="#D3B65C"
-                    tools:layout_editor_absoluteX="312dp"
-                    tools:layout_editor_absoluteY="16dp" />
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 
+    <!-- Monthly Budget card (original: x=12, y=277) -->
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="387dp"
+        android:id="@+id/ll_monthly_budget_container"
+        android:layout_width="0dp"
         android:layout_height="105dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="277dp"
+        android:layout_marginEnd="12dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="2"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="277dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/practiceCard"
+            android:id="@+id/cv_monthly_budget"
             android:layout_width="355dp"
             android:layout_height="92dp"
             android:layout_margin="8dp"
@@ -157,8 +190,6 @@
             android:clickable="true"
             android:elevation="16dp"
             android:focusable="true"
-
-
             app:cardBackgroundColor="#D11E3254"
             app:cardCornerRadius="16dp">
 
@@ -167,7 +198,7 @@
                 android:layout_height="89dp">
 
                 <ProgressBar
-                    android:id="@+id/progressBar"
+                    android:id="@+id/pb_monthly_budget"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="228dp"
                     android:layout_height="34dp"
@@ -175,59 +206,155 @@
                     android:progress="@integer/material_motion_duration_short_2"
                     android:progressBackgroundTint="#F8EEEE"
                     android:progressTint="#FFC107"
-                    tools:layout_editor_absoluteX="30dp"
-                    tools:layout_editor_absoluteY="55dp" />
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="55dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/tv_monthly_budget_title"
                     android:layout_width="154dp"
                     android:layout_height="40dp"
                     android:text="Monthly Budget"
                     android:textColor="#F2EFE4"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    tools:layout_editor_absoluteX="42dp"
-                    tools:layout_editor_absoluteY="5dp" />
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tv_monthly_budget_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="R 6000,50 left"
                     android:textColor="#F2EFE4"
                     android:textStyle="bold"
-                    tools:layout_editor_absoluteX="258dp"
-                    tools:layout_editor_absoluteY="30dp" />
+                    android:layout_marginStart="258dp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/tv_monthly_budget_of"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="of R 7000"
                     android:textColor="#F2EFE4"
-                    tools:layout_editor_absoluteX="273dp"
-                    tools:layout_editor_absoluteY="54dp" />
+                    android:layout_marginStart="273dp"
+                    android:layout_marginTop="54dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 
+    <!-- Weekly Goal card (original: y=388, same style as monthly) -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/ll_weekly_goal_container"
+        android:layout_width="0dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="388dp"
+        android:layout_marginEnd="12dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="2"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="748dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
+            android:id="@+id/cv_weekly_goal"
+            android:layout_width="355dp"
+            android:layout_height="92dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
+            android:clickable="true"
+            android:elevation="16dp"
+            android:focusable="true"
+            app:cardBackgroundColor="#D11E3254"
+            app:cardCornerRadius="16dp">
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="89dp">
+
+                <ProgressBar
+                    android:id="@+id/pb_weekly_goal"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="228dp"
+                    android:layout_height="34dp"
+                    android:max="@android:integer/config_motionExpressiveDefaultEffectStiffness"
+                    android:progress="@integer/material_motion_duration_short_2"
+                    android:progressBackgroundTint="#F8EEEE"
+                    android:progressTint="#FFC107"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="55dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_weekly_goal_title"
+                    android:layout_width="154dp"
+                    android:layout_height="40dp"
+                    android:text="Weekly Goal"
+                    android:textColor="#F2EFE4"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_weekly_goal_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="R 6000,50 left"
+                    android:textColor="#F2EFE4"
+                    android:textStyle="bold"
+                    android:layout_marginStart="258dp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_weekly_goal_of"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="of R 7000"
+                    android:textColor="#F2EFE4"
+                    android:layout_marginStart="273dp"
+                    android:layout_marginTop="54dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <!-- Promo banner card (original: x=12, y=499) -->
+    <LinearLayout
+        android:id="@+id/ll_promo_container"
+        android:layout_width="0dp"
+        android:layout_height="229dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="499dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_promo_banner"
+            android:layout_width="363dp"
+            android:layout_height="208dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -236,189 +363,100 @@
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHomeTitle">
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_title">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#D11E3254">
+
+                <ImageView
+                    android:id="@+id/iv_promo_image"
+                    android:layout_width="325dp"
+                    android:layout_height="188dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginStart="18dp"
+                    android:background="#03142E"
+                    android:scaleType="fitXY"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/img_1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <!-- Recent Transactions card (original: x=4, y=748) -->
+    <LinearLayout
+        android:id="@+id/ll_recent_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="748dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_recent_transactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="12dp"
+            app:cardBackgroundColor="#D11E3254"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_title">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="297dp"
-
-                >
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_recent_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="4dp"
                     android:text="Recent Transactions"
                     android:textColor="#F2EFE4"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    tools:layout_editor_absoluteX="22dp"
-                    tools:layout_editor_absoluteY="4dp" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cardView2"
-                    android:layout_width="374dp"
-                    android:layout_height="46dp"
-                    android:background="#A74E607E"
-                    tools:layout_editor_absoluteX="2dp"
-                    tools:layout_editor_absoluteY="141dp">
-
-                    <TextView
-                        android:id="@+id/textView23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2 March"
-                        android:textColor="#F2EFE4"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="72dp"
-                        tools:layout_editor_absoluteY="29dp" />
-
-                    <ImageView
-                        android:id="@+id/image_view"
-                        android:layout_width="68dp"
-                        android:layout_height="38dp"
-                        android:src="@drawable/ic_featured_seasonal_and_gifts"
-                        app:tint="#FFC107"
-                        tools:layout_editor_absoluteX="6dp"
-                        tools:layout_editor_absoluteY="11dp" />
-
-                    <TextView
-                        android:id="@+id/tvTransactionName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="72dp"
-                        android:text="Gift from mom"
-                        android:textColor="#F2EFE4"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="10dp" />
-
-                    <TextView
-                        android:id="@+id/tvAmount"
-                        android:layout_width="56dp"
-                        android:layout_height="28dp"
-                        android:text="+ R200"
-                        android:textColor="#4CAF50"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="288dp"
-                        tools:layout_editor_absoluteY="16dp" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cardView2"
-                    android:layout_width="372dp"
-                    android:layout_height="49dp"
-                    android:background="#A74E607E"
-                    tools:layout_editor_absoluteX="3dp"
-                    tools:layout_editor_absoluteY="77dp">
-
-                    <TextView
-                        android:id="@+id/tvTransactionDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="76dp"
-                        android:text="2 March"
-                        android:textColor="#F2EFE4"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="34dp" />
-
-                    <ImageView
-                        android:id="@+id/image_view"
-                        android:layout_width="68dp"
-                        android:layout_height="38dp"
-                        android:src="@drawable/ic_local_dining"
-                        app:tint="#FFC107"
-                        tools:layout_editor_absoluteX="6dp"
-                        tools:layout_editor_absoluteY="11dp" />
-
-                    <TextView
-                        android:id="@+id/tvTransactionName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="76dp"
-                        android:text="Coffee"
-                        android:textColor="#F2EFE4"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="14dp" />
-
-                    <TextView
-                        android:id="@+id/tvAmount"
-                        android:layout_width="46dp"
-                        android:layout_height="25dp"
-                        android:text="- R200"
-                        android:textColor="#F44336"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="289dp"
-                        tools:layout_editor_absoluteY="16dp" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cardView2"
-                    android:layout_width="379dp"
-                    android:layout_height="47dp"
-                    android:background="#A74E607E"
-                    tools:layout_editor_absoluteX="-4dp"
-                    tools:layout_editor_absoluteY="198dp">
-
-                    <ImageView
-                        android:id="@+id/image_view"
-                        android:layout_width="68dp"
-                        android:layout_height="38dp"
-                        android:src="@drawable/shopping_bag_24dp_e3e3e3_fill0_wght400_grad0_opsz24"
-                        app:tint="#FFC107"
-                        tools:layout_editor_absoluteX="12dp"
-                        tools:layout_editor_absoluteY="5dp" />
-
-                    <TextView
-                        android:id="@+id/tvTransactionName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="80dp"
-                        android:text="Dress"
-                        android:textColor="#F2EFE4"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="14dp" />
-
-                    <TextView
-                        android:id="@+id/tvAmount"
-                        android:layout_width="50dp"
-                        android:layout_height="27dp"
-                        android:text="- R200"
-                        android:textColor="#F44336"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="299dp"
-                        tools:layout_editor_absoluteY="16dp" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tv_view_all"
                     android:layout_width="69dp"
                     android:layout_height="23dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
                     android:text="View All"
                     android:textColor="#FFC107"
-                    tools:layout_editor_absoluteX="288dp"
-                    tools:layout_editor_absoluteY="4dp" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.tabs.TabLayout
-                    android:layout_width="366dp"
+                    android:id="@+id/tab_layout"
+                    android:layout_width="0dp"
                     android:layout_height="44dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="1dp"
                     android:backgroundTint="#5F020D28"
                     app:tabIndicatorColor="#FFC107"
                     app:tabSelectedTextColor="#FFC107"
                     app:tabTextColor="#F2EFE4"
-                    tools:layout_editor_absoluteX="1dp"
-                    tools:layout_editor_absoluteY="28dp">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
@@ -436,154 +474,200 @@
                         android:text="Incomes" />
                 </com.google.android.material.tabs.TabLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Transaction item 1: Gift from mom (original: y=141) -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cv_transaction_gift"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="141dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="#A74E607E"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tab_layout">
 
+                    <TextView
+                        android:id="@+id/tv_gift_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 March"
+                        android:textColor="#F2EFE4"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="72dp"
+                        android:layout_marginTop="29dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/iv_gift_icon"
+                        android:layout_width="68dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="6dp"
+                        android:src="@drawable/ic_featured_seasonal_and_gifts"
+                        app:tint="#FFC107"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_gift_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="72dp"
+                        android:text="Gift from mom"
+                        android:textColor="#F2EFE4"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_gift_amount"
+                        android:layout_width="56dp"
+                        android:layout_height="28dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="+ R200"
+                        android:textColor="#4CAF50"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Transaction item 2: Coffee (original: y=77) -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cv_transaction_coffee"
+                    android:layout_width="0dp"
+                    android:layout_height="49dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="77dp"
+                    android:layout_marginEnd="3dp"
+                    android:background="#A74E607E"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tab_layout">
+
+                    <TextView
+                        android:id="@+id/tv_coffee_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="76dp"
+                        android:text="2 March"
+                        android:textColor="#F2EFE4"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.8" />
+
+                    <ImageView
+                        android:id="@+id/iv_coffee_icon"
+                        android:layout_width="68dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="6dp"
+                        android:src="@drawable/ic_local_dining"
+                        app:tint="#FFC107"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_coffee_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="76dp"
+                        android:text="Coffee"
+                        android:textColor="#F2EFE4"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_coffee_amount"
+                        android:layout_width="46dp"
+                        android:layout_height="25dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="- R200"
+                        android:textColor="#F44336"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Transaction item 3: Dress (original: y=198) -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cv_transaction_dress"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:layout_marginStart="-4dp"
+                    android:layout_marginTop="198dp"
+                    android:layout_marginEnd="-4dp"
+                    android:background="#A74E607E"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tab_layout">
+
+                    <ImageView
+                        android:id="@+id/iv_dress_icon"
+                        android:layout_width="68dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="12dp"
+                        android:src="@drawable/shopping_bag_24dp_e3e3e3_fill0_wght400_grad0_opsz24"
+                        app:tint="#FFC107"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_dress_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="80dp"
+                        android:text="Dress"
+                        android:textColor="#F2EFE4"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_dress_amount"
+                        android:layout_width="50dp"
+                        android:layout_height="27dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="- R200"
+                        android:textColor="#F44336"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="405dp"
-        android:layout_height="229dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="499dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="363dp"
-            android:layout_height="208dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:elevation="12dp"
-
-            app:cardBackgroundColor="#D11E3254"
-            app:cardCornerRadius="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHomeTitle">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:background="#D11E3254">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="325dp"
-                    android:layout_height="188dp"
-                    android:background="#03142E"
-                    android:scaleType="fitXY"
-                    tools:layout_editor_absoluteX="18dp"
-                    tools:layout_editor_absoluteY="13dp"
-                    tools:srcCompat="@drawable/img_1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvHeader"
-        android:layout_width="94dp"
-        android:layout_height="48dp"
-        android:text="Home"
-        android:textColor="#F2EFE4"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="56dp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="387dp"
-        android:layout_height="105dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        tools:layout_editor_absoluteY="388dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/practiceCard"
-            android:layout_width="355dp"
-            android:layout_height="92dp"
-            android:layout_margin="8dp"
-            android:layout_marginStart="16dp"
-            android:clickable="true"
-            android:elevation="16dp"
-            android:focusable="true"
-
-
-            app:cardBackgroundColor="#D11E3254"
-            app:cardCornerRadius="16dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="89dp">
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="228dp"
-                    android:layout_height="34dp"
-                    android:max="@android:integer/config_motionExpressiveDefaultEffectStiffness"
-                    android:progress="@integer/material_motion_duration_short_2"
-                    android:progressBackgroundTint="#F8EEEE"
-                    android:progressTint="#FFC107"
-                    tools:layout_editor_absoluteX="30dp"
-                    tools:layout_editor_absoluteY="55dp" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="154dp"
-                    android:layout_height="40dp"
-                    android:text="Weekly Goal"
-                    android:textColor="#F2EFE4"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="42dp"
-                    tools:layout_editor_absoluteY="5dp" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="R 6000,50 left"
-                    android:textColor="#F2EFE4"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="258dp"
-                    tools:layout_editor_absoluteY="30dp" />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="of R 7000"
-                    android:textColor="#F2EFE4"
-                    tools:layout_editor_absoluteX="273dp"
-                    tools:layout_editor_absoluteY="54dp" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+    <!-- Bottom Navigation (already constrained) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:elevation="8dp"
-        app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="#008000"
         app:itemTextColor="#008000"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:labelVisibilityMode="labeled"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
