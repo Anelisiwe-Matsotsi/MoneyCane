@@ -23,7 +23,7 @@ tools:context=".AnalysisDark">
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Header: title + month selector -->
+
         <LinearLayout
             android:id="@+id/ll_header"
             android:layout_width="0dp"
@@ -132,7 +132,7 @@ tools:context=".AnalysisDark">
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <!-- Income/Expense top row and chart -->
+
         <LinearLayout
             android:id="@+id/ll_income_expense_chart"
             android:layout_width="0dp"
@@ -245,7 +245,7 @@ tools:context=".AnalysisDark">
 
         </LinearLayout>
 
-        <!-- TabLayout + list items -->
+
         <LinearLayout
             android:id="@+id/ll_tabs_list"
             android:layout_width="0dp"
@@ -299,7 +299,7 @@ tools:context=".AnalysisDark">
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Expense items list -->
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_expense_items"
                 android:layout_width="match_parent"
@@ -466,7 +466,7 @@ tools:context=".AnalysisDark">
 
         </LinearLayout>
 
-        <!-- Top Expenses section -->
+
         <LinearLayout
             android:id="@+id/ll_top_expenses"
             android:layout_width="0dp"
@@ -611,7 +611,7 @@ tools:context=".AnalysisDark">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
-
+-->
 <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/bnv_main"
     android:layout_width="0dp"

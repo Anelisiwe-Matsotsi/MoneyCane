@@ -36,7 +36,7 @@ class Edit_Light_Fragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit__light_2, container, false)
+        return inflater.inflate(R.layout.fragment_wallet_edit_light, container, false)
     }
 
     companion object {

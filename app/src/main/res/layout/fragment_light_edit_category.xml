@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F6F6F6">
+
+    <!-- GREEN HEADER -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/custom_rectangle"
+        android:backgroundTint="#008000">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#001430"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="EDIT CATEGORY"
+            android:textColor="#001430"
+            android:textStyle="bold"
+            android:textSize="32sp" />
+    </RelativeLayout>
+
+    <!-- SCROLLABLE FORM -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- CATEGORY NAME -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category Name"
+                android:textColor="#121212"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/editCategoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#121212"
+                android:backgroundTint="#FFC107"
+                android:textSize="18sp"
+                android:paddingBottom="12dp"
+                android:inputType="textCapWords"
+                android:layout_marginBottom="28dp" />
+
+            <!-- MONTHLY LIMIT -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monthly Limit (R)"
+                android:textColor="#121212"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/editCategoryLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#121212"
+                android:backgroundTint="#FFC107"
+                android:textSize="18sp"
+                android:paddingBottom="12dp"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="28dp" />
+
+            <!-- CATEGORY TYPE -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category Type"
+                android:textColor="#121212"
+                android:textSize="16sp"
+                android:layout_marginBottom="12dp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroupType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
+
+                <RadioButton
+                    android:id="@+id/radioExpense"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Expense"
+                    android:textColor="#121212"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:background="@drawable/select_category_type"
+                    android:layout_marginEnd="8dp"
+                    android:buttonTint="#FFC107" />
+
+                <RadioButton
+                    android:id="@+id/radioIncome"
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:text="Income"
+                    android:textColor="#121212"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:background="@drawable/select_category_type"
+                    android:layout_marginStart="8dp"
+                    android:buttonTint="#FFC107" />
+            </RadioGroup>
+
+            <!-- SAVE / DELETE BUTTONS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/btnDelete"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="DELETE"
+                    android:textColor="#F03024"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:padding="12dp" />
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="2"
+                    android:text="SAVE CHANGES"
+                    android:textColor="#001430"
+                    android:textStyle="bold"
+                    android:backgroundTint="#008000"
+                    app:cornerRadius="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -32,7 +32,7 @@
                     android:background="@drawable/custom_darkheader" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tvHomeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="More Actions"
@@ -116,7 +116,7 @@
                         <ImageView
                             android:layout_width="22dp"
                             android:layout_height="22dp"
-                            android:src="@drawable/analysis"
+                            android:src="@drawable/analysis_gold"
                             app:tint="#FFC107"
                             />
 
@@ -361,7 +361,7 @@
                             <ImageView
                                 android:layout_width="28dp"
                                 android:layout_height="28dp"
-                                android:src="@drawable/budgets"
+                                android:src="@drawable/budgets_white"
                                 app:tint="#FFC107" />
 
                             <TextView

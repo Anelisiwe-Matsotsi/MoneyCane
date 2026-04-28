@@ -8,7 +8,7 @@
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
-    <View
+   <View
         android:id="@+id/view2"
         android:layout_width="405dp"
         android:layout_height="143dp"

@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "249837111480",
+    "firebase_url": "https://bcad-3natasha-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bcad-3natasha",
+    "storage_bucket": "bcad-3natasha.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249837111480:android:c909196e55eab594e98c4d",
+        "android_client_info": {
+          "package_name": "com.example.firebasebasics2026"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-uyArTL2c28ihLvqpd7ujesMQtEnf3fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249837111480:android:833c4ea4c5eddd60e98c4d",
+        "android_client_info": {
+          "package_name": "com.example.firebaseobjects2026"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-uyArTL2c28ihLvqpd7ujesMQtEnf3fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249837111480:android:16a8c3b781ad5a66e98c4d",
+        "android_client_info": {
+          "package_name": "com.example.firebaseseriespart1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-uyArTL2c28ihLvqpd7ujesMQtEnf3fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249837111480:android:db4041aac0e878abe98c4d",
+        "android_client_info": {
+          "package_name": "com.example.prog7313_sem1_part2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-uyArTL2c28ihLvqpd7ujesMQtEnf3fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249837111480:android:e44c08913205b706e98c4d",
+        "android_client_info": {
+          "package_name": "com.example.seriesapifirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-uyArTL2c28ihLvqpd7ujesMQtEnf3fs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
