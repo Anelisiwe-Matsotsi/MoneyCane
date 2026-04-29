@@ -16,6 +16,9 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.fragment.findNavController
+import com.example.prog7313_sem1_part2.FileUtils
+import com.google.firebase.auth.FirebaseAuth
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
@@ -188,6 +191,13 @@ class Transaction_Fragment : Fragment() {
            date: String, imageUrl: String, category: String ) {
             // push creates a unique key for the new transaction
 
+                val uid = FirebaseAuth.getInstance().currentUser?.uid
+
+                if(uid == null){
+                    Toast.makeText(requireContext(),"User not logged in",Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()//goes to previous fragment
+                }
+
             val transactionRef = database.push()
             val transactionId = transactionRef.key ?: return
 
@@ -200,6 +210,7 @@ class Transaction_Fragment : Fragment() {
                 imageUrl=imageUrl,
                 categoryId = category
             )
+
 
             transactionRef.setValue(newTransaction)
                 .addOnSuccessListener {

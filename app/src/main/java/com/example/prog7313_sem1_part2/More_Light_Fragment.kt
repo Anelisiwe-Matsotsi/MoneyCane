@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 
 
 class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
@@ -21,6 +22,7 @@ class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
         //dont know what this is for yet
         val BtnWallet = view.findViewById<ImageButton>(R.id.btn_wallet)
         val profile = view.findViewById<ImageButton>(R.id.btn_account)
+        val Logout = view.findViewById<ImageButton>(R.id.btn_logout)
 
 
 
@@ -39,7 +41,11 @@ class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
             findNavController().navigate(R.id.action_more_Light_Fragment_to_wallet_Create_Light_Fragment2)//to transaction(light)
         }
         profile.setOnClickListener {
-            findNavController().navigate(R.id.action_more_Light_Fragment_to_profileLight)//to transaction(light)
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_profileLight)
+        }
+        Logout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()//to transaction(light)
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_logFragment)
         }
 
 

@@ -126,7 +126,15 @@
         <action
             android:id="@+id/action_splashFragment_to_logFragment"
             app:destination="@id/logFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_home"
+            app:destination="@id/home" />
     </fragment>
+    <fragment
+        android:id="@+id/registerFragmentLight"
+        android:name="com.example.prog7313_sem1_part2.RegisterFragmentLight"
+        android:label="fragment_register_light"
+        tools:layout="@layout/fragment_register_light" />
 
 
 

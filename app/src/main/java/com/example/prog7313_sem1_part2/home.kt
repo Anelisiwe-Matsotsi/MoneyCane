@@ -38,6 +38,9 @@ class home : Fragment(R.layout.fragment_home) {
         transaction.setOnClickListener {
             findNavController().navigate(R.id.action_home2_to_createTransactionFragment2)//to transaction(light)
         }
+        transaction.setOnClickListener {
+            findNavController().navigate(R.id.action_home2_to_createTransactionFragment2)//to transaction(light)
+        }
 
         transactionView.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_home2Fragment)//to transaction(light)

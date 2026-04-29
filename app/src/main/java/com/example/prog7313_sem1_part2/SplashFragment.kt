@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import kotlin.apply
 import kotlin.let
 
@@ -21,7 +22,18 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         val handler= Handler(Looper.getMainLooper())
 
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_logFragment)
+
+            val user = FirebaseAuth.getInstance().currentUser
+
+            if(user != null){
+                findNavController().navigate(R.id.action_splashFragment_to_home)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_logFragment)
+            }
+
+
+
+
         }, 2500)
     }
 
