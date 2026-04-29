@@ -12,10 +12,12 @@
 
 ### Transactions Analysis 💸
 - User can add transactions that occure during their day-to-day activities.
-- User transactions will include the name, amount, description, category type, transaction type and image upload.
+- User transactions will include the name, amount, description, category type, date, transaction type and image upload.
 - Category types are created by the user in the category view.
 - Transaction type can either be an expense or income.
+- Users can choose to look at all transactions, all income or all expenses
 - Image upload is stored in supabase then the image URL is saved in firebase.
+- Transactions can be filtered by date specifically by seeing today's date or a certain month (example: see only january's expenses)
 <br>
 
 ### Set Goals and Budgets 🥅
