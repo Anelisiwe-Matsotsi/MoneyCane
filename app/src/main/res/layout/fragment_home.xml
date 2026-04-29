@@ -25,12 +25,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Dark mode button (top left) -->
+
+        <!-- Notification bell (top right) -->
+
         <ImageButton
             android:id="@+id/ib_dark_mode"
             android:layout_width="46dp"
             android:layout_height="54dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="-6dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:background="?attr/selectableItemBackground"
             android:scaleType="center"
             android:src="@drawable/ic_dark_mode"
@@ -38,7 +41,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="#FFC107" />
 
-        <!-- Notification bell (top right) -->
         <ImageButton
             android:id="@+id/ib_notification"
             android:layout_width="37dp"
@@ -53,12 +55,14 @@
             app:tint="#FFC107" />
 
         <!-- "Home" title -->
+
+        <!-- Wallet balance card -->
         <TextView
             android:id="@+id/tv_home_title"
             android:layout_width="94dp"
             android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="96dp"
             android:text="Home"
             android:textColor="#001430"
             android:textSize="30sp"
@@ -66,7 +70,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Wallet balance card -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_wallet_balance"
             android:layout_width="0dp"
@@ -413,50 +416,42 @@
             app:layout_constraintTop_toBottomOf="@+id/cv_promo_banner">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="281dp"
                 android:paddingBottom="16dp">
 
-                <TextView
-                    android:id="@+id/tv_recent_title"
+                <Button
+                    android:id="@+id/btn_view_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Recent Transactions"
-                    android:textColor="#162616"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/btnViewTransactions"
-                    android:layout_width="165dp"
-                    android:layout_height="47dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="#009688"
-                    android:backgroundTint="#F0E6E6"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="#008000"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="8dp"
                     android:text="View All"
-                    android:textColor="#98008000"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="381dp"
+                    android:layout_height="68dp"
                     android:layout_marginStart="1dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginEnd="1dp"
                     android:backgroundTint="#98008000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title"
                     app:tabIndicatorColor="#FFC107"
                     app:tabSelectedTextColor="#FFC107"
-                    app:tabTextColor="#162616"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title">
+                    app:tabTextColor="#162616">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
@@ -476,6 +471,19 @@
                 </com.google.android.material.tabs.TabLayout>
 
                 <!-- Transaction item 1: Gift from mom -->
+                <TextView
+                    android:id="@+id/tv_recent_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="36dp"
+                    android:text="Recent Transactions"
+                    android:textColor="#162616"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_transaction_gift"
                     android:layout_width="0dp"
@@ -494,10 +502,10 @@
                         android:layout_height="38dp"
                         android:layout_marginStart="6dp"
                         android:src="@drawable/ic_featured_seasonal_and_gifts"
-                        app:tint="#121212"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#121212" />
 
                     <TextView
                         android:id="@+id/tv_transaction_title_gift"
