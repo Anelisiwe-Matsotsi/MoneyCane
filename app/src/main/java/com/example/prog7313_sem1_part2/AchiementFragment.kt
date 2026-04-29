@@ -151,9 +151,12 @@ class AchiementFragment : Fragment() {
             return
         }
 
+
         val percentage = ((currentSpending * 100.0) / maxGoal).toInt()
         progressBar.progress = percentage.coerceAtMost(100)
-        tvPercent.text = "$percentage%"
+
+        tvPercent.text = "${percentage.coerceAtMost(100)}%" //this code is so that the progress bar does not go past 100%
+
 
         /*Stackoverflow, 2021*/
         when {
