@@ -20,6 +20,9 @@ class TransactionAdapter (
         val tvType: TextView = itemView.findViewById(R.id.tvTransactionType)
         val tvSpent: TextView = itemView.findViewById(R.id.tvTransactionAmount)
 
+        val  tvDescription: TextView =itemView.findViewById(R.id.tvDescription)
+
+        val tvDate: TextView = itemView.findViewById(R.id.tvTransactionDate)
         val imageView: ImageView = itemView.findViewById(R.id.image_view)
 
 
@@ -41,6 +44,12 @@ class TransactionAdapter (
         holder.tvType.text =
             transaction.type.replaceFirstChar { it.uppercase() } //first letter always capital letter
         holder.tvSpent.text = "R${transaction.amount.toInt()}"
+
+        //(GeeksforGeeks, 2025)
+        holder.tvDescription.text = transaction.content.replaceFirstChar { it.uppercase() }
+        holder.tvDate.text =transaction.date
+
+
 
         if (transaction.imageUrl.isNullOrBlank()) {
             holder.imageView.setImageResource(R.drawable.ic_local_dining)
