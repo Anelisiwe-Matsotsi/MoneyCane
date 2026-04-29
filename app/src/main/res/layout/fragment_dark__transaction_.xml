@@ -26,16 +26,13 @@
                 android:layout_height="70dp"
                 android:background="@drawable/custom_rectangle" />
 
-            <!-- ── CONTENT AREA ── -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="658dp"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- PROFILE PICTURE CARD -->
-
-                <!-- USER INFORMATION CARD -->
 
                 <TextView
                     android:id="@+id/textView33"
@@ -92,7 +89,7 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <!-- Section heading -->
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -103,7 +100,7 @@
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
-                        <!-- Username row -->
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -144,7 +141,6 @@
                             android:layout_height="0.5dp"
                             android:background="#E0E0E0" />
 
-                        <!-- Password row -->
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -184,7 +180,7 @@
                             android:layout_height="0.5dp"
                             android:background="#E0E0E0" />
 
-                        <!-- Gender row -->
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -224,7 +220,7 @@
                             android:layout_height="0.5dp"
                             android:background="#E0E0E0" />
 
-                        <!-- Date of Birth row -->
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -265,14 +261,14 @@
                             android:layout_height="0.5dp"
                             android:background="#E0E0E0" />
 
-                        <!-- Phone Number row -->
+
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.5dp"
                             android:background="#E0E0E0" />
 
-                        <!-- Email Address row -->
+
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -327,7 +323,7 @@
                     app:iconTint="@color/white" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/materialButton2"
+                    android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginBottom="10dp"
@@ -348,7 +344,6 @@
 
 
     </ScrollView>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"

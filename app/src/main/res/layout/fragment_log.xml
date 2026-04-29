@@ -13,97 +13,38 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#F6F6F6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@drawable/custom_rectangle">
-
-
-            <ImageView
-                android:id="@+id/imgLogin"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_gravity="start|center_vertical"
-                android:layout_marginStart="16dp"
-                android:src="@drawable/ic_arrow_back"
-                app:tint="#FFC107 " />
-
-            <!-- Title -->
-            <TextView
-                android:id="@+id/tvLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center_vertical"
-                android:layout_marginStart="50dp"
-                android:text="Login"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <!-- Account icon (right) -->
-
-        </FrameLayout>
-
-        <!-- ── CONTENT AREA ── -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="803dp"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- PROFILE PICTURE CARD -->
-
-            <!-- USER INFORMATION CARD -->
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="376dp"
-                android:layout_height="130dp"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
-
-                <LinearLayout
-                    android:layout_width="391dp"
-                    android:layout_height="141dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
-
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="77dp"
-                        android:layout_height="68dp"
-                        android:src="@drawable/blue_and_yellow_abstract_investment_logo__8_" />
-
-                    <TextView
-                        android:id="@+id/tvHeading"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="MoneyCane"
-                        android:textColor="@color/black"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                android:layout_height="70dp"
+                android:background="@drawable/custom_rectangle">
+
+
+                <TextView
+                    android:id="@+id/tvLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="50dp"
+                    android:text="Login"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <!-- ── CONTENT AREA ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="803dp"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,7 +71,7 @@
                         android:paddingBottom="11dp">
 
                         <TextView
-                            android:id="@+id/tvUsername"
+                            android:id="@+id/tvImage"
                             android:layout_width="wrap_content"
                             android:layout_height="45dp"
                             android:layout_alignParentStart="true"
@@ -139,185 +80,147 @@
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
-                        <EditText
-                            android:id="@+id/tbUsername"
-                            android:layout_width="108dp"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="-11dp"
-                            android:background="@null"
-                            android:hint="Name"
-                            android:paddingStart="10dp"
-                            android:paddingTop="4dp"
-                            android:paddingEnd="10dp"
-                            android:paddingBottom="4dp"
-                            android:textColor="#6E6C6C"
-                            android:textSize="13sp" />
-                    </RelativeLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#E0E0E0" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
-                    <!-- Password row -->
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="11dp"
-                        android:paddingBottom="11dp">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/tvPassword"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:text="Please Enter Your Password:"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
+                            android:layout_marginBottom="12dp"
+                            android:letterSpacing="0.08"
+                            android:text="FILL TO LOGIN"
+                            android:textColor="#888888"
+                            android:textSize="11sp"
                             android:textStyle="bold" />
 
-                        <EditText
-                            android:id="@+id/tbPassword"
-                            android:layout_width="104dp"
+                        <!-- Username row -->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:background="@null"
-                            android:hint="password"
-                            android:inputType="textPassword"
-                            android:paddingStart="10dp"
-                            android:paddingTop="4dp"
-                            android:paddingEnd="10dp"
-                            android:paddingBottom="4dp"
-                            android:textColor="#6E6C6C"
-                            android:textSize="13sp" />
+                            android:paddingTop="11dp"
+                            android:paddingBottom="11dp">
 
-                    </RelativeLayout>
+                            <TextView
+                                android:id="@+id/tvUsername"
+                                android:layout_width="wrap_content"
+                                android:layout_height="45dp"
+                                android:layout_alignParentStart="true"
+                                android:text="Please Enter Your Email:"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#E0E0E0" />
+                            <EditText
+                                android:id="@+id/tbUsername"
+                                android:layout_width="125dp"
+                                android:layout_height="48dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="-11dp"
+                                android:background="@null"
+                                android:hint="Name"
+                                android:paddingStart="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingEnd="10dp"
+                                android:paddingBottom="4dp"
+                                android:textColor="#6E6C6C"
+                                android:textSize="13sp" />
+                        </RelativeLayout>
 
-                    <!-- Gender row -->
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="11dp"
-                        android:paddingBottom="11dp"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#E0E0E0" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#E0E0E0" />
+                        <!-- Password row -->
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="11dp"
+                            android:paddingBottom="11dp">
 
-                    <!-- Date of Birth row -->
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="11dp"
-                        android:paddingBottom="11dp"/>
+                            <TextView
+                                android:id="@+id/tvPassword"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="3dp"
+                                android:text="Please Enter Your Password:"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#E0E0E0" />
-
-                    <!-- Phone Number row -->
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:background="#E0E0E0" />
-
-                    <!-- Email Address row -->
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="11dp"
-                        android:paddingBottom="11dp"/>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+                            <EditText
+                                android:id="@+id/tbPassword"
+                                android:layout_width="125dp"
+                                android:layout_height="48dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:background="@null"
+                                android:hint="password"
+                                android:inputType="textPassword"
+                                android:paddingStart="10dp"
+                                android:paddingTop="4dp"
+                                android:paddingEnd="10dp"
+                                android:paddingBottom="4dp"
+                                android:textColor="#6E6C6C"
+                                android:textSize="13sp" />
+                        </RelativeLayout>
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSave"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="10dp"
-                android:text="Save Changes"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:backgroundTint="#1B5E20"
-                app:cornerRadius="12dp"
-                app:icon="@android:drawable/ic_menu_save"
-                app:iconGravity="textStart"
-                app:iconPadding="8dp"
-                app:iconTint="@color/white" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="8dp"
-                android:text="Login"
-                android:textColor="#4CAF50"
-                android:textSize="15sp"
-                app:backgroundTint="@android:color/white"
-                app:cornerRadius="12dp"
 
-                app:iconGravity="textStart"
-                app:iconPadding="8dp"
-                app:iconTint="#076D0B"
-                app:strokeColor="#09710D"
-                app:strokeWidth="1dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/tvText"
-                android:layout_width="389dp"
-                android:layout_height="40dp"
-                android:text="Don't have an account?"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                <!-- Save button removed. Login button now uses Save button's style -->
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Login"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:backgroundTint="#1B5E20"
+                    android:drawableLeft="@android:drawable/ic_menu_save"
+                    android:drawablePadding="8dp"
+                    tools:ignore="RtlSymmetry" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSignIn"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="8dp"
-                android:text="Sign In"
-                android:textColor="#FFC107"
-                android:textSize="15sp"
-                app:backgroundTint="@android:color/white"
-                app:cornerRadius="12dp"
+                <TextView
+                    android:id="@+id/tvText"
+                    android:layout_width="389dp"
+                    android:layout_height="40dp"
+                    android:text="Don't have an account?"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-                app:iconGravity="textStart"
-                app:iconPadding="8dp"
-                app:iconTint="#FFC107"
-                app:strokeColor="#FFC107"
-                app:strokeWidth="1dp" />
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Sign Up"
+                    android:textColor="#FFC107"
+                    android:textSize="15sp"
+                    android:backgroundTint="@android:color/white"
+                    android:drawablePadding="8dp"
+                    android:drawableLeft="@android:drawable/ic_menu_edit"
+                    tools:ignore="RtlSymmetry" />
 
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-</ScrollView>
-
-<com.google.android.material.bottomnavigation.BottomNavigationView
-android:id="@+id/bottom_navigation"
-android:layout_width="0dp"
-android:layout_height="wrap_content"
-android:background="#FFFFFF"
-android:elevation="8dp"
-app:menu="@menu/bottom_nav_menu"
-app:itemIconTint="#008000"
-app:itemTextColor="#008000"
-app:layout_constraintBottom_toBottomOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintEnd_toEndOf="parent"
-app:labelVisibilityMode="labeled"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/logFragment"
+        android:name="com.example.prog7313_sem1_part2.LogFragment"
+        android:label="LogFragment"
+        tools:layout="@layout/fragment_log">
+
+
+        <action
+            android:id="@+id/action_logFragment_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_logFragment_to_registerFragmentLight"
+            app:destination="@id/registerFragmentLight" />
+    </fragment>
+    <fragment
+        android:id="@+id/budgetLight"
+        android:name="com.example.prog7313_sem1_part2.BudgetLight"
+        android:label="fragment_budget_light"
+        tools:layout="@layout/fragment_budget_light" >
+        <action
+            android:id="@+id/action_budgetLight_to_analysisLight"
+            app:destination="@id/analysisLight" />
+    </fragment>
+    <fragment
+        android:id="@+id/analysisLight"
+        android:name="com.example.prog7313_sem1_part2.AnalysisLight"
+        android:label="fragment_analysis_light"
+        tools:layout="@layout/fragment_analysis_light" />
+    <fragment
+        android:id="@+id/light_Achievment_Fragment"
+        android:name="com.example.prog7313_sem1_part2.Light_Achievment_Fragment"
+        android:label="Light_Achievment_Fragment"
+        tools:layout="@layout/fragment_light__achievment_"/>
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.prog7313_sem1_part2.home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/action_home2_to_createTransactionFragment2"
+            app:destination="@id/createTransactionFragment" />
+        <action
+            android:id="@+id/action_home2_to_budgetLight2"
+            app:destination="@id/budgetLight" />
+        <action
+            android:id="@+id/action_home2_to_wallet_Create_Light_Fragment2"
+            app:destination="@id/wallet_Create_Light_Fragment2" />
+        <action
+            android:id="@+id/action_home_to_profileLight"
+            app:destination="@id/profileLight" />
+    </fragment>
+    <fragment
+        android:id="@+id/more_Light_Fragment"
+        android:name="com.example.prog7313_sem1_part2.More_Light_Fragment"
+        android:label="fragment_more__light_"
+        tools:layout="@layout/fragment_more__light_" >
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_profileLight"
+            app:destination="@id/profileLight" />
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_wallet_Create_Light_Fragment2"
+            app:destination="@id/wallet_Create_Light_Fragment2" />
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_budgetLight"
+            app:destination="@id/budgetLight" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/edit_Light_Fragment2"
+        android:name="com.example.prog7313_sem1_part2.Edit_Light_Fragment2"
+        android:label="Edit_Light_Fragment2"
+        tools:layout="@layout/fragment_wallet_edit_light"/>
+    <fragment
+        android:id="@+id/editCategoryFragment"
+        android:name="com.example.prog7313_sem1_part2.EditCategoryFragment"
+        android:label="EditCategoryFragment"
+        tools:layout="@layout/fragment_edit_category"/>
+    <fragment
+        android:id="@+id/createBudgetFragment2"
+        android:name="com.example.prog7313_sem1_part2.CreateBudgetFragment"
+        android:label="CreateBudgetFragment"
+        tools:layout="@layout/fragment_create_budget"/>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.prog7313_sem1_part2.LightCategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_categoryFragment_to_editCategoryFragment"
+            app:destination="@id/editCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileLight"
+        android:name="com.example.prog7313_sem1_part2.ProfileLight"
+        android:label="ProfileLight"
+        tools:layout="@layout/fragment_profile_light"
+        />
+    <fragment
+        android:id="@+id/wallet_Create_Light_Fragment2"
+        android:name="com.example.prog7313_sem1_part2.Wallet_Create_Light_Fragment"
+        android:label="Wallet_Create_Light_Fragment"
+        tools:layout="@layout/fragment_wallet__create__light_">
+        <action
+            android:id="@+id/action_wallet_Create_Light_Fragment2_to_createBudgetFragment2"
+            app:destination="@id/createBudgetFragment2" />
+        <action
+            android:id="@+id/action_wallet_Create_Light_Fragment2_to_edit_Light_Fragment2"
+            app:destination="@id/edit_Light_Fragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.prog7313_sem1_part2.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_logFragment"
+            app:destination="@id/logFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragmentLight"
+        android:name="com.example.prog7313_sem1_part2.RegisterFragmentLight"
+        android:label="fragment_register_light"
+        tools:layout="@layout/fragment_register_light" />
+
+
+
+</navigation>

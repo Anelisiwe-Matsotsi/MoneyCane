@@ -7,6 +7,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="#FCF5FD"
 tools:context=".AnalysisDark">
+<!--
 
 <ScrollView
     android:id="@+id/sv_analysis"
@@ -23,7 +24,7 @@ tools:context=".AnalysisDark">
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Header: title + month selector -->
+
         <LinearLayout
             android:id="@+id/ll_header"
             android:layout_width="0dp"
@@ -83,7 +84,7 @@ tools:context=".AnalysisDark">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#03FFFFFF"
-                    android:text="<"
+                    android:text="&lt;"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
@@ -95,7 +96,7 @@ tools:context=".AnalysisDark">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#03FFFFFF"
-                    android:text=">"
+                    android:text="&gt;"
                     android:textColor="#FAFAFA"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_month_name"
@@ -113,8 +114,10 @@ tools:context=".AnalysisDark">
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.898" />
 
                 <ImageView
                     android:id="@+id/iv_filter"
@@ -130,7 +133,7 @@ tools:context=".AnalysisDark">
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <!-- Income/Expense top row and chart -->
+
         <LinearLayout
             android:id="@+id/ll_income_expense_chart"
             android:layout_width="0dp"
@@ -243,7 +246,7 @@ tools:context=".AnalysisDark">
 
         </LinearLayout>
 
-        <!-- TabLayout + list items -->
+
         <LinearLayout
             android:id="@+id/ll_tabs_list"
             android:layout_width="0dp"
@@ -297,7 +300,7 @@ tools:context=".AnalysisDark">
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Expense items list -->
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_expense_items"
                 android:layout_width="match_parent"
@@ -464,7 +467,7 @@ tools:context=".AnalysisDark">
 
         </LinearLayout>
 
-        <!-- Top Expenses section -->
+
         <LinearLayout
             android:id="@+id/ll_top_expenses"
             android:layout_width="0dp"
@@ -609,7 +612,7 @@ tools:context=".AnalysisDark">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
-
+&ndash;&gt;
 <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/bnv_main"
     android:layout_width="0dp"
@@ -624,4 +627,5 @@ tools:context=".AnalysisDark">
     app:layout_constraintStart_toStartOf="parent"
     app:menu="@menu/bottom_nav_menu" />
 
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>

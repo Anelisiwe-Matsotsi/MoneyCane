@@ -18,11 +18,13 @@
             android:background="@drawable/customized_rectangle">
 
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/iv_back_arrow"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="16dp"
+                android:backgroundTint="#007F00"
                 android:src="@drawable/back"
                 app:tint="#001430" />
 
