@@ -29,7 +29,10 @@ import java.util.Locale
 class ExpensesFragment : Fragment() {
 
     //firebase instance
-    private val database = FirebaseDatabase.getInstance().getReference("transactions")
+    val uid = MainActivity.getUserID()
+
+    //firebase instance
+    private val database = FirebaseDatabase.getInstance().getReference("transactions") .child(uid)
 
     //list categories through recycler view
     private val transactionList = ArrayList<Transaction>()

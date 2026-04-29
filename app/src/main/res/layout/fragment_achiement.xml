@@ -299,7 +299,6 @@
         android:layout_marginBottom="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardProgress">
         app:layout_constraintTop_toBottomOf="@id/linearStats">
 
         <TextView
@@ -342,7 +341,6 @@
             app:layout_constraintEnd_toEndOf="@id/ivCaneIcon"
             app:layout_constraintStart_toStartOf="@id/ivCaneIcon"
             app:layout_constraintTop_toTopOf="@id/ivCaneIcon" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

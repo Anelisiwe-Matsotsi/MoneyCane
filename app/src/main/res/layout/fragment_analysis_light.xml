@@ -617,18 +617,6 @@ tools:context=".AnalysisLight">
 
 </ScrollView>
 
-<com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/bnv_main"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:background="#FFFFFF"
-    android:elevation="8dp"
-    app:itemIconTint="#008000"
-    app:itemTextColor="#008000"
-    app:labelVisibilityMode="labeled"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:menu="@menu/bottom_nav_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

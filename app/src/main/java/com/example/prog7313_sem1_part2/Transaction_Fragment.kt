@@ -10,6 +10,7 @@ import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -91,6 +92,7 @@ class Transaction_Fragment : Fragment() {
 
         val btnSelectCategory = view.findViewById<Button>(R.id.btn_select_category)
         val btnSave = view.findViewById<Button>(R.id.btnSave)
+        val back = view.findViewById<ImageButton>(R.id.btnBack)
 //Image upload code
         imgSelected = view.findViewById(R.id.imgSelected)
         btnChoose = view.findViewById(R.id.btnChooseImage)
@@ -105,6 +107,9 @@ class Transaction_Fragment : Fragment() {
         btnUpload.setOnClickListener {
             Log.d("ProfileBadge", "Upload Image clicked")
             uploadSelectedImage()
+        }
+        back.setOnClickListener {
+            findNavController().navigateUp()
         }
 
 
@@ -195,11 +200,12 @@ class Transaction_Fragment : Fragment() {
 
                 if(uid == null){
                     Toast.makeText(requireContext(),"User not logged in",Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()//goes to previous fragment
+                    return
                 }
 
-            val transactionRef = database.push()
-            val transactionId = transactionRef.key ?: return
+                val transactionRef = database.child(uid).push()
+
+                val transactionId = transactionRef.key ?: return
 
             val newTransaction = Transaction(
                 id = transactionId,
@@ -217,7 +223,8 @@ class Transaction_Fragment : Fragment() {
                     Toast.makeText(requireContext(), "$name transaction created!", Toast.LENGTH_SHORT).show()
                     // Return to the categories list
                     //(Android Developers, 2026)
-                    parentFragmentManager.popBackStack()
+//                    parentFragmentManager.popBackStack()
+                    findNavController().popBackStack()
                 }
                 .addOnFailureListener { error ->
                     Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()

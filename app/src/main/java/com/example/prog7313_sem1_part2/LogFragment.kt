@@ -57,10 +57,10 @@ class LogFragment : Fragment(R.layout.fragment_log) {
             findNavController().navigate(R.id.action_logFragment_to_registerFragmentLight)
             //navigates to the register fragment
         }
-        }
-
-
     }
+
+
+}
 
 
 

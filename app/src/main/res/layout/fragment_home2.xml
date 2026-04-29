@@ -21,15 +21,15 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-<FrameLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="110dp">
 
-               <!-- <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/customized_rectangle" />-->
+                <!-- <View
+                     android:id="@+id/view"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:background="@drawable/customized_rectangle" />-->
 
                 <TextView
                     android:id="@+id/tvHomeTitle"
@@ -88,18 +88,5 @@
 
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="#008000"
-        app:itemTextColor="#008000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:labelVisibilityMode="labeled"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

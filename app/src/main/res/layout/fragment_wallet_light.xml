@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6F6F6">
@@ -17,25 +18,26 @@
             android:padding="16dp">
 
             <!-- green header- drawable/custom_rectangle -->
+
+            <!-- card showing the total of wallets -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:orientation="vertical"
-                android:gravity="center"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/custom_rectangle"
                 android:backgroundTint="#008000"
-                android:layout_marginBottom="16dp">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MY WALLETS"
                     android:textColor="#001430"
-                    android:textStyle="bold"
-                    android:textSize="32sp"/>
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- card showing the total of wallets -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,32 +109,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"/>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/iconAddWallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:contentDescription="Add Wallet"
+                    android:src="@android:drawable/ic_input_add"
+                    app:backgroundTint="#FFC107"
+                    app:elevation="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#001430" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
 
     <!-- add icon navigates to creating new wallet -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/iconAddWallet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_input_add"
-        android:layout_margin="24dp"
-        app:backgroundTint="#FFC107"
-        app:tint="#001430"
-        android:contentDescription="Add Wallet"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="#008000"
-        app:itemTextColor="#008000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:labelVisibilityMode="labeled"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

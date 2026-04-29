@@ -11,12 +11,14 @@ import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
 
 class CreateWalletFragment : Fragment() {
 
     // Firebase Realtime Database reference
     private val database = FirebaseDatabase.getInstance().getReference("wallets")
+    private val uid = MainActivity.getUserID()
 
     //(Gaurav, 2025)
     override fun onCreateView(
@@ -38,7 +40,7 @@ class CreateWalletFragment : Fragment() {
         //(Android Developers, 2026)
         // Navigate back to the categories list
         btnBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            findNavController().popBackStack()
         }
 
         btnAddWallet.setOnClickListener {
@@ -79,8 +81,10 @@ class CreateWalletFragment : Fragment() {
     //wallet is saved in firebase DB
     private fun saveWallet(name: String, limit: Double) {
         // push creates a unique key for the new wallet
-        val walletRef = database.push()
+
+        val walletRef = database.child(uid).push()//saves the data under the user ID, as a child
         val walletId = walletRef.key ?: return
+
 
         val newWallet = Wallet(
             id = walletId,
@@ -93,7 +97,7 @@ class CreateWalletFragment : Fragment() {
                 Toast.makeText(requireContext(), "$name wallet created!", Toast.LENGTH_SHORT).show()
                 // Return to the wallet list
                 //(Android Developers, 2026)
-                parentFragmentManager.popBackStack()
+                findNavController().popBackStack()
             }
             .addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
