@@ -26,15 +26,15 @@ class Wallet_Create_Light_Fragment : Fragment(R.layout.fragment_wallet__create__
 
 
 
-        btn_create_wallet.setOnClickListener {
-            findNavController().navigate(R.id.action_wallet_Create_Light_Fragment2_to_createBudgetFragment2)//to create wallet(light)
-        }
-        btn_edit_wallet.setOnClickListener {
-            findNavController().navigate(R.id.action_wallet_Create_Light_Fragment2_to_edit_Light_Fragment2)//to edit wallet(light)
-        }
-        btn_back.setOnClickListener {
-            findNavController().navigateUp()
-        }
+//        btn_create_wallet.setOnClickListener {
+//            findNavController().navigate(R.id.action_wallet_Create_Light_Fragment2_to_createBudgetFragment2)//to create wallet(light)
+//        }
+//        btn_edit_wallet.setOnClickListener {
+//            findNavController().navigate(R.id.action_wallet_Create_Light_Fragment2_to_edit_Light_Fragment2)//to edit wallet(light)
+//        }
+//        btn_back.setOnClickListener {
+//            findNavController().navigateUp()
+//        }
 
 
 

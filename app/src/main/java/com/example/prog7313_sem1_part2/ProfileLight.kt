@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,12 +26,19 @@ class ProfileLight :  Fragment(R.layout.profile_view) {
         super.onViewCreated(view, savedInstanceState)
 
           val BtnBack = view.findViewById<ImageButton>(R.id.iv_back_arrow)
+
+          val btnLogout =view.findViewById<Button>(R.id.mbtn_logout)
 //        val BtnTrasaction = view.findViewById<Button>(R.id.btn_transaction)
 //        val BtnWallet = view.findViewById<Button>(R.id.btn_wallet)
 //
         BtnBack.setOnClickListener {
 
             findNavController().navigateUp()
+
+        }
+        btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()//to transaction(light)
+            findNavController().popBackStack(R.id.logFragment, false)
 
         }
 

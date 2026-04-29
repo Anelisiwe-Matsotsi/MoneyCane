@@ -12,6 +12,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -20,7 +21,9 @@ import com.google.firebase.database.ValueEventListener
 class LightEditWalletFragment : Fragment() {
 
     //firebase instance
-    private val database = FirebaseDatabase.getInstance().getReference("wallets")
+    private val uid = MainActivity.getUserID()
+
+    private val database = FirebaseDatabase.getInstance().getReference("wallets") .child(uid)
 
     // Wallet ID passed from LightWalletFragment
     private var walletId: String? = null
@@ -50,7 +53,7 @@ class LightEditWalletFragment : Fragment() {
         //(Android Developers, 2026)
         // Navigate back to the categories list
         btnBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            findNavController().popBackStack()
         }
 
         // Load the existing wallet values from Firebase and pre-fill the form
@@ -131,7 +134,7 @@ class LightEditWalletFragment : Fragment() {
         database.child(id).updateChildren(updates)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Wallet updated!", Toast.LENGTH_SHORT).show()
-                parentFragmentManager.popBackStack()
+                findNavController().popBackStack()
             }
             .addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Update failed: ${error.message}", Toast.LENGTH_SHORT).show()
@@ -144,8 +147,8 @@ class LightEditWalletFragment : Fragment() {
 
         database.child(id).removeValue()
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Category deleted", Toast.LENGTH_SHORT).show()
-                parentFragmentManager.popBackStack()
+                Toast.makeText(requireContext(), "Wallet deleted", Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
             }
             .addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Delete failed: ${error.message}", Toast.LENGTH_SHORT).show()

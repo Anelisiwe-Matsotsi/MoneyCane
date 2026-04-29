@@ -32,13 +32,13 @@ class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
             findNavController().navigate(R.id.action_more_Light_Fragment_to_budgetLight)//to profile(light)
         }
         BtnCatagory.setOnClickListener {
-            findNavController().navigate(R.id.action_more_Light_Fragment_to_categoryFragment)//to wallet(light)
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_categoryFragment)//to catagory(light)
         }
         BtnTransaction.setOnClickListener {
-            findNavController().navigate(R.id.action_more_Light_Fragment_to_createTransactionFragment)//to budgets(light)
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_home2Fragment)//to transaction(light)
         }
         BtnWallet.setOnClickListener {
-            findNavController().navigate(R.id.action_more_Light_Fragment_to_wallet_Create_Light_Fragment2)//to transaction(light)
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_lightWalletFragment)//to wallet(light)
         }
         profile.setOnClickListener {
             findNavController().navigate(R.id.action_more_Light_Fragment_to_profileLight)

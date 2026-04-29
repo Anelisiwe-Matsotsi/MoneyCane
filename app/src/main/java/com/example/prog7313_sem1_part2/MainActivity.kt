@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -28,13 +29,22 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        val navHostFragment =supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 
         val navController = navHostFragment.navController
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bnv_main)
-        bottomNav.setupWithNavController(navController)
+        bottomNav.setOnItemSelectedListener { item ->
+
+            val options = NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .setRestoreState(true)
+                .setPopUpTo(navController.graph.startDestinationId, false)
+                .build()
+
+            navController.navigate(item.itemId, null, options)
+            true
+        }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
@@ -70,3 +80,4 @@ class MainActivity : AppCompatActivity() {
 //reference https://www.youtube.com/watch?v=0LLlMz2NPhE
 //https://www.linkedin.com/posts/chauhan-paresh-915340236_androiddevelopment-kotlin-navigationcomponent-activity-7377347549923409920-t3b9
 //https://medium.com/@appdevinsights/companion-object-in-kotlin-c3a1203cd63c how to add and what are companion objects
+//https://developer.android.com/guide/navigation/backstack how to set up the bottom navigation bar to pop back to spesific fragments

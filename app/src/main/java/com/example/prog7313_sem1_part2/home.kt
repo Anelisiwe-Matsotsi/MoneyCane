@@ -21,29 +21,27 @@ class home : Fragment(R.layout.fragment_home) {
         //val goal = view.findViewById<Button>(R.id.btn_set_goal)
         //dont know what this is for yet
         val transaction = view.findViewById<Button>(R.id.btn_add_transaction)
-        val transactionView= view.findViewById<Button>(R.id.btnViewTransactions)
+        val transactionView= view.findViewById<Button>(R.id.btn_view_all)
 
 
 
 
         profile.setOnClickListener {
-                findNavController().navigate(R.id.action_home_to_profileLight)//to profile(light)
+            findNavController().navigate(R.id.action_home_to_profileLight)//to profile(light)
         }
         wallet.setOnClickListener {
-            findNavController().navigate(R.id.action_home2_to_wallet_Create_Light_Fragment2)//to wallet(light)
+            findNavController().navigate(R.id.action_home_to_lightWalletFragment)//to wallet(light)
         }
         budget.setOnClickListener {
             findNavController().navigate(R.id.action_home2_to_budgetLight2)//to budgets(light)
         }
         transaction.setOnClickListener {
-            findNavController().navigate(R.id.action_home2_to_createTransactionFragment2)//to transaction(light)
-        }
-        transaction.setOnClickListener {
-            findNavController().navigate(R.id.action_home2_to_createTransactionFragment2)//to transaction(light)
+            findNavController().navigate(R.id.action_home_to_transaction_Fragment)//to create transaction(light)
         }
 
+
         transactionView.setOnClickListener {
-            findNavController().navigate(R.id.action_home_to_home2Fragment)//to transaction(light)
+            findNavController().navigate(R.id.action_home_to_home2Fragment)//to transaction page(light)
         }
 
 

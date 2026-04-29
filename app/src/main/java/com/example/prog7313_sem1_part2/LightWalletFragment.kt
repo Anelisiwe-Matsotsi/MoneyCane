@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,7 +20,9 @@ import com.google.firebase.database.ValueEventListener
 class LightWalletFragment : Fragment() {
 
     //firebase instance
-    private val database = FirebaseDatabase.getInstance().getReference("wallets")
+    private val uid = MainActivity.getUserID()
+
+    private val database = FirebaseDatabase.getInstance().getReference("wallets") .child(uid)
 
     //list wallets through recycler view
     private val walletList = ArrayList<Wallet>()
@@ -50,10 +53,12 @@ class LightWalletFragment : Fragment() {
         //add icon: navigates to Create Wallet interface ---
         val iconAddWallet = view.findViewById<FloatingActionButton>(R.id.iconAddWallet)
         iconAddWallet.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, CreateWalletFragment())
-                .addToBackStack(null)
-                .commit()
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.fragment_container, CreateWalletFragment())
+//                .addToBackStack(null)
+//                .commit()
+            findNavController().navigate(R.id.action_lightWalletFragment_to_createWalletFragment)//navigates to the createWalletFragment
+
         }
 
         //(GeeksforGeeks, 2025)

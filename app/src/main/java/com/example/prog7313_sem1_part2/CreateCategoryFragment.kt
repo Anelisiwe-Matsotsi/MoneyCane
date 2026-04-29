@@ -11,11 +11,14 @@ import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
 
 class CreateCategoryFragment : Fragment() {
 
+    private val uid = MainActivity.getUserID()
     // Firebase Realtime Database reference
+
     private val database = FirebaseDatabase.getInstance().getReference("categories")
 
     //(Gaurav, 2025)
@@ -36,7 +39,7 @@ class CreateCategoryFragment : Fragment() {
         //(Android Developers, 2026)
         // Navigate back to the categories list
         btnBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            findNavController().popBackStack()
         }
 
         btnAddCategory.setOnClickListener {
@@ -77,7 +80,8 @@ class CreateCategoryFragment : Fragment() {
     //category is saved in firebase DB
     private fun saveCategory(name: String, limit: Double, type: String) {
         // push creates a unique key for the new category
-        val categoryRef = database.push()
+
+        val categoryRef = database.child(uid).push()
         val categoryId = categoryRef.key ?: return
 
         val newCategory = Category(
@@ -93,7 +97,7 @@ class CreateCategoryFragment : Fragment() {
                 Toast.makeText(requireContext(), "$name category created!", Toast.LENGTH_SHORT).show()
                 // Return to the categories list
                 //(Android Developers, 2026)
-                parentFragmentManager.popBackStack()
+                findNavController().popBackStack()
             }
             .addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()

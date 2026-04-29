@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -15,8 +16,10 @@ import com.google.firebase.database.ValueEventListener
 
 class LightCategoryFragment : Fragment() {
 
+    private val uid = MainActivity.getUserID()
     //firebase instance
-    private val database = FirebaseDatabase.getInstance().getReference("categories")
+
+    private val database = FirebaseDatabase.getInstance().getReference("categories") .child(uid)
 
     //list categories through recycler view
     private val categoryList = ArrayList<Category>()
@@ -44,10 +47,11 @@ class LightCategoryFragment : Fragment() {
         //add icon: navigates to Create Category interface ---
         val iconAddCategory = view.findViewById<FloatingActionButton>(R.id.iconAddCategory)
         iconAddCategory.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, CreateCategoryFragment())
-                .addToBackStack(null)
-                .commit()
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.fragment_container, CreateCategoryFragment())
+//                .addToBackStack(null)
+//                .commit()
+            findNavController().navigate(R.id.action_categoryFragment_to_createCategoryFragment)
         }
 
         listenToCategories()
@@ -86,10 +90,11 @@ class LightCategoryFragment : Fragment() {
         editFragment.arguments = args
 
         //(Android Developers, 2026b)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, editFragment)
-            .addToBackStack(null) //(Android Developers, 2026)
-            .commit()
+//        parentFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, editFragment)
+//            .addToBackStack(null) //(Android Developers, 2026)
+//            .commit()
+        findNavController().navigate(R.id.action_categoryFragment_to_editCategoryFragment)//navigate to the edit
     }
 
     //(Bhosale, 2024)
