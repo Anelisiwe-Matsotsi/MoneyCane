@@ -125,7 +125,7 @@ class Transaction_Fragment : Fragment() {
             today.get(Calendar.DAY_OF_MONTH)
         ) { view, year, month, day ->
             // Display selected date in Toast message
-            val msg = "You Selected: $day/${month+1}/$year"
+            val msg = "You Selected: $year/${month+1}/$day"
             Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
         }
 
@@ -171,7 +171,7 @@ class Transaction_Fragment : Fragment() {
             val day=datePicker.dayOfMonth
             val month=datePicker.month + 1
             val year =datePicker.year
-          val date= "$day/$month/$year"
+          val date= String.format("%04d-%02d-%02d",year,month,day)
 
 
             // Determine selected type from the RadioGroup

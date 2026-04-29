@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CalendarView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -12,6 +15,16 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import android.app.DatePickerDialog// Android Developers, Date Picker Dialog
+import android.content.Context
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.time.Period
+import java.util.Calendar // Android Developers, Calender
+import java.util.Date
+import java.util.Locale
 
 class ExpensesFragment : Fragment() {
 
@@ -25,6 +38,9 @@ class ExpensesFragment : Fragment() {
     private val transactionList = ArrayList<Transaction>()
     private lateinit var rvTransactions: RecyclerView
     private lateinit var adapter: TransactionAdapter
+    private var selectedYear: Int = -1
+    private var selectedMonth: Int = -1
+    private var currentPeriod = "all"
 
     //(Gaurav, 2025)
     override fun onCreateView(
@@ -37,10 +53,55 @@ class ExpensesFragment : Fragment() {
         rvTransactions = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter= TransactionAdapter(transactionList) {transaction ->
+        adapter = TransactionAdapter(transactionList) { transaction ->
 
         }
         rvTransactions.adapter = adapter
+
+        //call Select period buttons
+        val btnall = view.findViewById<TextView>(R.id.btnAll)
+        val btnToday = view.findViewById<TextView>(R.id.btnToday)
+        val btnSelectMonth = view.findViewById<TextView>(R.id.btnSelectMonth)
+        btnall.setOnClickListener { setPeriod("all") }
+        btnToday.setOnClickListener { setPeriod("today") }
+        btnSelectMonth.setOnClickListener {
+            val months = arrayOf(
+                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            )
+
+
+            val calendar = Calendar.getInstance()
+            val currentYear = calendar.get(Calendar.YEAR)
+
+            android.app.AlertDialog.Builder(requireContext())
+                .setTitle("Select Month")
+                .setItems(months) { _, which ->
+
+                    selectedMonth = which
+                    selectedYear = currentYear
+                    currentPeriod= "monthly"
+
+                    btnSelectMonth.text ="${months[which]}$currentYear"
+                    listenToTransactions()
+                }
+                .show()
+        }
+          /*  val datePicker = DatePickerDialog(
+                requireContext(), { _, year, month, _ ->
+                    selectedYear = year
+                    selectedMonth = month
+                    currentPeriod = "monthly"
+                    btnSelectMonth.text = "Month: ${month + 1}/$year"
+
+                    listenToTransactions()
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+
+            )
+            datePicker.show()
+        }*/
 
         //(Android Developers, 2026)
         //add icon: navigates to Create Category interface ---
@@ -57,9 +118,19 @@ class ExpensesFragment : Fragment() {
         return view
     }
 
+
+    private fun setPeriod(
+        period: String
+    ) {
+        currentPeriod = period
+
+        listenToTransactions()
+
+    }
+
     //recycler view updates everytime if a category is added or edited
     private fun listenToTransactions() {
-        database.addValueEventListener(object : ValueEventListener {
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
 
             //(Firebase, 2026b)
             //fetched correct category unique id to be edited/updated
@@ -68,7 +139,11 @@ class ExpensesFragment : Fragment() {
                 for (child in snapshot.children) {
                     val transaction = child.getValue(Transaction::class.java)
 
-                    if(transaction !=null && transaction.type == "expense") {
+                    if (transaction != null && transaction.type == "expense" && isWithinSelectedPeriod(
+                            transaction.date
+                        )
+                    ) {
+
                         transactionList.add(transaction)
                     }
                 }
@@ -78,30 +153,63 @@ class ExpensesFragment : Fragment() {
 
             //database error
             override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    //navigates to edit fragment by fetching the category id through bundle
-    /*private fun navigateToEdit(categoryId: String) {
-        val editFragment = LightEditCategoryFragment()
-        val args = Bundle()
-        args.putString("transactionId", categoryId)
-        editFragment.arguments = args
 
-        //(Android Developers, 2026b)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, editFragment)
-            .addToBackStack(null) //(Android Developers, 2026)
-            .commit()
-    }*/
+    //Java Calender ApI
+    private fun isWithinSelectedPeriod(date: String): Boolean {
+        if (currentPeriod == "all") return true
 
-    //(Bhosale, 2024)
-    companion object {
-        @JvmStatic //can access methods directly without needing to reference an instance variable
-        fun newInstance() = ExpensesFragment()
+        val transactionDate = parseDate(date) ?: return false
+
+
+        val cale = Calendar.getInstance().apply { time = transactionDate }
+
+        return when (currentPeriod) {
+            "today" -> {
+                val today = Calendar.getInstance()
+                cale.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+                        cale.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)
+            }
+
+            "monthly" -> {
+                if (selectedMonth == -1 || selectedYear == -1) return false
+                cale.get(Calendar.YEAR) == selectedYear &&
+                        cale.get(Calendar.MONTH) == selectedMonth
+            }
+
+            else -> true
+        }
     }
-}
+
+    private fun parseDate(date: String): Date? {
+        val formats = listOf(
+            SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()),
+            SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+        )
+        for (format in formats) {
+            try {
+                return format.parse(date)
+            } catch (e: Exception) {
+
+            }
+
+        }
+        return null
+    }
+        //(Bhosale, 2024)
+        companion object {
+            @JvmStatic //can access methods directly without needing to reference an instance variable
+            fun newInstance() = ExpensesFragment()
+        }
+    }
+
+
+
+
 
 /*
 References

@@ -24,6 +24,43 @@
             <!-- GREEN HEADER -->
 
             <!-- DYNAMIC Transactions LIST -->
+
+            <TextView
+                android:id="@+id/btnAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CDDC39"
+                android:clickable="true"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="16dp"
+                android:text="All" />
+
+
+            <TextView
+                android:id="@+id/btnToday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CDDC39"
+                android:clickable="true"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="16dp"
+                android:text="Today" />
+
+
+
+            <TextView
+                android:id="@+id/btnSelectMonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#CDDC39"
+                android:clickable="true"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="16dp"
+                android:text="Monthly"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTransactions"
                 android:layout_width="match_parent"

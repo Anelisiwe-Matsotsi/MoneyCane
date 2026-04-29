@@ -73,6 +73,7 @@
                     android:layout_weight="1"
                     android:hint="Min (e.g. 200)"
                     android:inputType="numberDecimal"
+                    android:maxLength="6"
                     android:textColor="#F2EFE4"
                     android:textColorHint="#C8C5C5" />
 
@@ -83,6 +84,7 @@
                     android:layout_weight="1"
                     android:hint="Max (e.g. 6000)"
                     android:inputType="numberDecimal"
+                    android:maxLength="6"
                     android:textColor="#F2EFE4"
                     android:textColorHint="#C8C5C5" />
             </LinearLayout>
@@ -93,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="#FFC107"
-                android:text="Update Goals"
+                android:text="Save Goals"
                 android:textColor="#001430" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -150,6 +152,8 @@
                 android:max="100"
                 android:progress="0"
                 android:progressDrawable="@drawable/custom_progress_bar"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvStatus" />
@@ -158,14 +162,16 @@
                 android:id="@+id/tvPercent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
                 android:text="0%"
                 android:textColor="#FFC107"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/progressBar"
-                app:layout_constraintEnd_toEndOf="@id/progressBar"
-                app:layout_constraintStart_toStartOf="@id/progressBar"
-                app:layout_constraintTop_toTopOf="@id/progressBar" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -322,8 +328,9 @@
             android:id="@+id/tvTotalCanesValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:elevation="4dp"
             android:text="0"
-            android:textColor="#FFFFFF"
+            android:textColor="#FFC107"
             android:textSize="28sp"
             android:textStyle="bold"
             android:shadowColor="#000000"
