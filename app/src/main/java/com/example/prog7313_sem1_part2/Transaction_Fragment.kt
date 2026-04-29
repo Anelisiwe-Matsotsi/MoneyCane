@@ -223,8 +223,8 @@ class Transaction_Fragment : Fragment() {
                     Toast.makeText(requireContext(), "$name transaction created!", Toast.LENGTH_SHORT).show()
                     // Return to the categories list
                     //(Android Developers, 2026)
-//                    parentFragmentManager.popBackStack()
-                    findNavController().popBackStack()
+                  parentFragmentManager.popBackStack()
+
                 }
                 .addOnFailureListener { error ->
                     Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
