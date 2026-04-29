@@ -195,11 +195,12 @@ class Transaction_Fragment : Fragment() {
 
                 if(uid == null){
                     Toast.makeText(requireContext(),"User not logged in",Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()//goes to previous fragment
+                    return
                 }
 
-            val transactionRef = database.push()
-            val transactionId = transactionRef.key ?: return
+                val transactionRef = database.child(uid).push()
+
+                val transactionId = transactionRef.key ?: return
 
             val newTransaction = Transaction(
                 id = transactionId,

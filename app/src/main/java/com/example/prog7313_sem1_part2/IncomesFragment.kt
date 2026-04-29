@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -15,8 +16,10 @@ import com.google.firebase.database.ValueEventListener
 
 class IncomesFragment : Fragment() {
 
+    val uid = MainActivity.getUserID()
+
     //firebase instance
-    private val database = FirebaseDatabase.getInstance().getReference("transactions")
+    private val database = FirebaseDatabase.getInstance().getReference("transactions") .child(uid)
 
     //list categories through recycler view
     private val transactionList = ArrayList<Transaction>()
