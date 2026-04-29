@@ -7,12 +7,9 @@
     android:layout_height="match_parent"
     android:background="#001430"
     tools:context=".AchiementFragment">
-    tools:context=".MainActivity"
-    tools:ignore="HardcodedText">
-<!--
 
-   <View
-        android:id="@+id/view2"
+    <View
+        android:id="@+id/viewHeader"
         android:layout_width="0dp"
         android:layout_height="143dp"
         android:background="@drawable/custom_rectangle"
@@ -22,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tvRewardsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -34,7 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- GOAL INPUT CARD -->
     <androidx.cardview.widget.CardView
         android:id="@+id/goalInputCard"
         android:layout_width="0dp"
@@ -45,7 +41,7 @@
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view2">
+        app:layout_constraintTop_toBottomOf="@id/viewHeader">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,6 +71,7 @@
                     android:layout_weight="1"
                     android:hint="Min (e.g. 200)"
                     android:inputType="numberDecimal"
+                    android:maxLength="6"
                     android:textColor="#F2EFE4"
                     android:textColorHint="#C8C5C5" />
 
@@ -85,6 +82,7 @@
                     android:layout_weight="1"
                     android:hint="Max (e.g. 6000)"
                     android:inputType="numberDecimal"
+                    android:maxLength="6"
                     android:textColor="#F2EFE4"
                     android:textColorHint="#C8C5C5" />
             </LinearLayout>
@@ -95,21 +93,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="#FFC107"
-                android:text="Update Goals"
+                android:text="Save Goals"
                 android:textColor="#001430" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- PROGRESS CARD -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardProgress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:id="@+id/cardView1"
-        android:layout_width="396dp"
-        android:layout_height="495dp"
-        android:elevation="12dp"
         app:cardBackgroundColor="#D11E3254"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
@@ -123,7 +116,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvGoalProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Goal Progress"
@@ -144,7 +137,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView2" />
+                app:layout_constraintTop_toBottomOf="@id/tvGoalProgress" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -155,164 +148,42 @@
                 android:max="100"
                 android:progress="0"
                 android:progressDrawable="@drawable/custom_progress_bar"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvStatus" />
-                android:scaleX="2.0"
-                android:scaleY="2.0"
-                tools:layout_editor_absoluteX="85dp"
-                tools:layout_editor_absoluteY="214dp" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/tvPercent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
                 android:text="0%"
                 android:textColor="#FFC107"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/progressBar"
-                app:layout_constraintEnd_toEndOf="@id/progressBar"
-                app:layout_constraintStart_toStartOf="@id/progressBar"
-                app:layout_constraintTop_toTopOf="@id/progressBar" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- REWARDS -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rewardContainer"
+        android:id="@+id/totalCanesContainer"
         android:layout_width="0dp"
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="731dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/interestsCard1"
-            android:layout_width="182dp"
-            android:layout_height="118dp"
-            android:layout_margin="8dp"
-            android:layout_marginStart="16dp"
-            android:clickable="true"
-            android:elevation="16dp"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="#D11E3254"
-            app:cardCornerRadius="16dp">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:gravity="center"
-                android:text="Canes Earned this Month"
-                android:textAllCaps="true"
-
-                android:textColor="#F2EFE4"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="17dp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="56dp"
-                    android:layout_height="45dp"
-                    android:text="2"
-                    android:textColor="#FFC107"
-                    android:textSize="34sp"
-                    tools:layout_editor_absoluteX="45dp"
-                    tools:layout_editor_absoluteY="56dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/interestsCard"
-            android:layout_width="187dp"
-            android:layout_height="123dp"
-            android:layout_margin="8dp"
-            android:clickable="true"
-            android:elevation="16dp"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="#D11E3254"
-            app:cardCornerRadius="16dp">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:gravity="center"
-                android:text="Money Saved"
-                android:textAllCaps="true"
-
-                android:textColor="#F2EFE4"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="17dp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="79dp"
-                    android:layout_height="49dp"
-                    android:text="R500"
-                    android:textColor="#FFC107"
-                    android:textSize="34sp"
-                    tools:layout_editor_absoluteX="22dp"
-                    tools:layout_editor_absoluteY="56dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="300dp"
-        android:layout_height="49dp"
-        android:text="Goal Stats"
-        android:textColor="#F2EFE4"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="11dp"
-        tools:layout_editor_absoluteY="682dp" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="122dp"
-        android:layout_height="88dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/green_candy"
-        tools:layout_editor_absoluteX="289dp"
-        tools:layout_editor_absoluteY="58dp" />
-
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardView">
+        app:layout_constraintTop_toBottomOf="@id/cardProgress">
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/tvTotalCanesLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total Canes Earned"
@@ -323,47 +194,30 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/ivCaneIcon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
             android:contentDescription="Cane reward icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView15"
+            app:layout_constraintTop_toBottomOf="@id/tvTotalCanesLabel"
             app:srcCompat="@drawable/green_candy" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/tvTotalCanesValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:elevation="4dp"
             android:text="0"
-            android:textColor="#FFFFFF"
+            android:textColor="#FFC107"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:shadowColor="#000000"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="4"
-            app:layout_constraintBottom_toBottomOf="@id/imageView3"
-            app:layout_constraintEnd_toEndOf="@id/imageView3"
-            app:layout_constraintStart_toStartOf="@id/imageView3"
-            app:layout_constraintTop_toTopOf="@id/imageView3" />
+            app:layout_constraintBottom_toBottomOf="@id/ivCaneIcon"
+            app:layout_constraintEnd_toEndOf="@id/ivCaneIcon"
+            app:layout_constraintStart_toStartOf="@id/ivCaneIcon"
+            app:layout_constraintTop_toTopOf="@id/ivCaneIcon" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- BOTTOM NAV -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        app:itemIconTint="#008000"
-        app:itemTextColor="#008000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
--->
 </androidx.constraintlayout.widget.ConstraintLayout>

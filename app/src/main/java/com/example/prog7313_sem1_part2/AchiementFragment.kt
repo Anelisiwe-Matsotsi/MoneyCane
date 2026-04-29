@@ -18,149 +18,206 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import android.animation.ValueAnimator
+import android.util.Log
 import android.widget.ImageView
-
+import com.google.firebase.auth.FirebaseAuth
 
 class AchiementFragment : Fragment() {
 
-    /*Firebase, 2026*/
-    private val database = FirebaseDatabase.getInstance().getReference("goals")
-//    private val expenseDatabase = FirebaseDatabase.getInstance().getReference("expenses")
+    /*(Firebase, 2026)*/
+    private val goalDatabase = FirebaseDatabase.getInstance().getReference("goals")
+    private val transactionDatabase = FirebaseDatabase.getInstance().getReference("transactions")
 
-    private var currentSpending: Double = 850.0 //default for now
+    private val auth = FirebaseAuth.getInstance()
+    private val userId = auth.currentUser?.uid ?: "guest"
+
+    private var currentSpending: Double = 0.0
     private var totalCanesEarned: Int = 0
-
-
     private var rewardGiven: Boolean = false
+
+    private var minGoal: Double = 0.0
+    private var maxGoal: Double = 0.0
+
+
+    private lateinit var progressBar: ProgressBar
+    private lateinit var tvPercent: TextView
+    private lateinit var tvCaneCount: TextView
+    private lateinit var tvStatus: TextView
+    private lateinit var caneIcon: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_light__achievment_, container, false)
 
         val etMinGoal = view.findViewById<EditText>(R.id.etMinGoal)
         val etMaxGoal = view.findViewById<EditText>(R.id.etMaxGoal)
         val btnSave = view.findViewById<Button>(R.id.btnSaveGoals)
-        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
-        val tvPercent = view.findViewById<TextView>(R.id.textView20)
-        val tvCaneCount = view.findViewById<TextView>(R.id.textView30)
-        val tvStatus = view.findViewById<TextView>(R.id.tvStatus)
-        val caneIcon = view.findViewById<ImageView>(R.id.imageView3)
+
+        progressBar = view.findViewById(R.id.progressBar)
+        tvPercent = view.findViewById(R.id.textView20)
+        tvCaneCount = view.findViewById(R.id.textView30)
+        tvStatus = view.findViewById(R.id.tvStatus)
+        caneIcon = view.findViewById(R.id.imageView3)
+
+        // Load goals
+        /*Stackoverflow, 2018*/
+        goalDatabase.child(userId).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val goal = snapshot.getValue(Goal::class.java)
+                if (goal != null) {
+                    minGoal = goal.minMonthlyGoal
+                    maxGoal = goal.maxMonthlyGoal
+                    totalCanesEarned = goal.totalCanesEarned
+
+                    etMinGoal.setText(minGoal.toString())
+                    etMaxGoal.setText(maxGoal.toString())
+                    tvCaneCount.text = totalCanesEarned.toString()
+
+                    Log.d("FIREBASE_GOAL", "Loaded: Min=$minGoal, Max=$maxGoal, Canes=$totalCanesEarned")
+                    refreshUI()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, "Failed to load goals", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        // Load transactions
+        /*Firebase, 2026*/
+        transactionDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var total = 0.0
+
+
+                for (child in snapshot.children) {
+                    val transaction = child.getValue(Transaction::class.java)
+
+
+                    if (transaction != null && transaction.type.lowercase() == "expense") {
+                        total += transaction.amount
+                    }
+                }
+
+                currentSpending = total
+                Log.d("FIREBASE_TRANS", "Total Global Expenses: $currentSpending")
+                refreshUI()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, "Error fetching transactions", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         btnSave.setOnClickListener {
+            val minInput = etMinGoal.text.toString().toDoubleOrNull() ?: 0.0
+            val maxInput = etMaxGoal.text.toString().toDoubleOrNull() ?: 0.0
 
-            val minText = etMinGoal.text.toString()
-            val maxText = etMaxGoal.text.toString()
+            if (minInput > 0 && maxInput > minInput) {
+                minGoal = minInput
+                maxGoal = maxInput
+                rewardGiven = false // Allow new reward for new goals
 
-            if (minText.isNotEmpty() && maxText.isNotEmpty()) {
-
-                val minGoal = minText.toDouble()
-                val maxGoal = maxText.toDouble()
-
-                // Reset reward when goals change
-                rewardGiven = false
-
-                // Calculate Progress
-                /*Stackoverflow,2019*/
-                val percentage = ((currentSpending / maxGoal) * 100).toInt()
-
-                // Cap progress bar at 100%
-                progressBar.progress = percentage.coerceAtMost(100)
-                tvPercent.text = "$percentage%"
-
-                // Status
-                /*Stackoverflow, 2021*/
-                when {
-                    percentage > 100 -> {
-                        tvPercent.setTextColor(Color.RED) /*Stackoverflow, 2011*/
-                        tvStatus.text = "Budget Exceeded"
-                    }
-                    percentage == 100 -> {
-                        tvPercent.setTextColor(Color.YELLOW)
-                        tvStatus.text = "At Limit"
-                    }
-                    else -> {
-                        tvPercent.setTextColor(Color.GREEN)
-                        tvStatus.text = "Within Budget"
-                    }
+                val goalObject = Goal(minGoal, maxGoal, totalCanesEarned)
+                goalDatabase.child(userId).setValue(goalObject).addOnSuccessListener {
+                    Toast.makeText(context, "Goals Saved", Toast.LENGTH_SHORT).show()
                 }
-
-                // Reward Logic
-                if (!rewardGiven && currentSpending >= minGoal && currentSpending <= maxGoal) {
-
-                    rewardGiven = true
-
-                    val oldCount = totalCanesEarned
-                    totalCanesEarned += 1
-
-                    animateCaneCount(tvCaneCount, oldCount, totalCanesEarned)
-                    popAnimation(tvCaneCount)
-                    bounce(caneIcon)
-
-                    tvStatus.text = "Goal Achieved!"
-                    Toast.makeText(context, "Green Cane Earned!", Toast.LENGTH_SHORT).show()
-                }
-
-                val myGoalObject = Goal(minGoal, maxGoal, totalCanesEarned)
-
-                /*Stackoverflow, 2018*/
-                database.child("current_user").setValue(myGoalObject)
-                    .addOnSuccessListener {
-                        Toast.makeText(context, "Data Saved", Toast.LENGTH_SHORT).show()
-                    }
-
             } else {
-                Toast.makeText(context, "Fill in all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Please enter valid goals (Min < Max)", Toast.LENGTH_SHORT).show()
             }
         }
-
         return view
     }
 
-    // Animation
+    private fun refreshUI() {
+        if (::progressBar.isInitialized) {
+            updateProgress(progressBar, tvPercent, tvStatus, tvCaneCount, caneIcon)
+        }
+    }
+
+    /*Stackoverflow, 2019*/
+    private fun updateProgress(
+        progressBar: ProgressBar,
+        tvPercent: TextView,
+        tvStatus: TextView,
+        tvCaneCount: TextView,
+        caneIcon: ImageView
+    ) {
+        if (maxGoal <= 0) {
+            tvStatus.text = "Set a Max Goal to see progress"
+            progressBar.progress = 0
+            tvPercent.text = "0%"
+            return
+        }
+
+        val percentage = ((currentSpending * 100.0) / maxGoal).toInt()
+        progressBar.progress = percentage.coerceAtMost(100)
+        tvPercent.text = "$percentage%"
+
+        /*Stackoverflow, 2021*/
+        when {
+            percentage > 100 -> {
+                tvPercent.setTextColor(Color.RED)
+                tvStatus.text = "Budget Exceeded"
+            }
+            percentage == 100 -> {
+                tvPercent.setTextColor(Color.YELLOW)
+                tvStatus.text = "At Limit"
+            }
+            currentSpending >= minGoal && currentSpending <= maxGoal -> {
+                tvPercent.setTextColor(Color.GREEN)
+                tvStatus.text = "Goal Achieved!"
+
+                // Trigger reward only if within goal range
+                if (!rewardGiven) {
+                    triggerReward(tvCaneCount, caneIcon)
+                }
+            }
+            else -> {
+                tvPercent.setTextColor(Color.GREEN)
+                val remaining = maxGoal - currentSpending
+                tvStatus.text = "Spend R%.2f/day to stay safe".format(remaining / 30)
+            }
+        }
+    }
+
+    private fun triggerReward(tvCaneCount: TextView, caneIcon: ImageView) {
+        rewardGiven = true
+        val oldCount = totalCanesEarned
+        totalCanesEarned++
+
+        // Update Firebase
+        val goalObject = Goal(minGoal, maxGoal, totalCanesEarned)
+        goalDatabase.child(userId).setValue(goalObject)
+
+        // Animations
+        animateCaneCount(tvCaneCount, oldCount, totalCanesEarned)
+        popAnimation(tvCaneCount)
+        bounce(caneIcon)
+        Toast.makeText(context, "Green Cane Earned!", Toast.LENGTH_SHORT).show()
+    }
+
     /*Medium, 2021*/
     private fun animateCaneCount(textView: TextView, start: Int, end: Int) {
-        val animator = ValueAnimator.ofInt(start, end)
-        animator.duration = 600
-        animator.addUpdateListener {
-            val value = it.animatedValue as Int
-            textView.text = value.toString()
+        ValueAnimator.ofInt(start, end).apply {
+            duration = 600
+            addUpdateListener { textView.text = it.animatedValue.toString() }
+            start()
         }
-        animator.start()
     }
 
     private fun popAnimation(view: View) {
-        view.scaleX = 0.5f
-        view.scaleY = 0.5f
-        view.animate()
-            .scaleX(1.2f)
-            .scaleY(1.2f)
-            .setDuration(150)
-            .withEndAction {
-                view.animate()
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(150)
-                    .start()
-            }
-            .start()
+        view.animate().scaleX(1.2f).scaleY(1.2f).setDuration(150).withEndAction {
+            view.animate().scaleX(1f).scaleY(1f).setDuration(150).start()
+        }.start()
     }
 
     private fun bounce(view: View) {
-        view.animate()
-            .translationY(-20f)
-            .setDuration(150)
-            .withEndAction {
-                view.animate()
-                    .translationY(0f)
-                    .setDuration(150)
-                    .start()
-            }
-            .start()
+        view.animate().translationY(-30f).setDuration(200).withEndAction {
+            view.animate().translationY(0f).setDuration(200).start()
+        }.start()
     }
-
     /*Bhosale, 2024*/
     companion object {
         @JvmStatic
