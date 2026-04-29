@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="#F6F6F6">
+    android:background="#F7F9F2"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_main_welcome"
@@ -91,19 +91,21 @@
                     android:id="@+id/tv_wallet_balance_label"
                     android:layout_width="146dp"
                     android:layout_height="19dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="55dp"
                     android:text="Your wallet balance"
                     android:textColor="#F2EFE4"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="60dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="55dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_add_wallet"
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="206dp"
+                    android:layout_marginTop="74dp"
                     android:text="Add Wallet"
                     android:textColor="#98008000"
                     android:textColorLink="#FF9800"
@@ -112,47 +114,45 @@
                     app:iconSize="30dp"
                     app:iconTint="#FFC107"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="206dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="74dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_wallet_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="76dp"
+                    android:layout_marginTop="81dp"
                     android:text="R23453,65"
                     android:textColor="#008000"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="76dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="81dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_welcome_name"
                     android:layout_width="144dp"
                     android:layout_height="28dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:text="Hi Natty"
                     android:textColor="#162616"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="16dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/ib_arrow_forward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:background="?attr/selectableItemBackground"
                     android:src="@drawable/ic_arrow_foward"
-                    app:tint="#D3B65C"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="16dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="16dp" />
+                    app:tint="#D3B65C" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -183,6 +183,8 @@
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="173dp"
                     android:layout_height="46dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="43dp"
                     android:text="Add Budget"
                     android:textColor="#162616"
                     android:textColorLink="#FF9800"
@@ -191,59 +193,57 @@
                     app:iconSize="30dp"
                     app:iconTint="#FFC107"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="55dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="43dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ProgressBar
                     android:id="@+id/pb_monthly_budget"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="228dp"
                     android:layout_height="34dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="27dp"
                     android:max="@android:integer/config_motionExpressiveDefaultEffectStiffness"
                     android:progress="@integer/material_motion_duration_short_2"
                     android:progressBackgroundTint="#F8EEEE"
                     android:progressTint="#FFC107"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="27dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_monthly_budget_title"
                     android:layout_width="154dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="5dp"
                     android:text="Monthly Budget"
                     android:textColor="#162616"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="42dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="5dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_monthly_budget_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="258dp"
+                    android:layout_marginTop="30dp"
                     android:text="R 6000,50 left"
                     android:textColor="#162616"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="258dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="30dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_monthly_budget_of"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="273dp"
+                    android:layout_marginTop="54dp"
                     android:hint="of R 7000"
                     android:textColor="#F2EFE4"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="273dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="54dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -274,6 +274,8 @@
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="173dp"
                     android:layout_height="46dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="43dp"
                     android:text="Set Goal"
                     android:textColor="#162616"
                     android:textColorLink="#FF9800"
@@ -282,59 +284,57 @@
                     app:iconSize="30dp"
                     app:iconTint="#FFC107"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="55dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="43dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ProgressBar
                     android:id="@+id/pb_weekly_goal"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="228dp"
                     android:layout_height="34dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="27dp"
                     android:max="@android:integer/config_motionExpressiveDefaultEffectStiffness"
                     android:progress="@integer/material_motion_duration_short_2"
                     android:progressBackgroundTint="#F8EEEE"
                     android:progressTint="#FFC107"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="27dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_weekly_goal_title"
                     android:layout_width="154dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="5dp"
                     android:text="Weekly Goal"
                     android:textColor="#162616"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="42dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="5dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_weekly_goal_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="258dp"
+                    android:layout_marginTop="30dp"
                     android:text="R 6000,50 left"
                     android:textColor="#162616"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="258dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="30dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_weekly_goal_of"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="273dp"
+                    android:layout_marginTop="54dp"
                     android:hint="of R 7000"
                     android:textColor="#F2EFE4"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="273dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="54dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -423,16 +423,16 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="0dp"
                     android:layout_height="44dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginStart="1dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="1dp"
                     android:backgroundTint="#98008000"
-                    app:tabIndicatorColor="#FFC107"
-                    app:tabSelectedTextColor="#FFC107"
-                    app:tabTextColor="#162616"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title"
+                    app:tabIndicatorColor="#FFC107"
+                    app:tabSelectedTextColor="#FFC107"
+                    app:tabTextColor="#162616">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
@@ -470,10 +470,10 @@
                         android:layout_height="38dp"
                         android:layout_marginStart="6dp"
                         android:src="@drawable/ic_featured_seasonal_and_gifts"
-                        app:tint="#121212"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="#121212" />
 
                     <TextView
                         android:id="@+id/tv_transaction_title_gift"
@@ -637,8 +637,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

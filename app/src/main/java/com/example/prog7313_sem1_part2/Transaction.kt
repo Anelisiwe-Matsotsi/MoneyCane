@@ -7,6 +7,7 @@ val name: String = "",
 val type: String = "expense", //or income
 val amount: Double = 0.0, //sent or earned
 val date: String="",
+val content:String="",
 val imageUrl: String="",
 val categoryId: String=""
 )

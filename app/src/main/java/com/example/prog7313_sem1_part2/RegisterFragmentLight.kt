@@ -17,7 +17,6 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
     private lateinit var rootNode : FirebaseAuth//geeks for geeks. how to call the authentication
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -29,10 +28,6 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
         val confirm_password = view.findViewById<EditText>(R.id.etConfirmPassword)
 
         rootNode = FirebaseAuth.getInstance()
-
-
-
-
 
 
         save.setOnClickListener {

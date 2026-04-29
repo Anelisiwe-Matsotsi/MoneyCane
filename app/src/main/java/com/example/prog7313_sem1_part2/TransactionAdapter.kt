@@ -4,28 +4,34 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 
 //(Android Knowledge, 2023)
 class TransactionAdapter (
     private val transactions: ArrayList<Transaction>,
-    private val onEditClick: (Transaction) -> Unit): RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>()
-{
+    private val onEditClick: (Transaction) -> Unit): RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
     //recycler view adapter uses inner class for view holder to have access to adapter data outside this class
     // (Pathak, 2025)
     inner class TransactionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvName : TextView = itemView.findViewById(R.id.tvTransactionName)
-        val tvType : TextView = itemView.findViewById(R.id.tvTransactionType)
-        val tvSpent : TextView = itemView.findViewById(R.id.tvTransactionAmount)
+        val tvName: TextView = itemView.findViewById(R.id.tvTransactionName)
+        val tvType: TextView = itemView.findViewById(R.id.tvTransactionType)
+        val tvSpent: TextView = itemView.findViewById(R.id.tvTransactionAmount)
 
+        val  tvDescription: TextView =itemView.findViewById(R.id.tvDescription)
+
+        val tvDate: TextView = itemView.findViewById(R.id.tvTransactionDate)
+        val imageView: ImageView = itemView.findViewById(R.id.image_view)
 
 
     }
 
     //(Gaurav, 2025)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_items_transaction, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.card_items_transaction, parent, false)
         return TransactionViewHolder(view)
     }
 
@@ -35,24 +41,41 @@ class TransactionAdapter (
 
         //(GeeksforGeeks, 2025)
         holder.tvName.text = transaction.name
-        holder.tvType.text = transaction.type.replaceFirstChar { it.uppercase() } //first letter always capital letter
+        holder.tvType.text =
+            transaction.type.replaceFirstChar { it.uppercase() } //first letter always capital letter
         holder.tvSpent.text = "R${transaction.amount.toInt()}"
 
-        //StackOverflow,2019
-        if(transaction.type == "income"){
-            holder.tvSpent.setTextColor(Color.GREEN)
-            holder.tvType.setTextColor(Color.GREEN)
+        //(GeeksforGeeks, 2025)
+        holder.tvDescription.text = transaction.content.replaceFirstChar { it.uppercase() }
+        holder.tvDate.text =transaction.date
+
+
+
+        if (transaction.imageUrl.isNullOrBlank()) {
+            holder.imageView.setImageResource(R.drawable.ic_local_dining)
+
         } else {
-            holder.tvSpent.setTextColor(Color.RED)
-            holder.tvType.setTextColor(Color.RED)
+            holder.imageView.load(transaction.imageUrl) {
+                placeholder(R.drawable.ic_local_dining)
+                error((R.drawable.ic_local_dining))
+                crossfade(true)
+            }
+        }
+            //StackOverflow,2019
+            if (transaction.type == "income") {
+                holder.tvSpent.setTextColor(Color.GREEN)
+                holder.tvType.setTextColor(Color.GREEN)
+            } else {
+                holder.tvSpent.setTextColor(Color.RED)
+                holder.tvType.setTextColor(Color.RED)
+            }
+
+
         }
 
-
+        //(GeeksforGeeks, 2025)
+        override fun getItemCount(): Int = transactions.size
     }
-
-    //(GeeksforGeeks, 2025)
-    override fun getItemCount(): Int = transactions.size
-}
 
 /*
 References
