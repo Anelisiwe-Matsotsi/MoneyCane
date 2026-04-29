@@ -4,9 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F6F6F6"
-    tools:ignore="HardcodedText">
+    android:background="#F6F6F6">
 
     <ScrollView
         android:id="@+id/scroll_view"
@@ -25,7 +23,6 @@
                 android:layout_height="70dp"
                 android:background="@drawable/custom_rectangle">
 
-
                 <TextView
                     android:id="@+id/tvLogin"
                     android:layout_width="wrap_content"
@@ -39,47 +36,11 @@
 
             </FrameLayout>
 
-            <!-- ── CONTENT AREA ── -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="803dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <!-- Section heading -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:letterSpacing="0.08"
-                        android:text="FILL TO LOGIN"
-                        android:textColor="#888888"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                    <!-- Username row -->
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="11dp"
-                        android:paddingBottom="11dp">
-
-                        <TextView
-                            android:id="@+id/tvImage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="45dp"
-                            android:layout_alignParentStart="true"
-                            android:text="Please Enter Your Username:"
-                            android:textColor="@color/black"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -98,13 +59,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="12dp"
-                            android:letterSpacing="0.08"
                             android:text="FILL TO LOGIN"
                             android:textColor="#888888"
                             android:textSize="11sp"
                             android:textStyle="bold" />
 
-                        <!-- Username row -->
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -127,7 +86,6 @@
                                 android:layout_height="48dp"
                                 android:layout_alignParentEnd="true"
                                 android:layout_marginEnd="-11dp"
-                                android:background="@null"
                                 android:hint="Name"
                                 android:paddingStart="10dp"
                                 android:paddingTop="4dp"
@@ -142,7 +100,6 @@
                             android:layout_height="0.5dp"
                             android:background="#E0E0E0" />
 
-                        <!-- Password row -->
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -166,7 +123,6 @@
                                 android:layout_height="48dp"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                android:background="@null"
                                 android:hint="password"
                                 android:inputType="textPassword"
                                 android:paddingStart="10dp"
@@ -177,13 +133,9 @@
                                 android:textSize="13sp" />
                         </RelativeLayout>
 
-
-
-
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Save button removed. Login button now uses Save button's style -->
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
@@ -194,12 +146,11 @@
                     android:textSize="15sp"
                     android:backgroundTint="#1B5E20"
                     android:drawableLeft="@android:drawable/ic_menu_save"
-                    android:drawablePadding="8dp"
-                    tools:ignore="RtlSymmetry" />
+                    android:drawablePadding="8dp" />
 
                 <TextView
                     android:id="@+id/tvText"
-                    android:layout_width="389dp"
+                    android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:text="Don't have an account?"
                     android:textColor="@color/black"
@@ -216,11 +167,9 @@
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/white"
                     android:drawablePadding="8dp"
-                    android:drawableLeft="@android:drawable/ic_menu_edit"
-                    tools:ignore="RtlSymmetry" />
+                    android:drawableLeft="@android:drawable/ic_menu_edit" />
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

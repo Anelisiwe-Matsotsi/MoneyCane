@@ -44,9 +44,7 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
 
-        <action
-            android:id="@+id/action_home2_to_createTransactionFragment2"
-            app:destination="@id/createTransactionFragment" />
+
         <action
             android:id="@+id/action_home2_to_budgetLight2"
             app:destination="@id/budgetLight" />
@@ -56,6 +54,12 @@
         <action
             android:id="@+id/action_home_to_profileLight"
             app:destination="@id/profileLight" />
+        <action
+            android:id="@+id/action_home_to_transaction_Fragment"
+            app:destination="@id/transaction_Fragment" />
+        <action
+            android:id="@+id/action_home_to_home2Fragment"
+            app:destination="@id/home2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/more_Light_Fragment"
@@ -74,6 +78,9 @@
         <action
             android:id="@+id/action_more_Light_Fragment_to_budgetLight"
             app:destination="@id/budgetLight" />
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_logFragment"
+            app:destination="@id/logFragment" />
 
     </fragment>
 
@@ -135,7 +142,16 @@
         android:name="com.example.prog7313_sem1_part2.RegisterFragmentLight"
         android:label="fragment_register_light"
         tools:layout="@layout/fragment_register_light" />
-
+    <fragment
+        android:id="@+id/transaction_Fragment"
+        android:name="com.example.prog7313_sem1_part2.Transaction_Fragment"
+        android:label="Transaction_Fragment"
+        tools:layout="@layout/fragment_transaction_"/>
+    <fragment
+        android:id="@+id/home2Fragment"
+        android:name="com.example.prog7313_sem1_part2.Home2Fragment"
+        android:label="Home2Fragment"
+        tools:layout="@layout/fragment_home2"/>
 
 
 </navigation>
