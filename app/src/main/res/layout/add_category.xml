@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F6F6F6">
+    android:background="#F7F9F2">
 
     <!-- GREEN HEADER -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="@drawable/custom_rectangle"
-        android:backgroundTint="#008000">
+        android:backgroundTint="#A3C2A3">
 
         <ImageButton
             android:id="@+id/btnBack"
@@ -148,7 +148,7 @@
                 android:textColor="#001430"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#A3C2A3"
                 app:cornerRadius="15dp" />
 
         </LinearLayout>
