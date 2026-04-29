@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F6F6F6"
+    android:background="#F7F9F2"
     tools:ignore="HardcodedText">
 
     <ScrollView
@@ -13,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#F6F6F6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation">
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +42,7 @@
                     android:textStyle="bold" />
 
 
-</FrameLayout>
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,11 +52,21 @@
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="61dp"
-                    android:backgroundTint="#98008000"
+                    android:layout_height="56dp"
+                    android:layout_margin="16dp"
+                    android:animateLayoutChanges="true"
+
+                    android:background="@drawable/tab_container_bg"
+                    app:tabBackground="@drawable/tab_selector"
+
                     app:tabIndicatorColor="#FFC107"
-                    app:tabSelectedTextColor="#FFC107"
-                    app:tabTextColor="#162616">
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMaxGravity="fill"
+                    app:tabMaxWidth="0dp"
+                    app:tabMode="fixed"
+                    app:tabRippleColor="@android:color/transparent"
+                    app:tabSelectTextColor="#162616"
+                    app:tabTextColor="#3E4F41">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
@@ -79,14 +88,12 @@
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
