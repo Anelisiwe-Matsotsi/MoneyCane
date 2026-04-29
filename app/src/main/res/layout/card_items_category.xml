@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="16dp"
-    app:cardBackgroundColor="#D11E3254">
+    app:cardBackgroundColor="#A3C2A3
+">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#050505"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -40,21 +41,11 @@
                     android:id="@+id/tvCategoryType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:text="Expense"
-                    android:textColor="#B0BEC5"
-                    android:textSize="13sp"
-                    android:layout_marginTop="2dp"/>
+                    android:textColor="#2F2F2F"
+                    android:textSize="13sp" />
             </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/btnEditCategory"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@android:drawable/ic_menu_edit"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="#FFC107"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Edit Category" />
 
             <TextView
                 android:id="@+id/tvCategorySpent"
@@ -64,6 +55,16 @@
                 android:textColor="#FFC107"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnEditCategory"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Edit Category"
+                android:src="@android:drawable/ic_menu_edit"
+                app:tint="#FFC107" />
         </LinearLayout>
 
         <!-- PROGRESS BAR -->
@@ -74,17 +75,17 @@
             android:layout_height="12dp"
             android:layout_marginTop="16dp"
             android:progress="0"
-            android:progressTint="#4CAF50"
-            android:progressBackgroundTint="#37474F" />
+            android:progressBackgroundTint="#000000"
+            android:progressTint="#4CAF50" />
 
         <!-- LIMIT LABEL -->
         <TextView
             android:id="@+id/tvCategoryLimit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:text="Limit: R0"
-            android:textColor="#B0BEC5"
-            android:textSize="14sp"
-            android:layout_marginTop="6dp" />
+            android:textColor="#4C4E4E"
+            android:textSize="14sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

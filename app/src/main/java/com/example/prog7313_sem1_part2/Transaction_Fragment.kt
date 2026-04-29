@@ -237,21 +237,7 @@ class Transaction_Fragment : Fragment() {
                 }
 
 
-            // fetches the user who is logged in and links the entry to it (shared preferences again)
-           /* if (date.isNotEmpty() && content.isNotEmpty()) {
-                val userData = sharedPref.getString(userKey, "")
-                // now we are going to combine the entry's data: the date and whatever you typed
-                val newEntry = "$date|$content"
-                val updatedData = "$newEntry\n%userData"
-                //Okay> the | combines content together
-                sharedPref.edit().putString(userKey, updatedData).apply()
 
-                // after creating an entry (successfully) then it will clear the textboxes
-                etDate.text.clear()
-                etDescription.text.clear()
-                Toast.makeText(context, "Entry has been saved", Toast.LENGTH_SHORT).show()
-
-            }*/
         }
     //choose category code
     private fun showBottomView() {
@@ -337,6 +323,11 @@ class Transaction_Fragment : Fragment() {
 }
 
 /*
+Android Developers. 2026. Fragment manager | App architecture. (version 8) [source code]. Available at: < https://developer.android.com/guide/fragments/fragmentmanager > [Accessed 26 April 2026]
+Android Knowledge. 2023. CRUD using Firebase Realtime Database in Android Studio using Kotlin | Create, Read, Update, Delete. (version 8) [source code] Available at: < https://youtu.be/oGyQMBKPuNY?si=Nj0DRStlfvfFvane > [Accessed 26 April 2026]
+Bak, K. 2023. Validating user input in kotlin: a guide to adding validation to a new transaction. (version 8) [source code]. Available at: < https://53jk1.medium.com/validating-user-input-in-kotlin-a-guide-to-adding-validation-to-a-new-transaction-2e486f176674 > [Accessed 26 April 2026]
+Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
+StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8)
 * Ghanem, A. 2024. What is Context? In Android, represents the current state of the application. It provides access to various resources (e. [online] Linkedin.com. Available at: <https://www.linkedin.com/pulse/context-android-abdelrhman-ghanem-zbpcf/ [Accessed 26 Apr. 2026].
 
 ‌> */
