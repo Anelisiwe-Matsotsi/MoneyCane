@@ -151,8 +151,13 @@ class Transaction_Fragment : Fragment() {
             val content = etDescription.text.toString()
             val imageUrl = uploadedImageUrl ?: ""// if no image is uploaded empty string is returned
 
+            if (name.isEmpty()) {
+                etName.error = "Enter Transaction Name"
+                return@setOnClickListener
+            }
+
             if (content.isEmpty()) {
-                etDescription.error = "EnterDescription"
+                etDescription.error = "Enter Description"
                 return@setOnClickListener
             }
 
@@ -186,13 +191,13 @@ class Transaction_Fragment : Fragment() {
                 return@setOnClickListener
             }
 
-            saveTransaction(name,amount, selectedType, date, imageUrl, selectedCategoryId )
+            saveTransaction(name,amount, selectedType, content, date, imageUrl, selectedCategoryId )
         }
 
     }
             //Firebase, 2026)
             //transaction is saved in firebase DB
-            private fun saveTransaction(name: String, amount: Double, type: String,
+            private fun saveTransaction(name: String, amount: Double, type: String, content: String,
            date: String, imageUrl: String, category: String ) {
             // push creates a unique key for the new transaction
 
@@ -212,6 +217,7 @@ class Transaction_Fragment : Fragment() {
                 name = name,
                 type = type,
                 amount = amount,
+                content = content,
                 date=date,
                 imageUrl=imageUrl,
                 categoryId = category
