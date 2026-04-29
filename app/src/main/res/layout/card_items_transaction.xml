@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv"
     android:layout_width="372dp"
-    android:layout_height="49dp"
+    android:layout_height="wrap_content"
     android:background="#F6F6F6"
     tools:layout_editor_absoluteX="3dp"
     tools:layout_editor_absoluteY="106dp">
@@ -30,7 +30,7 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="267dp"
-        android:text="2 March"
+        android:text="Date"
         android:textColor="#162616"
         android:textSize="10sp"
         android:textStyle="bold"
@@ -45,12 +45,14 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="298dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:src="@drawable/ic_local_dining"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#FFC107" />
+         />
 
     <TextView
         android:id="@+id/tvTransactionName"
