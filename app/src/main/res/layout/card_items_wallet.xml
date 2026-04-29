@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="16dp"
-    app:cardBackgroundColor="#008000"
+    app:cardBackgroundColor="#A3C2A3"
     app:cardElevation="12dp">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:minHeight="110dp"
             android:background="@drawable/custom_rectangle"
-            android:backgroundTint="#E4B528"/>
+            android:backgroundTint="#FACC15"/>
 
         <!-- wallet card objects -->
         <LinearLayout
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="R0.00 ZAR"
-                android:textColor="#FFC107"
+                android:textColor="#FACC15"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginTop="8dp"/>

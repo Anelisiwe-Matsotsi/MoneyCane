@@ -5,7 +5,7 @@
     android:id="@+id/tbWelcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F6F6"
+    android:background="#F7F9F2"
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
 
@@ -15,7 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="165dp"
         android:background="@drawable/custom_rectangle"
-        android:backgroundTint="#008000"
+        android:backgroundTint="#A3C2A3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -178,7 +178,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:elevation="12dp"
-            app:cardBackgroundColor="#98008000"
+            app:cardBackgroundColor="#A3C2A3"
             app:cardCornerRadius="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -291,7 +291,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:elevation="12dp"
-            app:cardBackgroundColor="#98008000"
+            app:cardBackgroundColor="#A3C2A3"
             app:cardCornerRadius="16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
