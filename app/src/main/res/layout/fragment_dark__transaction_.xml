@@ -323,7 +323,7 @@
                     app:iconTint="@color/white" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/materialButton2"
+                    android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginBottom="10dp"

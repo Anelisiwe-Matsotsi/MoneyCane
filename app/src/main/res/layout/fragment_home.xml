@@ -430,12 +430,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_view_all"
-                    android:layout_width="69dp"
-                    android:layout_height="23dp"
+                <Button
+                    android:id="@+id/btnViewTransactions"
+                    android:layout_width="165dp"
+                    android:layout_height="47dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
+                    android:background="#009688"
+                    android:backgroundTint="#F0E6E6"
                     android:text="View All"
                     android:textColor="#98008000"
                     app:layout_constraintEnd_toEndOf="parent"

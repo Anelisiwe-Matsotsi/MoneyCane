@@ -74,22 +74,9 @@
         <action
             android:id="@+id/action_more_Light_Fragment_to_budgetLight"
             app:destination="@id/budgetLight" />
-        <action
-            android:id="@+id/action_more_Light_Fragment_to_createTransactionFragment"
-            app:destination="@id/createTransactionFragment" />
-        <action
-            android:id="@+id/action_more_Light_Fragment_to_logFragment"
-            app:destination="@id/logFragment" />
+
     </fragment>
-    <fragment
-        android:id="@+id/createTransactionFragment"
-        android:name="com.example.prog7313_sem1_part2.CreateTransactionFragment"
-        android:label="CreateTransactionFragment"
-        tools:layout="@layout/fragment_transaction_">
-        <action
-            android:id="@+id/action_createTransactionFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/edit_Light_Fragment2"
         android:name="com.example.prog7313_sem1_part2.Edit_Light_Fragment2"
@@ -148,6 +135,7 @@
         android:name="com.example.prog7313_sem1_part2.RegisterFragmentLight"
         android:label="fragment_register_light"
         tools:layout="@layout/fragment_register_light" />
+
 
 
 </navigation>
