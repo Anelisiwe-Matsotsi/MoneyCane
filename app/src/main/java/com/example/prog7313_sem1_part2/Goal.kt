@@ -5,8 +5,7 @@ data class Goal(
     val minMonthlyGoal: Double = 0.0,
     val maxMonthlyGoal: Double = 0.0,
     val totalCanesEarned: Int = 0,
-    var rewardGiven: Boolean = false,
-    val canesEarned: Int = 0
+    var rewardGiven: Boolean = false
 )
 /*
 Reference List:
