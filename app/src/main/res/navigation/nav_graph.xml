@@ -110,7 +110,11 @@
         android:name="com.example.prog7313_sem1_part2.ProfileLight"
         android:label="ProfileLight"
         tools:layout="@layout/fragment_profile_light"
-        />
+        >
+        <action
+            android:id="@+id/action_profileLight_to_logFragment"
+            app:destination="@id/logFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.prog7313_sem1_part2.SplashFragment"

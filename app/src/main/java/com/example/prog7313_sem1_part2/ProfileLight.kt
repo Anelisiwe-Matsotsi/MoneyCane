@@ -38,7 +38,7 @@ class ProfileLight :  Fragment(R.layout.profile_view) {
         }
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()//to transaction(light)
-            findNavController().popBackStack(R.id.logFragment, false)
+            findNavController().navigate(R.id.action_profileLight_to_logFragment)
 
         }
 
