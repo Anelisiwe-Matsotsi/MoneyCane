@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CalendarView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -22,17 +25,47 @@ class ExpensesFragment : Fragment() {
     private val transactionList = ArrayList<Transaction>()
     private lateinit var rvTransactions: RecyclerView
     private lateinit var adapter: TransactionAdapter
-
+private  var startDate: String= ""
+    private  var endDate: String= ""
     //(Gaurav, 2025)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_expenses, container, false)
+         val  calendarView =view.findViewById<CalendarView>(R.id.calendarView)
+        val btnStart= view.findViewById<Button>(R.id.btnStartDate)
+        val btnEnd= view.findViewById<Button>(R.id.btnEndDate)
+
+        btnStart.setOnClickListener {
+            calendarView.setOnDateChangeListener { _,year, month, dayOfMonth ->
+                startDate ="$year-${month+1}-$dayOfMonth"
+                btnStart.text ="Start: $startDate"
+                Toast.makeText(requireContext(), "Start date selected,", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+        btnEnd.setOnClickListener {
+            calendarView.setOnDateChangeListener { _,year, month, dayOfMonth ->
+                endDate ="$year-${month+1}-$dayOfMonth"
+                btnEnd.text ="Start: $endDate"
+                Toast.makeText(requireContext(), "End date selected,", Toast.LENGTH_SHORT).show()
+
+                //filters only after end date is selected
+            listenToTransactions()
+            }
+        }
+
+
 
         // setting up recycler view
         rvTransactions = view.findViewById(R.id.rvTransactions)
         rvTransactions.layoutManager = LinearLayoutManager(requireContext())
+
+
+
+
+
 
         adapter= TransactionAdapter(transactionList) {transaction ->
 
@@ -54,6 +87,10 @@ class ExpensesFragment : Fragment() {
         return view
     }
 
+private fun isWithinSelectedPeriod(date: String): Boolean{
+    if (startDate.isEmpty() || endDate.isEmpty()) return true
+    return date >=startDate && date <=endDate
+}
     //recycler view updates everytime if a category is added or edited
     private fun listenToTransactions() {
         database.addValueEventListener(object : ValueEventListener {
@@ -65,7 +102,8 @@ class ExpensesFragment : Fragment() {
                 for (child in snapshot.children) {
                     val transaction = child.getValue(Transaction::class.java)
 
-                    if(transaction !=null && transaction.type == "expense") {
+                    if(transaction !=null && transaction.type == "expense" && isWithinSelectedPeriod(transaction.date)) {
+
                         transactionList.add(transaction)
                     }
                 }
