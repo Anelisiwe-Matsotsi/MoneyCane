@@ -25,7 +25,7 @@
                 android:layout_height="140dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/custom_rectangle"
-                android:backgroundTint="#008000"
+                android:backgroundTint="#A3C2A3"
                 android:gravity="center"
                 android:orientation="vertical">
 
