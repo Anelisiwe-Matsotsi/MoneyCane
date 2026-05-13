@@ -27,7 +27,10 @@ import com.google.android.material.chip.ChipGroup
 import com.google.firebase.database.FirebaseDatabase
 import java.util.Calendar
 import kotlin.concurrent.thread
-
+import android.media.AudioAttributes
+import  android.media.AudioManager
+import  android.media.SoundPool
+import android.os.Build
 
 class Transaction_Fragment : Fragment() {
 
@@ -49,6 +52,10 @@ class Transaction_Fragment : Fragment() {
     // private lateinit var btnDownload: Button
     private lateinit var txtStatus: TextView
 
+    //soundpool variables
+
+   private  lateinit var  soundPool: SoundPool
+    private  var saveSound= 0
 
     private val imagePickerLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -75,11 +82,7 @@ class Transaction_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // val sharedPref =
-        // requireActivity().getSharedPreferences("TransactionPrefs", Context.MODE_PRIVATE)
-        // retrieve the user that is currently "logged in" to ensure that only that user's data is saved
-        //val currentUser = sharedPref.getString("username", "Guest")
-        // val userKey = "entries_$currentUser"
+
         val  etName= view.findViewById<EditText>(R.id.tbTransactionName)
         val etAmount = view.findViewById<EditText>(R.id.tbAmount)
       //  val etWallet = view.findViewById<EditText>(R.id.tbWallet)
@@ -114,6 +117,29 @@ class Transaction_Fragment : Fragment() {
 
 
 
+
+
+        //soundpool
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val audioAttributes = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build()
+
+            soundPool = SoundPool.Builder()
+                .setMaxStreams(1)
+                .setAudioAttributes(audioAttributes)
+                .build()
+        }else {
+            soundPool = SoundPool(
+                1,
+                AudioManager.STREAM_MUSIC,
+                0
+            )
+
+        }
+
+saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_ping,1)
 
         // Get today's date using Calendar instance
         val today = Calendar.getInstance()
@@ -150,6 +176,8 @@ class Transaction_Fragment : Fragment() {
             val amountText = etAmount.text.toString().trim()
             val content = etDescription.text.toString()
             val imageUrl = uploadedImageUrl ?: ""// if no image is uploaded empty string is returned
+
+
 
             if (name.isEmpty()) {
                 etName.error = "Enter Transaction Name"
@@ -226,10 +254,17 @@ class Transaction_Fragment : Fragment() {
 
             transactionRef.setValue(newTransaction)
                 .addOnSuccessListener {
+
+                    //Play success sound
+                    requireView().postDelayed({
+                        soundPool.play(saveSound,1f,1f,0,0,1f)
+                    }, 200)
                     Toast.makeText(requireContext(), "$name transaction created!", Toast.LENGTH_SHORT).show()
                     // Return to the categories list
                     //(Android Developers, 2026)
-                  parentFragmentManager.popBackStack()
+                    requireView().postDelayed({
+                        parentFragmentManager.popBackStack()
+                    }, 500)
 
                 }
                 .addOnFailureListener { error ->
@@ -320,6 +355,11 @@ class Transaction_Fragment : Fragment() {
             }
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPool.release()
+    }
 }
 
 /*
@@ -330,4 +370,6 @@ Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Avail
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8)
 * Ghanem, A. 2024. What is Context? In Android, represents the current state of the application. It provides access to various resources (e. [online] Linkedin.com. Available at: <https://www.linkedin.com/pulse/context-android-abdelrhman-ghanem-zbpcf/ [Accessed 26 Apr. 2026].
 
-‌> */
+‌>
+ GeekforGeeks.2020.SoundPool in Android with Examples.(version 8) [source code]. Available at: <https://www.geeksforgeeks.org/android/soundpool-in-android-with-examples/ >[Accessed 11 May 2026]
+ */
