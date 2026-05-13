@@ -1,59 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F6F6F6"
-    tools:ignore="HardcodedText">
-
-    <ScrollView
-        android:id="@+id/scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#F6F6F6"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="110dp">
-
-                <!-- <View
-                     android:id="@+id/view"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:background="@drawable/customized_rectangle" />-->
-
-                <TextView
-                    android:id="@+id/tvHomeTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:text="Home"
-                    android:textColor="#001430"
-                    android:textSize="26sp"
-                    android:textStyle="bold" />
+    android:background="#FFFFFF"
+  android:orientation="vertical">
 
 
-</FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="715dp"
-                android:orientation="vertical">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="61dp"
+                    android:layout_height="wrap_content"
                     android:backgroundTint="#A3C2A3"
                     app:tabIndicatorColor="#FFC107"
                     app:tabSelectedTextColor="#FFC107"
@@ -83,10 +42,6 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
 
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>

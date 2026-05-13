@@ -6,42 +6,17 @@
     android:layout_height="match_parent"
     android:background="#F7F9F2">
 
-    <View
-        android:id="@+id/viewHeader"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:background="@drawable/custom_rectangle"
-        android:backgroundTint="#A3C2A3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="316dp"
-        android:text="Transactions"
-        android:textColor="#0B0B0B"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewHeader">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
-
 
 
             <LinearLayout
@@ -53,7 +28,7 @@
 
                 <TextView
                     android:id="@+id/btnAll"
-                    android:layout_width="0dp"
+                    android:layout_width="84dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
@@ -70,7 +45,7 @@
 
                 <TextView
                     android:id="@+id/btnToday"
-                    android:layout_width="0dp"
+                    android:layout_width="43dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
@@ -87,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/btnSelectMonth"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:layout_weight="1"
