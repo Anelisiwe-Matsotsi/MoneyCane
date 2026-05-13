@@ -259,12 +259,25 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
                     requireView().postDelayed({
                         soundPool.play(saveSound,1f,1f,0,0,1f)
                     }, 200)
+
                     Toast.makeText(requireContext(), "$name transaction created!", Toast.LENGTH_SHORT).show()
-                    // Return to the categories list
+
+
+             requireActivity().supportFragmentManager.setFragmentResult(
+                      "mascot_request", Bundle()
+                       .apply {
+                       putString("type",type)
+                    }
+                 )
+                    // Return to the transactions list
                     //(Android Developers, 2026)
-                    requireView().postDelayed({
-                        parentFragmentManager.popBackStack()
-                    }, 500)
+             requireView().postDelayed({
+                 if (isAdded && activity !=null) {
+requireActivity().supportFragmentManager.popBackStack()
+                 }
+             },400)
+
+
 
                 }
                 .addOnFailureListener { error ->
