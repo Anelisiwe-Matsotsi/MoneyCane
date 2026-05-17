@@ -25,7 +25,8 @@ class TransactionAdapter (
         val tvDate: TextView = itemView.findViewById(R.id.tvTransactionDate)
         val imageView: ImageView = itemView.findViewById(R.id.image_view)
 
-
+        val headerLayout = itemView.findViewById<View>(R.id.DateHeader)
+        val divider= itemView.findViewById<View>(R.id.bottomDivider)
     }
 
     //(Gaurav, 2025)
@@ -39,7 +40,7 @@ class TransactionAdapter (
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
         val transaction = transactions[position]
 
-        //(GeeksforGeeks, 2025)
+        //(GeeksforGeeks, 2025)- Set up text
         holder.tvName.text = transaction.name
         holder.tvType.text =
             transaction.type.replaceFirstChar { it.uppercase() } //first letter always capital letter
@@ -47,20 +48,23 @@ class TransactionAdapter (
 
         //(GeeksforGeeks, 2025)
         holder.tvDescription.text = transaction.content.replaceFirstChar { it.uppercase() }
-        holder.tvDate.text =transaction.date
+        //holder.tvDate.text =transaction.date
 
 
-
+//SHOW IF URL EXISTS
         if (transaction.imageUrl.isNullOrBlank()) {
-            holder.imageView.setImageResource(R.drawable.ic_local_dining)
+            holder.imageView.visibility = View.GONE
 
         } else {
+            holder.imageView.visibility = View.VISIBLE
             holder.imageView.load(transaction.imageUrl) {
-                placeholder(R.drawable.ic_local_dining)
-                error((R.drawable.ic_local_dining))
                 crossfade(true)
+                placeholder(R.drawable.ic_local_dining)
+                //error((R.drawable.ic_local_dining))
+
             }
         }
+
             //StackOverflow,2019
             if (transaction.type == "income") {
                 holder.tvSpent.setTextColor(Color.GREEN)
@@ -70,6 +74,29 @@ class TransactionAdapter (
                 holder.tvType.setTextColor(Color.RED)
             }
 
+        //GROUP BY DATE
+
+
+        if (position == 0) {
+            //First item always shows the date header
+            holder.headerLayout.visibility = View.VISIBLE
+            holder.tvDate.text = transaction.date
+            holder.divider.visibility = View.VISIBLE
+        }else{
+            val prevTransaction= transactions[position - 1]
+            if (transaction.date == prevTransaction.date) {
+                //If same date hide the header to put transaction under same date
+                holder.headerLayout.visibility = View.GONE
+                holder.divider.visibility = View.VISIBLE
+            }else {
+                //if new date show new header
+                holder.headerLayout.visibility = View.VISIBLE
+                holder.tvDate.text = transaction.date
+                holder.divider.visibility = View.GONE// Hides divider before new header starts
+
+            }
+
+        }
 
         }
 

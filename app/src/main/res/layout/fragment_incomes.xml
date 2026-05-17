@@ -6,15 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F6F6F6">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
 
             <!-- GREEN HEADER -->
 
@@ -22,16 +14,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTransactions"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
-            <!-- Bottom spacer so FAB doesn't overlap last item -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp" />
+<!--            &lt;!&ndash; Bottom spacer so FAB doesn't overlap last item &ndash;&gt;-->
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="100dp" />-->
 
-        </LinearLayout>
-    </ScrollView>
 
     <!-- add icon: opens Create Transaction -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

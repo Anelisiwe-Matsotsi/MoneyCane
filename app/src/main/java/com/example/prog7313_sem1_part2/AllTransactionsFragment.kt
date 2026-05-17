@@ -90,6 +90,10 @@ adapter= TransactionAdapter(transactionList) {transaction ->
                         transactionList.add(transaction)
                     }
                 }
+
+                //SORT BY DATE- NEWEST TO OLDEST
+                transactionList.sortByDescending{it.date}
+
                 adapter.notifyDataSetChanged()
 
             }
