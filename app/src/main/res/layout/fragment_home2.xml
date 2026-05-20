@@ -13,10 +13,14 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#A3C2A3"
                     app:tabIndicatorColor="#FFC107"
                     app:tabSelectedTextColor="#FFC107"
-                    app:tabTextColor="#162616">
+                    android:background="#A3C2A3"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorGravity="center"
+                    app:tabIndicator="@drawable/tab_selected_shape"
+                    app:tabTextColor="#A7A7A7A7"
+                    app:tabRippleColor="@android:color/transparent">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
@@ -34,13 +38,14 @@
                         android:text="Incomes" />
                 </com.google.android.material.tabs.TabLayout>
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F7F9F2" />
 
-            </LinearLayout>
+</LinearLayout>
 
 
 
