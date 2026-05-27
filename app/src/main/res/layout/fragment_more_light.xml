@@ -30,7 +30,9 @@ tools:ignore="HardcodedText">
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/customized_rectangle" />
+                android:background="@drawable/customized_rectangle"
+                android:backgroundTint="#A3C2A3"
+            />
 
             <TextView
                 android:id="@+id/textView"
@@ -49,9 +51,10 @@ tools:ignore="HardcodedText">
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="#007F00"
+                android:backgroundTint="#A3C2A3"
                 app:srcCompat="@drawable/account"
-                app:tint="#FFC107" />
+                app:tint="#FFC107"
+            />
 
         </FrameLayout>
 
@@ -80,11 +83,12 @@ tools:ignore="HardcodedText">
                     <ImageView
                         android:layout_width="22dp"
                         android:layout_height="22dp"
-                        android:src="@drawable/settings"
+                        android:src="@drawable/lock"
+                        android:id="@+id/btn_passcode"
                         app:tint="#FFC107"/>
 
                     <TextView
-                        android:text="Settings"
+                        android:text="Set App Pin Code"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:layout_marginStart="10dp"

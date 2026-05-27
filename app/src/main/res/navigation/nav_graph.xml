@@ -6,6 +6,37 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
+        android:id="@+id/AuthenticationFragment"
+        android:name="com.example.prog7313_sem1_part2.AuthenticationFragment"
+        android:label="AuthenticationFragment"
+        tools:layout="@layout/prompt_security">
+
+        <action
+            android:id="@+id/action_AuthenticationFragment_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_AuthenticationFragment_to_logFragment"
+            app:destination="@id/logFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/AppSecurityFragment"
+        android:name="com.example.prog7313_sem1_part2.AppSecurityFragment"
+        android:label="AppSecurityFragment"
+        tools:layout="@layout/app_security">
+
+        <action
+            android:id="@+id/action_AppSecurityFragment_to_CreatePinFragment"
+            app:destination="@id/CreatePinFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CreatePinFragment"
+        android:name="com.example.prog7313_sem1_part2.CreatePinFragment"
+        android:label="CreatePinFragment"
+        tools:layout="@layout/create_pin"/>
+
+    <fragment
         android:id="@+id/logFragment"
         android:name="com.example.prog7313_sem1_part2.LogFragment"
         android:label="LogFragment"
@@ -66,7 +97,7 @@
         android:id="@+id/more_Light_Fragment"
         android:name="com.example.prog7313_sem1_part2.More_Light_Fragment"
         android:label="fragment_more__light_"
-        tools:layout="@layout/fragment_more__light_" >
+        tools:layout="@layout/fragment_more_light" >
         <action
             android:id="@+id/action_more_Light_Fragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
@@ -85,12 +116,14 @@
         <action
             android:id="@+id/action_more_Light_Fragment_to_home2Fragment"
             app:destination="@id/home2Fragment" />
-
+        <action
+            android:id="@+id/action_more_Light_Fragment_to_AppSecurityFragment"
+            app:destination="@id/AppSecurityFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/editCategoryFragment"
-        android:name="com.example.prog7313_sem1_part2.EditCategoryFragment"
+        android:name="com.example.prog7313_sem1_part2.LightEditCategoryFragment"
         android:label="EditCategoryFragment"
         tools:layout="@layout/fragment_edit_category"/>
     <fragment
@@ -109,7 +142,7 @@
         android:id="@+id/profileLight"
         android:name="com.example.prog7313_sem1_part2.ProfileLight"
         android:label="ProfileLight"
-        tools:layout="@layout/fragment_profile_light"
+        tools:layout="@layout/profile_view"
         >
         <action
             android:id="@+id/action_profileLight_to_logFragment"
@@ -125,6 +158,9 @@
         <action
             android:id="@+id/action_splashFragment_to_home"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_splashFragment_to_AuthenticationFragment"
+            app:destination="@id/AuthenticationFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragmentLight"

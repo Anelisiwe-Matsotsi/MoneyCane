@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.ImageButton
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 
 
-class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
+class More_Light_Fragment : Fragment(R.layout.fragment_more_light) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -23,11 +23,12 @@ class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
         val BtnWallet = view.findViewById<ImageButton>(R.id.btn_wallet)
         val profile = view.findViewById<ImageButton>(R.id.btn_account)
         val Logout = view.findViewById<ImageButton>(R.id.btn_logout)
+        val BtnPasscode = view.findViewById<ImageView>(R.id.btn_passcode)
 
 
-
-
-
+        BtnPasscode.setOnClickListener {
+            findNavController().navigate(R.id.action_more_Light_Fragment_to_AppSecurityFragment)//to app pin and biometric adding
+        }
         BtnBudget.setOnClickListener {
             findNavController().navigate(R.id.action_more_Light_Fragment_to_budgetLight)//to profile(light)
         }
@@ -47,8 +48,6 @@ class More_Light_Fragment : Fragment(R.layout.fragment_more__light_) {
             FirebaseAuth.getInstance().signOut()//to transaction(light)
             findNavController().navigate(R.id.action_more_Light_Fragment_to_logFragment)
         }
-
-
 
 
     }
