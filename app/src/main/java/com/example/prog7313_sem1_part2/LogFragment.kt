@@ -46,9 +46,9 @@ class LogFragment : Fragment(R.layout.fragment_log) {
 
                         //(StackOverflow, 2021)
                         //if the user came from the forgot passcode then they will be directed to the create pin view to override the existing one and make a new one
-                        val newPin = arguments?.getBoolean("newPin", false)?: false//newPin arguments is passed from the authentication fragment
+                        val resetPin = arguments?.getBoolean("resetPin", false)?: false//newPin arguments is passed from the authentication fragment
 
-                        if (newPin)
+                        if (resetPin)
                         {
                             findNavController().navigate(R.id.action_logFragment_to_CreatePinFragment)
                         }

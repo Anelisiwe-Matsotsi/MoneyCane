@@ -49,8 +49,8 @@ class AuthenticationFragment : Fragment(R.layout.prompt_security) {
             // user goes to the login screen to verify their email and password to change their passcode
             // (StackOverflow, 2021)
             val args = Bundle()
-            args.putBoolean("newPin", true) //user wants to create a new pin therefore true
-            findNavController().navigate(R.id.action_AuthenticationFragment_to_logFragment)
+            args.putBoolean("resetPin", true) //user wants to create a new pin therefore true
+            findNavController().navigate(R.id.action_AuthenticationFragment_to_logFragment,args)
         }
     }
 
@@ -71,7 +71,7 @@ class AuthenticationFragment : Fragment(R.layout.prompt_security) {
         val biometricManager = BiometricManager.from(requireContext())
         if (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)
             != BiometricManager.BIOMETRIC_SUCCESS)
-        { //usign passocde as fallback
+        { //using passcode as fallback
             Toast.makeText(requireContext(), "Biometric not available, use passcode", Toast.LENGTH_SHORT).show()
             return
         }
@@ -93,7 +93,7 @@ class AuthenticationFragment : Fragment(R.layout.prompt_security) {
                 //if biometric or pin is correct then user successfully goes to MoneyCane Home page
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
-                    /*We will show an success message through a toast and naviagte to te next activity*/
+                    /*We will show a success message through a toast and navigate to te next activity*/
                     Toast.makeText(requireContext(), "Successful", Toast.LENGTH_SHORT).show()
                     navigateToHome()
                 }
