@@ -9,8 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.apply
-import kotlin.let
+import com.google.firebase.database.FirebaseDatabase
 
 
 class SplashFragment : Fragment(R.layout.fragment_splash) {
@@ -18,7 +17,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     {
         super.onViewCreated(view, savedInstanceState)
 
-        // handler creates a delay of 2 seconds before moving tot he next screen
+        // handler creates a delay of 2 seconds before moving to the next screen
         val handler= Handler(Looper.getMainLooper())
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -26,14 +25,18 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
             val user = FirebaseAuth.getInstance().currentUser
 
             if(user != null){
-                findNavController().navigate(R.id.action_splashFragment_to_home)
+                //check if the user set a passcode
+                FirebaseDatabase.getInstance().reference.child("users").child(user.uid).child("passcode")
+                    .get().addOnSuccessListener { snapshot ->
+                        if (snapshot.exists()) {
+                            findNavController().navigate(R.id.action_splashFragment_to_AuthenticationFragment)
+                        } else {
+                            findNavController().navigate(R.id.action_splashFragment_to_home)
+                        }
+                    }
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_logFragment)
             }
-
-
-
-
         }, 2500)
     }
 

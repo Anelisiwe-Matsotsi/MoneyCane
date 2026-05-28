@@ -44,8 +44,20 @@ class LogFragment : Fragment(R.layout.fragment_log) {
                         // login successful
                         Toast.makeText(context, "Login successful!!", Toast.LENGTH_LONG).show()
 
-                        //redirect to the home screen
-                        findNavController().navigate(R.id.action_logFragment_to_home)
+                        //(StackOverflow, 2021)
+                        //if the user came from the forgot passcode then they will be directed to the create pin view to override the existing one and make a new one
+                        val resetPin = arguments?.getBoolean("resetPin", false)?: false//newPin arguments is passed from the authentication fragment
+
+                        if (resetPin)
+                        {
+                            findNavController().navigate(R.id.action_logFragment_to_CreatePinFragment)
+                        }
+                        else
+                        {
+                            findNavController().navigate(R.id.action_logFragment_to_home)
+                        }
+//                        //redirect to the home screen
+//                        findNavController().navigate(R.id.action_logFragment_to_home)
                     } else {
                         // login failed
                         Toast.makeText(context, "Login failed!!", Toast.LENGTH_LONG).show()
@@ -65,6 +77,11 @@ class LogFragment : Fragment(R.layout.fragment_log) {
 
 
 
+/* References
+
+StackOverflow. 2021. How do i pass an argument to the view model?. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/68191852/how-do-i-pass-an-argument-to-the-view-model> [Accessed 27 May 2026]
+
+*/
 
 
 
