@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_AuthenticationFragment_to_logFragment"
             app:destination="@id/logFragment" />
+        <action
+            android:id="@+id/action_AuthenticationFragment_to_CreatePinFragment"
+            app:destination="@id/CreatePinFragment" />
     </fragment>
 
     <fragment
@@ -42,7 +45,9 @@
         android:label="LogFragment"
         tools:layout="@layout/fragment_log">
 
-
+        <action
+            android:id="@+id/action_logFragment_to_CreatePinFragment"
+            app:destination="@id/CreatePinFragment" />
         <action
             android:id="@+id/action_logFragment_to_home"
             app:destination="@id/home" />

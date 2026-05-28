@@ -204,3 +204,8 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--References
+Optimus, T. 2023. Grid-calculator. (version 8) [Source Code]. Available at: <https://github.com/tharunoptimus/grid-calculator> [Accessed 27 May 2026]
+
+-->
