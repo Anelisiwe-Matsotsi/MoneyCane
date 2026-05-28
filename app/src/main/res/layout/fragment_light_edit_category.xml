@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="@drawable/custom_rectangle"
-        android:backgroundTint="#008000">
+        android:backgroundTint="#A3C2A3">
 
         <ImageButton
             android:id="@+id/btnBack"
@@ -160,10 +160,10 @@
                     android:layout_width="0dp"
                     android:layout_height="55dp"
                     android:layout_weight="2"
+                    android:backgroundTint="#A3C2A3"
                     android:text="SAVE CHANGES"
                     android:textColor="#001430"
                     android:textStyle="bold"
-                    android:backgroundTint="#008000"
                     app:cornerRadius="15dp" />
             </LinearLayout>
 
