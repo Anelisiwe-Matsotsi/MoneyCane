@@ -39,6 +39,14 @@
 - The user will enter the wallets name and set the initial amount they have in that wallet
 <br>
 
+### In-App Authentication: Passcode & Biometrics 🔑
+- User can set a 4-digit passcode in the "More" screen
+- User can choose to activate or deactive biometric authentication via toggle switch used
+- User can either have passcode only, passcode & biometric
+- Passcode is used as a fallback if biometric authentication is falling
+- User can forget password then they will have to verify their identity using email and password to reset the PIN
+<br>
+
 ## Unit Tests Passed
 <br>
 <img width="1129" height="684" alt="Image" src="https://github.com/user-attachments/assets/ec900b42-be23-4af2-b99b-11ddc6887473" />
