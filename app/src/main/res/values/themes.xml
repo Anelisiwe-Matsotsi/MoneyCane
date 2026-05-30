@@ -3,10 +3,6 @@
     <style name="Base.Theme.PROG7313_sem1_part2" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-   <item name="colorPrimary">#A3C2A3</item>
-        <item name="android:colorBackground">#F7F9F2</item>
-        <item name="colorSurface">#E9F4EA</item>
-        <item name="colorOnSurface">#0E3704</item>
     </style>
 
     <style name="Theme.PROG7313_sem1_part2" parent="Base.Theme.PROG7313_sem1_part2" />
