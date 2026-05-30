@@ -33,9 +33,8 @@ bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         //how much it shows
         bottomSheetBehavior.peekHeight=110
 
-        bottomSheetBehavior.isFitToContents=false
-        bottomSheetBehavior.halfExpandedRatio=.55f
-        bottomSheetBehavior.expandedOffset=80
+        bottomSheetBehavior.isFitToContents=true
+
 
         //load transaction fragment into sheet
         childFragmentManager.beginTransaction()

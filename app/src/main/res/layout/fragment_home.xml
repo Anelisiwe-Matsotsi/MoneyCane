@@ -448,13 +448,13 @@
     <LinearLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/bottom_sheet_background"
         android:elevation="30dp"
         android:orientation="vertical"
-        app:behavior_fitToContents="false"
-        app:behavior_halfExpandedRatio="0.35"
+        app:behavior_fitToContents="true"
         app:behavior_peekHeight="110dp"
+
 
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
