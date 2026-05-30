@@ -6,124 +6,81 @@
     android:layout_height="match_parent"
     android:background="#F7F9F2">
 
-    <View
-        android:id="@+id/viewHeader"
-        android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:background="@drawable/custom_rectangle"
-        android:backgroundTint="#A3C2A3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="316dp"
-        android:text="Transactions"
-        android:textColor="#0B0B0B"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <LinearLayout
+        android:id="@+id/filterHeader"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewHeader">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+       android:padding="12dp"
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/btnAll"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/tab_selected_shape"
+            android:backgroundTint="#E8F5E9"
+            android:clickable="true"
+            android:focusable="true"
+
+            android:padding="12dp"
+            android:text="All"
+            android:textColor="#008000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnToday"
+            android:text="Today"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/tab_selected_shape"
+            android:backgroundTint="#E8F5E9"
+            android:clickable="true"
+            android:focusable="true"
+
+            android:padding="12dp"
+            android:textColor="#008000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+             />
+
+        <TextView
+            android:id="@+id/btnSelectMonth"
+            android:text="Monthly"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1.2"
+            android:background="@drawable/tab_selected_shape"
+            android:backgroundTint="#E8F5E9"
+            android:clickable="true"
+            android:focusable="true"
+
+            android:padding="12dp"
+            android:textColor="#008000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTransactions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp"
+        app:layout_constraintTop_toBottomOf="@id/filterHeader"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+        app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/btnAll"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_rectangle"
-                    android:backgroundTint="#E8F5E9"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:padding="16dp"
-                    android:text="All"
-                    android:textColor="#008000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/btnToday"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_rectangle"
-                    android:backgroundTint="#E8F5E9"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:padding="16dp"
-                    android:text="Today"
-                    android:textColor="#008000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/btnSelectMonth"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/custom_rectangle"
-                    android:backgroundTint="#E8F5E9"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:padding="16dp"
-                    android:text="Monthly"
-                    android:textColor="#008000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="6dp">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvTransactions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    android:padding="12dp" />
-            </androidx.cardview.widget.CardView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="120dp" />
-
-        </LinearLayout>
-    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/iconAddTransaction"

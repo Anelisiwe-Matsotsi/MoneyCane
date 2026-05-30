@@ -72,6 +72,8 @@ class IncomesFragment : Fragment() {
                         transactionList.add(transaction)
                     }
                 }
+                //SORT BY DATE- NEWEST TO OLDEST
+                transactionList.sortByDescending{it.date}
                 adapter.notifyDataSetChanged()
 
             }

@@ -6,44 +6,32 @@
     android:layout_height="match_parent"
     android:background="#F7F9F2">
 
-    <!-- add icon: opens Create Transaction -->
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTransactions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-27dp"
-        tools:layout_editor_absoluteY="-255dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+        android:nestedScrollingEnabled="true"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
-            <!-- DYNAMIC Transactions LIST -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTransactions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
 
-            <!-- Bottom spacer so FAB doesn't overlap last item -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp" />
 
-        </LinearLayout>
-    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/iconAddTransaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Add Tranaction"
+        android:layout_margin="24dp"
+        android:contentDescription="Add Transaction"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="#FFC107"
+        app:backgroundTint="#A3C2A3"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="#001430" />
+        app:tint="#FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

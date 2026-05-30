@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="165dp"
             android:background="@drawable/custom_rectangle"
-            android:backgroundTint="#008000"
+            android:backgroundTint="#A3C2A3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -190,7 +190,7 @@
             android:clickable="true"
             android:elevation="16dp"
             android:focusable="true"
-            app:cardBackgroundColor="#98008000"
+            app:cardBackgroundColor="#A3C2A3"
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -205,6 +205,8 @@
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="173dp"
                     android:layout_height="46dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="43dp"
                     android:text="Add Budget"
                     android:textColor="#162616"
                     android:textColorLink="#FF9800"
@@ -212,8 +214,6 @@
                     app:iconPadding="4dp"
                     app:iconSize="30dp"
                     app:iconTint="#FFC107"
-                    android:layout_marginStart="55dp"
-                    android:layout_marginTop="43dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -222,12 +222,12 @@
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="228dp"
                     android:layout_height="34dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="27dp"
                     android:max="100"
                     android:progress="40"
                     android:progressBackgroundTint="#F8EEEE"
                     android:progressTint="#FFC107"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="27dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -235,12 +235,12 @@
                     android:id="@+id/tv_monthly_budget_title"
                     android:layout_width="154dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="5dp"
                     android:text="Monthly Budget"
                     android:textColor="#162616"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_marginStart="42dp"
-                    android:layout_marginTop="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -248,11 +248,11 @@
                     android:id="@+id/tv_monthly_budget_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="258dp"
+                    android:layout_marginTop="30dp"
                     android:text="R 6000,50 left"
                     android:textColor="#162616"
                     android:textStyle="bold"
-                    android:layout_marginStart="258dp"
-                    android:layout_marginTop="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -260,10 +260,10 @@
                     android:id="@+id/tv_monthly_budget_of"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="of R 7000"
-                    android:textColor="#F2EFE4"
                     android:layout_marginStart="273dp"
                     android:layout_marginTop="54dp"
+                    android:hint="of R 7000"
+                    android:textColor="#F2EFE4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -281,7 +281,7 @@
             android:clickable="true"
             android:elevation="16dp"
             android:focusable="true"
-            app:cardBackgroundColor="#98008000"
+            app:cardBackgroundColor="#A3C2A3"
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -296,6 +296,8 @@
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="173dp"
                     android:layout_height="46dp"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="43dp"
                     android:text="Set Goal"
                     android:textColor="#162616"
                     android:textColorLink="#FF9800"
@@ -303,8 +305,6 @@
                     app:iconPadding="4dp"
                     app:iconSize="30dp"
                     app:iconTint="#FFC107"
-                    android:layout_marginStart="55dp"
-                    android:layout_marginTop="43dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -313,12 +313,12 @@
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="228dp"
                     android:layout_height="34dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="27dp"
                     android:max="100"
                     android:progress="60"
                     android:progressBackgroundTint="#F8EEEE"
                     android:progressTint="#FFC107"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="27dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -326,12 +326,12 @@
                     android:id="@+id/tv_weekly_goal_title"
                     android:layout_width="154dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="42dp"
+                    android:layout_marginTop="5dp"
                     android:text="Weekly Goal"
                     android:textColor="#162616"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_marginStart="42dp"
-                    android:layout_marginTop="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -339,11 +339,11 @@
                     android:id="@+id/tv_weekly_goal_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="258dp"
+                    android:layout_marginTop="30dp"
                     android:text="R 6000,50 left"
                     android:textColor="#162616"
                     android:textStyle="bold"
-                    android:layout_marginStart="258dp"
-                    android:layout_marginTop="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -351,10 +351,10 @@
                     android:id="@+id/tv_weekly_goal_of"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="of R 7000"
-                    android:textColor="#F2EFE4"
                     android:layout_marginStart="273dp"
                     android:layout_marginTop="54dp"
+                    android:hint="of R 7000"
+                    android:textColor="#F2EFE4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -370,7 +370,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:elevation="12dp"
-            app:cardBackgroundColor="#98008000"
+            app:cardBackgroundColor="#A3C2A3"
             app:cardCornerRadius="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -379,7 +379,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="202dp"
-                android:background="#98008000">
+                android:background="#A3C2A3">
 
                 <ImageView
                     android:id="@+id/iv_promo_image"
@@ -445,16 +445,16 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="0dp"
                     android:layout_height="44dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginStart="1dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="1dp"
-                    android:backgroundTint="#98008000"
-                    app:tabIndicatorColor="#FFC107"
-                    app:tabSelectedTextColor="#FFC107"
-                    app:tabTextColor="#162616"
+                    android:backgroundTint="#A3C2A3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title"
+                    app:tabIndicatorColor="#FFC107"
+                    app:tabSelectedTextColor="#FFC107"
+                    app:tabTextColor="#162616">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"

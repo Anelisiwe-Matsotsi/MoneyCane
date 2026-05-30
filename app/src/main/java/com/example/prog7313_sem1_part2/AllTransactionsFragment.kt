@@ -12,6 +12,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import android.widget.TextView
+import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class AllTransactionsFragment : Fragment() {
 
@@ -52,9 +55,24 @@ adapter= TransactionAdapter(transactionList) {transaction ->
                 .commit()
         }
 
+
+
+
         listenToTransactions()
 
+
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().supportFragmentManager.setFragmentResultListener(
+            "mascot_request",
+            viewLifecycleOwner){_,bundle ->
+            val type =bundle.getString("type") ?: return@setFragmentResultListener
+            showMascotBottomSheet(type)
+        }
     }
 
     //recycler view updates everytime if a category is added or edited
@@ -72,15 +90,42 @@ adapter= TransactionAdapter(transactionList) {transaction ->
                         transactionList.add(transaction)
                     }
                 }
+
+                //SORT BY DATE- NEWEST TO OLDEST
+                transactionList.sortByDescending{it.date}
+
                 adapter.notifyDataSetChanged()
 
             }
+
+
+
 
             //database error
             override fun onCancelled(error: DatabaseError) {
             }
         })
     }
+    private fun showMascotBottomSheet(type:String) {
+        val bottomSheetView= layoutInflater.inflate(R.layout.mascot_bottom_sheet_dialog,null)
+        val dialog = BottomSheetDialog(requireContext())
+        val mascotAnimation = bottomSheetView.findViewById<LottieAnimationView>(R.id.lottieMascot)
+        val tvMessage =bottomSheetView.findViewById<TextView>(R.id.tvMascotMessage)
+        if (type == "income") {
+            tvMessage.text ="Yayy! Your income was saved"
+
+            mascotAnimation.setAnimation(R.raw.eating_candy)
+        }else {
+            tvMessage.text ="Yum! Your money tastes sweet"
+            mascotAnimation.setAnimation(R.raw.eating_candy)
+        }
+        mascotAnimation.playAnimation()
+
+        dialog.setContentView(bottomSheetView)
+        dialog.behavior.isFitToContents =true
+        dialog.show()
+    }
+
 
     //navigates to edit fragment by fetching the category id through bundle
     /*private fun navigateToEdit(categoryId: String) {

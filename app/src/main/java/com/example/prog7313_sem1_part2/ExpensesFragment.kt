@@ -130,7 +130,7 @@ class ExpensesFragment : Fragment() {
 
     //recycler view updates everytime if a category is added or edited
     private fun listenToTransactions() {
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
+        database.addValueEventListener(object : ValueEventListener {
 
             //(Firebase, 2026b)
             //fetched correct category unique id to be edited/updated
@@ -139,20 +139,24 @@ class ExpensesFragment : Fragment() {
                 for (child in snapshot.children) {
                     val transaction = child.getValue(Transaction::class.java)
 
-                    if (transaction != null && transaction.type == "expense" && isWithinSelectedPeriod(
-                            transaction.date
-                        )
-                    ) {
+                    if (transaction != null && transaction.type == "expense") {
+                        if (isWithinSelectedPeriod
+                                (transaction.date)
+                        ) {
 
-                        transactionList.add(transaction)
+                            transactionList.add(transaction)
+                        }
                     }
                 }
+                //SORT BY DATE- NEWEST TO OLDEST
+                transactionList.sortByDescending{it.date}
                 adapter.notifyDataSetChanged()
 
             }
 
             //database error
             override fun onCancelled(error: DatabaseError) {
+                if(isAdded)
                 Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
             }
         })
@@ -188,12 +192,14 @@ class ExpensesFragment : Fragment() {
     private fun parseDate(date: String): Date? {
         val formats = listOf(
             SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()),
+            SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()),
             SimpleDateFormat("d/M/yyyy", Locale.getDefault())
         )
         for (format in formats) {
             try {
                 return format.parse(date)
             } catch (e: Exception) {
+                continue
 
             }
 

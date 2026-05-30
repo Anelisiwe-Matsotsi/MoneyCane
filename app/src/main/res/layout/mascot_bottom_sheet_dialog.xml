@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bottom_sheet_background"
+    android:elevation="12dp"
+    android:clipToOutline="true">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieMascot"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/tvMascotMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="6dp"
+        android:paddingBottom="10dp"
+        android:text="Bunny Message"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
