@@ -156,12 +156,11 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tv_wallet_amount"
+                        android:id="@+id/tvWalletBalance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="76dp"
                         android:layout_marginTop="81dp"
-                        android:text="R23453,65"
                         android:textColor="#008000"
                         android:textSize="20sp"
                         android:textStyle="bold"
