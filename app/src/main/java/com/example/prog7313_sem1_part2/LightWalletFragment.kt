@@ -132,16 +132,10 @@ class LightWalletFragment : Fragment() {
 
     //navigates to edit fragment by fetching the wallet id through bundle
     private fun navigateToEdit(walletId: String) {
-        val editFragment = LightEditWalletFragment()
         val args = Bundle()
         args.putString("walletId", walletId)
-        editFragment.arguments = args
+        findNavController().navigate(R.id.action_lightWalletFragment_to_lightEditWalletFragment, args)
 
-        //(Android Developers, 2026b)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, editFragment)
-            .addToBackStack(null) //(Android Developers, 2026)
-            .commit()
     }
 
     //(StackOverflow,2019b)

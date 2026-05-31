@@ -89,12 +89,7 @@ class LightCategoryFragment : Fragment() {
         args.putString("categoryId", categoryId)
         editFragment.arguments = args
 
-        //(Android Developers, 2026b)
-//        parentFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, editFragment)
-//            .addToBackStack(null) //(Android Developers, 2026)
-//            .commit()
-        findNavController().navigate(R.id.action_categoryFragment_to_editCategoryFragment)//navigate to the edit
+        findNavController().navigate(R.id.action_categoryFragment_to_editCategoryFragment, args)//navigate to the edit
     }
 
     //(Bhosale, 2024)
