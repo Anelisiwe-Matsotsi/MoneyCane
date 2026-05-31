@@ -43,10 +43,11 @@ class Transaction_Fragment : Fragment() {
 
     // Firebase Realtime Database reference
     private val database = FirebaseDatabase.getInstance().getReference("transactions")
-    private val categorygoryDatabase = FirebaseDatabase.getInstance().getReference("categories")
-    private val categoryList= ArrayList<Category>()
+
+
 
     private  var selectedCategoryId: String=""
+    private  var selectedWalletId: String=""
     private lateinit var btnChoose: Button
     private lateinit var btnUpload: Button
     // private lateinit var btnDownload: Button
@@ -92,7 +93,7 @@ class Transaction_Fragment : Fragment() {
         val radioGroupType = view.findViewById<RadioGroup>(R.id.radioGroupType)
         val radioExpense = view.findViewById<RadioButton>(R.id.radioExpense)
         val radioIncome = view.findViewById<RadioButton>(R.id.radioIncome)
-
+        val btnSelectWallet= view.findViewById<Button>(R.id.btn_select_wallet)
         val btnSelectCategory = view.findViewById<Button>(R.id.btn_select_category)
         val btnSave = view.findViewById<Button>(R.id.btnSave)
         val back = view.findViewById<ImageButton>(R.id.btnBack)
@@ -160,7 +161,9 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
 
 
 
-
+        btnSelectWallet.setOnClickListener {
+            showBottomViewWallets()
+        }
         btnSelectCategory.setOnClickListener {
             showBottomView()
         }
@@ -214,19 +217,25 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
                 else -> "expense"
             }
 
+            if (selectedWalletId.isEmpty()) {
+                Toast.makeText(requireContext(),"Please pick a wallet for your transaction",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (selectedCategoryId.isEmpty()) {
                 Toast.makeText(requireContext(),"Please pick a category for your transaction",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            saveTransaction(name,amount, selectedType, content, date, imageUrl, selectedCategoryId )
+
+            saveTransaction(name,amount, selectedType, content, date, imageUrl, selectedCategoryId ,selectedWalletId)
         }
 
     }
             //Firebase, 2026)
             //transaction is saved in firebase DB
             private fun saveTransaction(name: String, amount: Double, type: String, content: String,
-           date: String, imageUrl: String, category: String ) {
+           date: String, imageUrl: String, category: String, wallet: String ) {
             // push creates a unique key for the new transaction
 
                 val uid = FirebaseAuth.getInstance().currentUser?.uid
@@ -248,7 +257,8 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
                 content = content,
                 date=date,
                 imageUrl=imageUrl,
-                categoryId = category
+                categoryId = category,
+                walletId= wallet
             )
 
 
@@ -288,6 +298,48 @@ requireActivity().supportFragmentManager.popBackStack()
 
         }
     //choose category code
+    private fun showBottomViewWallets() {
+        /*GeekForGeeks
+           * Inflate layout */
+        val bottomSheetView = layoutInflater.inflate(R.layout.bottom_sheet_dialog_wallets, null)
+        val chipGroup = bottomSheetView.findViewById<ChipGroup>(R.id.cgWallets)
+        val dialog = BottomSheetDialog(requireContext())
+
+        //get the user id
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val userWalletDatabase= FirebaseDatabase.getInstance().getReference("wallets").child(uid)
+
+
+        //load firebase
+        userWalletDatabase.get().addOnSuccessListener { snapshot ->
+            chipGroup.removeAllViews()
+            for (child in snapshot.children) {
+                val wallet = child.getValue(Wallet::class.java)
+                val walletId = child.key ?: continue
+
+
+                if (wallet != null) {
+                    val chip = Chip(requireContext())
+                    //Make sure category name is set
+                    chip.text = wallet.name
+                    chip.tag = walletId
+
+                    chip.setOnClickListener {
+                        selectedWalletId = chip.tag.toString()
+                        view?.findViewById<Button>(R.id.btn_select_wallet)?.text = wallet.name
+                        dialog.dismiss()
+                    }
+                    chipGroup.addView(chip)
+
+                }
+            }
+        }
+        dialog.setContentView(bottomSheetView)
+        dialog.show()
+    }
+
+    //choose wallet code
     private fun showBottomView() {
         /*GeekForGeeks
            * Inflate layout */
@@ -328,6 +380,8 @@ requireActivity().supportFragmentManager.popBackStack()
         dialog.setContentView(bottomSheetView)
         dialog.show()
     }
+
+
 
 
 

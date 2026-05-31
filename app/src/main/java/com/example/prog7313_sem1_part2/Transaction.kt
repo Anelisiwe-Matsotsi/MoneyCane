@@ -9,7 +9,8 @@ val amount: Double = 0.0, //sent or earned
 val date: String="",
 val content:String="",
 val imageUrl: String="",
-val categoryId: String=""
+val categoryId: String="",
+val walletId: String=""
 )
 /*
 References
