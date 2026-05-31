@@ -295,8 +295,14 @@ requireActivity().supportFragmentManager.popBackStack()
         val chipGroup = bottomSheetView.findViewById<ChipGroup>(R.id.cgCategories)
         val dialog = BottomSheetDialog(requireContext())
 
+        //get the user id
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val userCategoryDatabase= FirebaseDatabase.getInstance().getReference("categories").child(uid)
+
+
         //load firebase
-        categorygoryDatabase.get().addOnSuccessListener { snapshot ->
+        userCategoryDatabase.get().addOnSuccessListener { snapshot ->
             chipGroup.removeAllViews()
             for (child in snapshot.children) {
                 val category = child.getValue(Category::class.java)
@@ -305,11 +311,13 @@ requireActivity().supportFragmentManager.popBackStack()
 
                 if (category != null) {
                     val chip = Chip(requireContext())
+                    //Make sure category name is set
                     chip.text = category.name
                     chip.tag = categoryId
 
                     chip.setOnClickListener {
                         selectedCategoryId = chip.tag.toString()
+                        view?.findViewById<Button>(R.id.btn_select_category)?.text = category.name
                         dialog.dismiss()
                     }
                     chipGroup.addView(chip)
