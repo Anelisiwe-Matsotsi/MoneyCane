@@ -45,18 +45,18 @@ class Transaction_Fragment : Fragment() {
     private val database = FirebaseDatabase.getInstance().getReference("transactions")
 
 
-
-    private  var selectedCategoryId: String=""
-    private  var selectedWalletId: String=""
+    private var selectedCategoryId: String = ""
+    private var selectedWalletId: String = ""
     private lateinit var btnChoose: Button
     private lateinit var btnUpload: Button
+
     // private lateinit var btnDownload: Button
     private lateinit var txtStatus: TextView
 
     //soundpool variables
 
-   private  lateinit var  soundPool: SoundPool
-    private  var saveSound= 0
+    private lateinit var soundPool: SoundPool
+    private var saveSound = 0
 
     private val imagePickerLauncher = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -79,21 +79,23 @@ class Transaction_Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_transaction_, container, false)}
+        return inflater.inflate(R.layout.fragment_transaction_, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val  etName= view.findViewById<EditText>(R.id.tbTransactionName)
+        val etName = view.findViewById<EditText>(R.id.tbTransactionName)
         val etAmount = view.findViewById<EditText>(R.id.tbAmount)
-      //  val etWallet = view.findViewById<EditText>(R.id.tbWallet)
+        //  val etWallet = view.findViewById<EditText>(R.id.tbWallet)
         // Initialize DatePicker from layout
         val datePicker: DatePicker = view.findViewById(R.id.datePicker)
         val etDescription = view.findViewById<EditText>(R.id.tbDescription)
         val radioGroupType = view.findViewById<RadioGroup>(R.id.radioGroupType)
         val radioExpense = view.findViewById<RadioButton>(R.id.radioExpense)
         val radioIncome = view.findViewById<RadioButton>(R.id.radioIncome)
-        val btnSelectWallet= view.findViewById<Button>(R.id.btn_select_wallet)
+        val btnSelectWallet = view.findViewById<Button>(R.id.btn_select_wallet)
         val btnSelectCategory = view.findViewById<Button>(R.id.btn_select_category)
         val btnSave = view.findViewById<Button>(R.id.btnSave)
         val back = view.findViewById<ImageButton>(R.id.btnBack)
@@ -117,9 +119,6 @@ class Transaction_Fragment : Fragment() {
         }
 
 
-
-
-
         //soundpool
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val audioAttributes = AudioAttributes.Builder()
@@ -131,7 +130,7 @@ class Transaction_Fragment : Fragment() {
                 .setMaxStreams(1)
                 .setAudioAttributes(audioAttributes)
                 .build()
-        }else {
+        } else {
             soundPool = SoundPool(
                 1,
                 AudioManager.STREAM_MUSIC,
@@ -140,7 +139,7 @@ class Transaction_Fragment : Fragment() {
 
         }
 
-saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_ping,1)
+        saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_ping, 1)
 
         // Get today's date using Calendar instance
         val today = Calendar.getInstance()
@@ -152,7 +151,7 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
             today.get(Calendar.DAY_OF_MONTH)
         ) { view, year, month, day ->
             // Display selected date in Toast message
-            val msg = "You Selected: $year/${month+1}/$day"
+            val msg = "You Selected: $year/${month + 1}/$day"
             Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
         }
 
@@ -175,7 +174,7 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
         // user created, this will also be linked to that user with shared preferences
 
         btnSave.setOnClickListener {
-            val name=etName.text.toString().trim()
+            val name = etName.text.toString().trim()
             val amountText = etAmount.text.toString().trim()
             val content = etDescription.text.toString()
             val imageUrl = uploadedImageUrl ?: ""// if no image is uploaded empty string is returned
@@ -204,10 +203,10 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
                 return@setOnClickListener
             }
 
-            val day=datePicker.dayOfMonth
-            val month=datePicker.month + 1
-            val year =datePicker.year
-          val date= String.format("%04d-%02d-%02d",year,month,day)
+            val day = datePicker.dayOfMonth
+            val month = datePicker.month + 1
+            val year = datePicker.year
+            val date = String.format("%04d-%02d-%02d", year, month, day)
 
 
             // Determine selected type from the RadioGroup
@@ -218,88 +217,115 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
             }
 
             if (selectedWalletId.isEmpty()) {
-                Toast.makeText(requireContext(),"Please pick a wallet for your transaction",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please pick a wallet for your transaction",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
             if (selectedCategoryId.isEmpty()) {
-                Toast.makeText(requireContext(),"Please pick a category for your transaction",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please pick a category for your transaction",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
 
-            saveTransaction(name,amount, selectedType, content, date, imageUrl, selectedCategoryId ,selectedWalletId)
+            saveTransaction(
+                name,
+                amount,
+                selectedType,
+                content,
+                date,
+                imageUrl,
+                selectedCategoryId,
+                selectedWalletId
+            )
         }
 
     }
-            //Firebase, 2026)
-            //transaction is saved in firebase DB
-            private fun saveTransaction(name: String, amount: Double, type: String, content: String,
-           date: String, imageUrl: String, category: String, wallet: String ) {
-            // push creates a unique key for the new transaction
 
-                val uid = FirebaseAuth.getInstance().currentUser?.uid
+    //Firebase, 2026)
+    //transaction is saved in firebase DB
+    private fun saveTransaction(
+        name: String, amount: Double, type: String, content: String,
+        date: String, imageUrl: String, category: String, wallet: String
+    ) {
+        // push creates a unique key for the new transaction
 
-                if(uid == null){
-                    Toast.makeText(requireContext(),"User not logged in",Toast.LENGTH_SHORT).show()
-                    return
-                }
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
 
-                val transactionRef = database.child(uid).push()
-
-                val transactionId = transactionRef.key ?: return
-
-            val newTransaction = Transaction(
-                id = transactionId,
-                name = name,
-                type = type,
-                amount = amount,
-                content = content,
-                date=date,
-                imageUrl=imageUrl,
-                categoryId = category,
-                walletId= wallet
-            )
-
-
-            transactionRef.setValue(newTransaction)
-                .addOnSuccessListener {
-
-                    //call function to update wallet balance when transaction is saved successfully
-                    updateWalletBalance(wallet, amount, type)
-
-                    //Play success sound
-                    requireView().postDelayed({
-                        soundPool.play(saveSound,1f,1f,0,0,1f)
-                    }, 200)
-
-                    Toast.makeText(requireContext(), "$name transaction created!", Toast.LENGTH_SHORT).show()
-
-
-             requireActivity().supportFragmentManager.setFragmentResult(
-                      "mascot_request", Bundle()
-                       .apply {
-                       putString("type",type)
-                    }
-                 )
-                    // Return to the transactions list
-                    //(Android Developers, 2026)
-             requireView().postDelayed({
-                 if (isAdded && activity !=null) {
-requireActivity().supportFragmentManager.popBackStack()
-                 }
-             },400)
-
-
-
-                }
-                .addOnFailureListener { error ->
-                    Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
-                }
-
-
-
+        if (uid == null) {
+            Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        val transactionRef = database.child(uid).push()
+
+        val transactionId = transactionRef.key ?: return
+
+        val newTransaction = Transaction(
+            id = transactionId,
+            name = name,
+            type = type,
+            amount = amount,
+            content = content,
+            date = date,
+            imageUrl = imageUrl,
+            categoryId = category,
+            walletId = wallet
+        )
+
+
+        transactionRef.setValue(newTransaction)
+            .addOnSuccessListener {
+
+                //call function to update wallet balance when transaction is saved successfully
+                updateWalletBalance(wallet, amount, type)
+
+                //function will update the category progress bar in category view
+                updateCategoryProgress(category, amount, type)
+
+                //Play success sound
+                requireView().postDelayed({
+                    soundPool.play(saveSound, 1f, 1f, 0, 0, 1f)
+                }, 200)
+
+                Toast.makeText(requireContext(), "$name transaction created!", Toast.LENGTH_SHORT)
+                    .show()
+
+
+                requireActivity().supportFragmentManager.setFragmentResult(
+                    "mascot_request", Bundle()
+                        .apply {
+                            putString("type", type)
+                        }
+                )
+                // Return to the transactions list
+                //(Android Developers, 2026)
+                requireView().postDelayed({
+                    if (isAdded && activity != null) {
+                        requireActivity().supportFragmentManager.popBackStack()
+                    }
+                }, 400)
+
+
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(
+                    requireContext(),
+                    "Failed to save: ${error.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+
+    }
+
     //choose category code
     private fun showBottomViewWallets() {
         /*GeekForGeeks
@@ -311,7 +337,7 @@ requireActivity().supportFragmentManager.popBackStack()
         //get the user id
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        val userWalletDatabase= FirebaseDatabase.getInstance().getReference("wallets").child(uid)
+        val userWalletDatabase = FirebaseDatabase.getInstance().getReference("wallets").child(uid)
 
 
         //load firebase
@@ -353,7 +379,8 @@ requireActivity().supportFragmentManager.popBackStack()
         //get the user id
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        val userCategoryDatabase= FirebaseDatabase.getInstance().getReference("categories").child(uid)
+        val userCategoryDatabase =
+            FirebaseDatabase.getInstance().getReference("categories").child(uid)
 
 
         //load firebase
@@ -383,9 +410,6 @@ requireActivity().supportFragmentManager.popBackStack()
         dialog.setContentView(bottomSheetView)
         dialog.show()
     }
-
-
-
 
 
     private fun uploadSelectedImage() {
@@ -451,8 +475,7 @@ requireActivity().supportFragmentManager.popBackStack()
 
         //get the current balance of the wallet chosen
         walletRef.get().addOnSuccessListener { snapshot ->
-            val wallet = snapshot.getValue(Wallet::class.java)?:
-            return@addOnSuccessListener
+            val wallet = snapshot.getValue(Wallet::class.java) ?: return@addOnSuccessListener
 
             //if transaction is an expense then the wallet balance decreases
             val updateBalance = if (type == "expense") {
@@ -478,17 +501,47 @@ requireActivity().supportFragmentManager.popBackStack()
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
     }
 
-}
+    private fun updateCategoryProgress(categoryId: String, amount: Double, type: String) {
 
+        //category budget sets against expenses- limits are for expenses
+        if (type != "expense")
+            return
+
+        //get the current users created categories
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val categoryRef = FirebaseDatabase.getInstance().getReference("categories").child(uid).child(categoryId)
+
+        //get the current spent value based on transactions
+        categoryRef.get().addOnSuccessListener { snapshot ->
+            val category = snapshot.getValue(Category::class.java) ?:
+                return@addOnSuccessListener
+
+            //adds the expense amount to the current spent amount of the specific category
+            val update = category.spent + amount
+
+            //spent variable is updated to influence the progress bar
+            categoryRef.child("spent").setValue(update) //saved to DB
+                .addOnFailureListener { error ->
+                    Toast.makeText(requireContext(), "Category failed to updated" + error, Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                .addOnFailureListener { error ->
+                    Toast.makeText(requireContext(), "Category Not Found" + error, Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
+
+    }
+}
 /*
 Android Developers. 2026. Fragment manager | App architecture. (version 8) [source code]. Available at: < https://developer.android.com/guide/fragments/fragmentmanager > [Accessed 26 April 2026]
 Android Knowledge. 2023. CRUD using Firebase Realtime Database in Android Studio using Kotlin | Create, Read, Update, Delete. (version 8) [source code] Available at: < https://youtu.be/oGyQMBKPuNY?si=Nj0DRStlfvfFvane > [Accessed 26 April 2026]
 Bak, K. 2023. Validating user input in kotlin: a guide to adding validation to a new transaction. (version 8) [source code]. Available at: < https://53jk1.medium.com/validating-user-input-in-kotlin-a-guide-to-adding-validation-to-a-new-transaction-2e486f176674 > [Accessed 26 April 2026]
 Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8)
-* Ghanem, A. 2024. What is Context? In Android, represents the current state of the application. It provides access to various resources (e. [online] Linkedin.com. Available at: <https://www.linkedin.com/pulse/context-android-abdelrhman-ghanem-zbpcf/ [Accessed 26 Apr. 2026].
- GeekforGeeks.2020.SoundPool in Android with Examples.(version 8) [source code]. Available at: <https://www.geeksforgeeks.org/android/soundpool-in-android-with-examples/ >[Accessed 11 May 2026]
+Ghanem, A. 2024. What is Context? In Android, represents the current state of the application. It provides access to various resources (e. [online] Linkedin.com. Available at: <https://www.linkedin.com/pulse/context-android-abdelrhman-ghanem-zbpcf/ [Accessed 26 Apr. 2026].
+GeekforGeeks.2020.SoundPool in Android with Examples.(version 8) [source code]. Available at: <https://www.geeksforgeeks.org/android/soundpool-in-android-with-examples/ >[Accessed 11 May 2026]
  */
