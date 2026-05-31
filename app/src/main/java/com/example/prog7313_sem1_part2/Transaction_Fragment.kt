@@ -265,6 +265,9 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
             transactionRef.setValue(newTransaction)
                 .addOnSuccessListener {
 
+                    //call function to update wallet balance when transaction is saved successfully
+                    updateWalletBalance(wallet, amount, type)
+
                     //Play success sound
                     requireView().postDelayed({
                         soundPool.play(saveSound,1f,1f,0,0,1f)
@@ -435,6 +438,49 @@ requireActivity().supportFragmentManager.popBackStack()
         super.onDestroy()
         soundPool.release()
     }
+
+    //function to update the wallet balance after user creates a transaction
+    private fun updateWalletBalance(walletId: String, amount: Double, type: String) {
+
+        val uid =
+            FirebaseAuth.getInstance().currentUser?.uid ?: //get the current users wallet details
+            return
+
+        val walletRef =
+            FirebaseDatabase.getInstance().getReference("wallets").child(uid).child(walletId)
+
+        //get the current balance of the wallet chosen
+        walletRef.get().addOnSuccessListener { snapshot ->
+            val wallet = snapshot.getValue(Wallet::class.java)?:
+            return@addOnSuccessListener
+
+            //if transaction is an expense then the wallet balance decreases
+            val updateBalance = if (type == "expense") {
+                wallet.balance - amount
+            } else {
+                //wallet amount increases if it is an income being recorded
+                wallet.balance + amount
+            }
+
+            //prevent wallet from needing the id and name when saving the new updated balance
+            walletRef.child("balance").setValue(updateBalance).addOnFailureListener { error ->
+                Toast.makeText(
+                    requireContext(),
+                    "Wallet Balance update failed: " + error.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+            .addOnFailureListener { error ->
+                Toast.makeText(
+                    requireContext(),
+                    "Failed to find wallet: " + error.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+    }
+
 }
 
 /*
@@ -444,7 +490,5 @@ Bak, K. 2023. Validating user input in kotlin: a guide to adding validation to a
 Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8)
 * Ghanem, A. 2024. What is Context? In Android, represents the current state of the application. It provides access to various resources (e. [online] Linkedin.com. Available at: <https://www.linkedin.com/pulse/context-android-abdelrhman-ghanem-zbpcf/ [Accessed 26 Apr. 2026].
-
-‌>
  GeekforGeeks.2020.SoundPool in Android with Examples.(version 8) [source code]. Available at: <https://www.geeksforgeeks.org/android/soundpool-in-android-with-examples/ >[Accessed 11 May 2026]
  */
