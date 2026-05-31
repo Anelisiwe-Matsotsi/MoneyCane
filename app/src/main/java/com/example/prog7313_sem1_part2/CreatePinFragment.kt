@@ -18,7 +18,7 @@ class CreatePinFragment : Fragment(R.layout.create_pin){
     //firebase instance to save fingerprint toggle state
     private val database = FirebaseDatabase.getInstance().getReference("users") .child(uid).child("passcode")
 
-    //initialize 2 pin to be entered- pins must match
+    //initialize 2 pin variables to be entered- pins must match
     private var pin = ""
     private var confirmPin = ""
 
@@ -119,9 +119,18 @@ class CreatePinFragment : Fragment(R.layout.create_pin){
         database.setValue(hashedPin)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "PIN created successfully!", Toast.LENGTH_SHORT).show()
-                // Go to MoneyCane Home screen
+
+                val resetPin = arguments?.getBoolean("resetPin", false) ?: false
+
                 //(Android Developers, 2026b)
-                findNavController().popBackStack()
+                //if the user resets their pin then they will be redirected to the home screen
+                if(resetPin){
+                    findNavController().navigate(R.id.action_CreatePinFragment_to_home)
+                }
+                else {
+                    // Go to previous page-app security screen
+                    findNavController().popBackStack()
+                }
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to save PIN", Toast.LENGTH_SHORT).show()
