@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 
 class home : Fragment(R.layout.fragment_home) {
@@ -21,19 +25,43 @@ class home : Fragment(R.layout.fragment_home) {
         val profile = view.findViewById<ImageButton>(R.id.ib_arrow_forward)
         val wallet = view.findViewById<Button>(R.id.btn_add_wallet)
         val budget = view.findViewById<Button>(R.id.btn_add_budget)
+        val tvWelcomeName = view.findViewById<TextView>(R.id.tv_welcome_name)
         //val goal = view.findViewById<Button>(R.id.btn_set_goal)
         //dont know what this is for yet
         val transaction = view.findViewById<Button>(R.id.btn_add_transaction)
       //  val transactionView= view.findViewById<Button>(R.id.btn_view_all)
-val bottomSheet = view.findViewById<LinearLayout>(R.id.bottom_sheet)
-bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+        val bottomSheet = view.findViewById<LinearLayout>(R.id.bottom_sheet)
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
 
-//initial state
+        //initial state
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         //how much it shows
         bottomSheetBehavior.peekHeight=110
 
         bottomSheetBehavior.isFitToContents=true
+
+        //to get the users name to appear
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid != null) {
+            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+            userRef.get().addOnSuccessListener { snapshot ->
+                // Using your User data class
+                val user = snapshot.getValue(User::class.java)
+                if (user != null && user.name.isNotEmpty()) {
+                    tvWelcomeName.text = user.name
+                } else {
+                    tvWelcomeName.text = "User"
+                }
+            }.addOnFailureListener {
+                tvWelcomeName.text = "User"
+                // Optional: show error toast
+                Toast.makeText(context, "Failed to load name", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            tvWelcomeName.text = "User"
+        }
+
+
 
 
         //load transaction fragment into sheet

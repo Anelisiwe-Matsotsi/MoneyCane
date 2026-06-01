@@ -13,13 +13,26 @@
 
         <action
             android:id="@+id/action_AuthenticationFragment_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
+
         <action
             android:id="@+id/action_AuthenticationFragment_to_logFragment"
-            app:destination="@id/logFragment" />
+            app:destination="@id/logFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_AuthenticationFragment_to_CreatePinFragment"
-            app:destination="@id/CreatePinFragment" />
+            app:destination="@id/CreatePinFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -30,7 +43,11 @@
 
         <action
             android:id="@+id/action_AppSecurityFragment_to_CreatePinFragment"
-            app:destination="@id/CreatePinFragment" />
+            app:destination="@id/CreatePinFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -47,13 +64,25 @@
 
         <action
             android:id="@+id/action_logFragment_to_CreatePinFragment"
-            app:destination="@id/CreatePinFragment" />
+            app:destination="@id/CreatePinFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_logFragment_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_logFragment_to_registerFragmentLight"
-            app:destination="@id/registerFragmentLight" />
+            app:destination="@id/registerFragmentLight"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/budgetLight"
@@ -63,7 +92,11 @@
         <action
             android:id="@+id/action_budgetLight_to_analysisLight"
             app:destination="@id/analysisLight"
-            app:launchSingleTop="true" />
+            app:launchSingleTop="true"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/analysisLight"
@@ -84,19 +117,39 @@
 
         <action
             android:id="@+id/action_home2_to_budgetLight2"
-            app:destination="@id/budgetLight" />
+            app:destination="@id/budgetLight"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_home_to_profileLight"
-            app:destination="@id/profileLight" />
+            app:destination="@id/profileLight"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_home_to_transaction_Fragment"
-            app:destination="@id/transaction_Fragment" />
+            app:destination="@id/transaction_Fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_home_to_home2Fragment"
-            app:destination="@id/home2Fragment" />
+            app:destination="@id/home2Fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_home_to_lightWalletFragment"
-            app:destination="@id/lightWalletFragment" />
+            app:destination="@id/lightWalletFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/more_Light_Fragment"
@@ -105,25 +158,53 @@
         tools:layout="@layout/fragment_more_light" >
         <action
             android:id="@+id/action_more_Light_Fragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
+            app:destination="@id/categoryFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_more_Light_Fragment_to_profileLight"
-            app:destination="@id/profileLight" />
+            app:destination="@id/profileLight"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_more_Light_Fragment_to_budgetLight"
-            app:destination="@id/budgetLight" />
+            app:destination="@id/budgetLight"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_more_Light_Fragment_to_logFragment"
-            app:destination="@id/logFragment" />
+            app:destination="@id/logFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_more_Light_Fragment_to_lightWalletFragment"
-            app:destination="@id/lightWalletFragment" />
+            app:destination="@id/lightWalletFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_more_Light_Fragment_to_home2Fragment"
-            app:destination="@id/home2Fragment" />
+            app:destination="@id/home2Fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_more_Light_Fragment_to_AppSecurityFragment"
-            app:destination="@id/AppSecurityFragment" />
+            app:destination="@id/AppSecurityFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -138,10 +219,18 @@
         tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_categoryFragment_to_editCategoryFragment"
-            app:destination="@id/editCategoryFragment" />
+            app:destination="@id/editCategoryFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_categoryFragment_to_createCategoryFragment"
-            app:destination="@id/createCategoryFragment" />
+            app:destination="@id/createCategoryFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/profileLight"
@@ -151,7 +240,11 @@
         >
         <action
             android:id="@+id/action_profileLight_to_logFragment"
-            app:destination="@id/logFragment" />
+            app:destination="@id/logFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -159,13 +252,26 @@
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_logFragment"
-            app:destination="@id/logFragment" />
+            app:destination="@id/logFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_splashFragment_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            />
         <action
             android:id="@+id/action_splashFragment_to_AuthenticationFragment"
-            app:destination="@id/AuthenticationFragment" />
+            app:destination="@id/AuthenticationFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/registerFragmentLight"
@@ -189,10 +295,18 @@
         tools:layout="@layout/fragment_wallet_light">
         <action
             android:id="@+id/action_lightWalletFragment_to_createWalletFragment"
-            app:destination="@id/createWalletFragment" />
+            app:destination="@id/createWalletFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
         <action
             android:id="@+id/action_lightWalletFragment_to_lightEditWalletFragment"
-            app:destination="@id/lightEditWalletFragment" />
+            app:destination="@id/lightEditWalletFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/createWalletFragment"
