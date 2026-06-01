@@ -117,8 +117,8 @@ class Transaction_Fragment : Fragment() {
             uploadSelectedImage()
         }
         back.setOnClickListener {
-            findNavController().navigateUp()
-        }
+           parentFragmentManager.popBackStack()
+    }
 
 
 

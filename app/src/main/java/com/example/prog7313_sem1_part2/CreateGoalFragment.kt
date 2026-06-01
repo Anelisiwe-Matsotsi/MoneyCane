@@ -37,7 +37,7 @@ class CreateGoalFragment : Fragment() {
         //(Android Developers, 2026)
         // Navigate back to the goals list
         btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            parentFragmentManager.popBackStack()
         }
 
         btnSave.setOnClickListener {
