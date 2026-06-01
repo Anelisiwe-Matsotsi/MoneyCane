@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="#A3C2A3
+">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- TOP ROW: name | edit button | amount -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvGoalName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Goal Name"
+                    android:textColor="#050505"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvDates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="2026-01-04 t0 2026-01-24"
+                    android:textColor="#2F2F2F"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/btnEditCategory"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--                android:contentDescription="Edit Category"-->
+<!--                android:src="@android:drawable/ic_menu_edit"-->
+<!--                app:tint="#FFC107" />-->
+        </LinearLayout>
+
+        <!-- PROGRESS BAR -->
+        <TextView
+            android:id="@+id/tvGoalProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="R0 / R1000"
+            android:textColor="#4C4E4E"
+            android:textSize="14sp" />
+        <!-- Candy Reward-->
+        <ProgressBar
+            android:id="@+id/progressGoal"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="87dp"
+            android:layout_height="78dp"
+            android:layout_marginTop="10dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/custom_progress_bar"
+            android:scaleX="1.5"
+            android:scaleY="1.5" />
+
+        <TextView
+            android:id="@+id/tvCandyReward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="5 Canes Reward"
+            android:textColor="#4C4E4E"
+            android:textSize="14sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

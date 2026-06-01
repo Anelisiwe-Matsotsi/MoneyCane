@@ -54,7 +54,12 @@
         android:id="@+id/CreatePinFragment"
         android:name="com.example.prog7313_sem1_part2.CreatePinFragment"
         android:label="CreatePinFragment"
-        tools:layout="@layout/create_pin"/>
+        tools:layout="@layout/create_pin">
+
+        <action
+            android:id="@+id/action_CreatePinFragment_to_home"
+            app:destination="@id/home"/>
+    </fragment>
 
     <fragment
         android:id="@+id/logFragment"

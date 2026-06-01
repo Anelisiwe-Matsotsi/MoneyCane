@@ -99,6 +99,14 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
 
 
 
+                        //(Firebase, 2026)
+                        //save email address to database
+                        val uid = rootNode.currentUser?.uid
+                        if (uid != null) {
+                            val newUser = User(uid = uid, email = Email)
+                            FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(newUser)
+                        }
+
                         findNavController().navigateUp()
 
 
@@ -121,3 +129,9 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
         }
     }
 }
+
+/* References
+
+Firebase. 2026. Read and Write Data on Android. (version 8) [Source Code]. Available at: <https://firebase.google.com/docs/database/android/read-and-write?authuser=1> [Accessed 1 June 2026]
+
+ */

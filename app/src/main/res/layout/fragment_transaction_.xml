@@ -232,6 +232,23 @@
                     android:textStyle="bold" />
             </RadioGroup>
 
+            <!-- Select Wallet Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_select_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="10dp"
+                android:text="Select Wallet"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:backgroundTint="#CED5C5"
+                app:cornerRadius="12dp"
+                app:icon="@android:drawable/ic_menu_save"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/white" />
+
+
             <!-- Select Category Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_select_category"

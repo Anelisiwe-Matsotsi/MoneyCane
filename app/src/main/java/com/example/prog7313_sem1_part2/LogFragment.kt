@@ -44,13 +44,24 @@ class LogFragment : Fragment(R.layout.fragment_log) {
                         // login successful
                         Toast.makeText(context, "Login successful!!", Toast.LENGTH_LONG).show()
 
+                        //(Firebase, 2026)
+                        //save email address to database
+                        val uid = rootNode.currentUser?.uid
+                        if (uid != null) {
+                            val newUser = User(uid = uid, email = email)
+                            FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(newUser)
+                        }
+
                         //(StackOverflow, 2021)
                         //if the user came from the forgot passcode then they will be directed to the create pin view to override the existing one and make a new one
                         val resetPin = arguments?.getBoolean("resetPin", false)?: false//newPin arguments is passed from the authentication fragment
 
                         if (resetPin)
                         {
-                            findNavController().navigate(R.id.action_logFragment_to_CreatePinFragment)
+                            // (StackOverflow, 2021)
+                            val args = Bundle()
+                            args.putBoolean("resetPin", true)
+                            findNavController().navigate(R.id.action_logFragment_to_CreatePinFragment, args)
                         }
                         else
                         {
@@ -79,6 +90,7 @@ class LogFragment : Fragment(R.layout.fragment_log) {
 
 /* References
 
+Firebase. 2026. Read and Write Data on Android. (version 8) [Source Code]. Available at: <https://firebase.google.com/docs/database/android/read-and-write?authuser=1> [Accessed 1 June 2026]
 StackOverflow. 2021. How do i pass an argument to the view model?. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/68191852/how-do-i-pass-an-argument-to-the-view-model> [Accessed 27 May 2026]
 
 */

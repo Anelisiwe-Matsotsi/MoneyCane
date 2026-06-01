@@ -89,64 +89,24 @@
                 android:inputType="numberDecimal"
                 android:layout_marginBottom="28dp" />
 
-<!--            &lt;!&ndash; CATEGORY TYPE &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Category Type"-->
-<!--                android:textColor="#121212"-->
-<!--                android:textSize="16sp"-->
-<!--                android:layout_marginBottom="12dp" />-->
-
-<!--            <RadioGroup-->
-<!--                android:id="@+id/radioGroupType"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_marginBottom="40dp">-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioExpense"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="56dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Expense"-->
-<!--                    android:textColor="#121212"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:checked="true"-->
-<!--                    android:gravity="center"-->
-<!--                    android:button="@null"-->
-<!--                    android:background="@drawable/select_category_type"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:buttonTint="#FFC107"/>-->
-
-<!--                <RadioButton-->
-<!--                    android:id="@+id/radioIncome"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="56dp"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:text="Income"-->
-<!--                    android:textColor="#121212"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    android:gravity="center"-->
-<!--                    android:button="@null"-->
-<!--                    android:background="@drawable/select_category_type"-->
-<!--                    android:layout_marginStart="8dp"-->
-<!--                    android:buttonTint="#FFC107"/>-->
-<!--            </RadioGroup>-->
+            <TextView
+                android:id="@+id/tvShareWallet"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:text="Share Wallet with Other People                   >"
+                android:textSize="17sp"
+                android:layout_marginBottom="30dp"/>
 
             <!-- ADD WALLET BUTTON -->
             <Button
                 android:id="@+id/btnAddWallet"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
+                android:backgroundTint="#A3C2A3"
                 android:text="ADD WALLET"
                 android:textColor="#001430"
-                android:textStyle="bold"
                 android:textSize="16sp"
-                android:backgroundTint="#A3C2A3"
+                android:textStyle="bold"
                 app:cornerRadius="15dp" />
 
         </LinearLayout>
