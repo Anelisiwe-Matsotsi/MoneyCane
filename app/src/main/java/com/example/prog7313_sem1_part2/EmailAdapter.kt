@@ -61,6 +61,10 @@ class EmailAdapter (
 
     //(GeeksforGeeks, 2025)
     override fun getItemCount(): Int = users.size
+
+    fun getSelectedEmails(): List<String> {
+        return selectedEmails.toList()
+    }
 }
 
 /*

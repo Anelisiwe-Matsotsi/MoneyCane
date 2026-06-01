@@ -43,10 +43,13 @@ class ShareWalletFragment : Fragment() {
         rvEmails.adapter = adapter
 
         btnBack.setOnClickListener {
+            //get the list of people the wallet is being shared with to pass the variable to the create wallet fragment
+            val selectedPeople = adapter.getSelectedEmails()
+
             findNavController().navigateUp()
         }
 
-        listenToEmails() //calls all the registered users to be loaded into arry for selection
+        listenToEmails() //calls all the registered users to be loaded into array for selection
 
         //(GeeksforGeeks, 2025)
         val searchEmails = view.findViewById<SearchView>(R.id.searchEmails) //initialize variables of list view with ID's
