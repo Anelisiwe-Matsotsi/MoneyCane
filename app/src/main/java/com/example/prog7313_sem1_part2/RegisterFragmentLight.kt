@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 
 class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
@@ -48,6 +49,14 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
                     if (task.isSuccessful) {
                         Toast.makeText(context, "Registration successful!", Toast.LENGTH_LONG).show()
 
+                        //(Firebase, 2026)
+                        //save email address to database
+                        val uid = rootNode.currentUser?.uid
+                        if (uid != null) {
+                            val newUser = User(uid = uid, email = Email)
+                            FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(newUser)
+                        }
+
                         findNavController().navigateUp()
                     } else {
                         // Registration failed
@@ -66,3 +75,9 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
         }
     }
 }
+
+/* References
+
+Firebase. 2026. Read and Write Data on Android. (version 8) [Source Code]. Available at: <https://firebase.google.com/docs/database/android/read-and-write?authuser=1> [Accessed 1 June 2026]
+
+ */
