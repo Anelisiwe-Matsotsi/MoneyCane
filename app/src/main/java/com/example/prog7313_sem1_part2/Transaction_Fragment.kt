@@ -31,6 +31,10 @@ import android.media.AudioAttributes
 import  android.media.AudioManager
 import  android.media.SoundPool
 import android.os.Build
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import java.time.temporal.TemporalAmount
 
 class Transaction_Fragment : Fragment() {
 
@@ -115,8 +119,8 @@ class Transaction_Fragment : Fragment() {
             uploadSelectedImage()
         }
         back.setOnClickListener {
-            findNavController().navigateUp()
-        }
+           parentFragmentManager.popBackStack()
+    }
 
 
         //soundpool
