@@ -2,9 +2,7 @@ package com.example.prog7313_sem1_part2
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -56,15 +54,15 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
                 // create new user or register new user
                 rootNode.createUserWithEmailAndPassword(Email, Password).addOnCompleteListener { task ->
 
-                    if (task.isSuccessful) {
+                    if (task.isSuccessful)
+                    {
                         val uid = rootNode.currentUser?.uid
 
 
                         if (uid != null) {
 
-                            val user = User(
+                            val userInfo = userInfo(
                                 username = Username,
-                                email = Email,
                                 name =Name,
                                 surname =Surname
                             )
@@ -72,7 +70,7 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
                             FirebaseDatabase.getInstance()
                                 .getReference("Users")
                                 .child(uid)
-                                .setValue(user)
+                                .setValue(userInfo)
                                 .addOnSuccessListener {
 
                                     Toast.makeText(
@@ -92,6 +90,15 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
                                     ).show()
                                 }
                         }
+                        //(Firebase, 2026)
+                        //save email address to database
+                        if (uid != null) {
+                            val newUser = User(uid = uid, email = Email)
+                            FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(newUser)
+                        }
+
+
+
                         findNavController().navigateUp()
 
 

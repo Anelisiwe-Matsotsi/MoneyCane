@@ -232,7 +232,7 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
                 val uid = FirebaseAuth.getInstance().currentUser?.uid
 
                 if(uid == null){
-                    Toast.makeText(requireContext(),"User not logged in",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),"userInfo not logged in",Toast.LENGTH_SHORT).show()
                     return
                 }
 

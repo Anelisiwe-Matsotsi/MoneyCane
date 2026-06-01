@@ -1,11 +1,8 @@
 package com.example.prog7313_sem1_part2
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
@@ -45,20 +42,20 @@ class home : Fragment(R.layout.fragment_home) {
         if (uid != null) {
             val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
             userRef.get().addOnSuccessListener { snapshot ->
-                // Using your User data class
-                val user = snapshot.getValue(User::class.java)
-                if (user != null && user.name.isNotEmpty()) {
-                    tvWelcomeName.text = user.name
+                // Using your userInfo data class
+                val userInfo = snapshot.getValue(userInfo::class.java)
+                if (userInfo != null && userInfo.name.isNotEmpty()) {
+                    tvWelcomeName.text = userInfo.name
                 } else {
-                    tvWelcomeName.text = "User"
+                    tvWelcomeName.text = "userInfo"
                 }
             }.addOnFailureListener {
-                tvWelcomeName.text = "User"
+                tvWelcomeName.text = "userInfo"
                 // Optional: show error toast
                 Toast.makeText(context, "Failed to load name", Toast.LENGTH_SHORT).show()
             }
         } else {
-            tvWelcomeName.text = "User"
+            tvWelcomeName.text = "userInfo"
         }
 
 

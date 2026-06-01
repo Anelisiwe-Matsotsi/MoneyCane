@@ -1,11 +1,8 @@
 package com.example.prog7313_sem1_part2
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
@@ -27,6 +24,7 @@ class ProfileLight :  Fragment(R.layout.profile_view) {
         val tvEmail = view.findViewById<TextView>(R.id.tvEmail)
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid
+        val email = FirebaseAuth.getInstance().currentUser?.email
 
         if (uid != null) {
 
@@ -35,13 +33,13 @@ class ProfileLight :  Fragment(R.layout.profile_view) {
             // Perform a one-time read using the modern get() method (Firebase. 2026.)
             userRef.get().addOnSuccessListener { snapshot ->
 
-                val user = snapshot.getValue(User::class.java)
-                if (user != null) {
-                    tvUsername.text = user.username
-                    tvFullName.text = "${user.name} ${user.surname}".trim()
-                    tvEmail.text = user.email
+                val userInfo = snapshot.getValue(userInfo::class.java)
+                if (userInfo != null) {
+                    tvUsername.text = userInfo.username
+                    tvFullName.text = "${userInfo.name} ${userInfo.surname}".trim()
+                    tvEmail.text =  email
                 } else {
-                    Toast.makeText(context, "User data not found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "userInfo data not found", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener { e ->
 
