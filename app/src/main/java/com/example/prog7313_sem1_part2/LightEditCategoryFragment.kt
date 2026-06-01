@@ -21,7 +21,8 @@ import com.google.firebase.database.ValueEventListener
 class LightEditCategoryFragment : Fragment() {
 
     //firebase instance
-    private val database = FirebaseDatabase.getInstance().getReference("categories")
+    private val uid = MainActivity.getUserID()
+    private val database = FirebaseDatabase.getInstance().getReference("categories").child(uid)
 
     // Category ID passed from LightCategoryFragment
     private var categoryId: String? = null

@@ -50,7 +50,10 @@ class LogFragment : Fragment(R.layout.fragment_log) {
 
                         if (resetPin)
                         {
-                            findNavController().navigate(R.id.action_logFragment_to_CreatePinFragment)
+                            // (StackOverflow, 2021)
+                            val args = Bundle()
+                            args.putBoolean("resetPin", true)
+                            findNavController().navigate(R.id.action_logFragment_to_CreatePinFragment, args)
                         }
                         else
                         {
