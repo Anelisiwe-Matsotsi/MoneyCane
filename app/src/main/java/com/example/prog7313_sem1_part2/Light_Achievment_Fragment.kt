@@ -35,7 +35,16 @@ class Light_Achievment_Fragment : Fragment() {
     private val goalList = ArrayList<Goal>()
 
 
-    private var rewardData = Reward()
+    //define the worth of the candy rewards
+    //kotlin
+    private val gardenLevels = listOf(
+        Pair(10, R.drawable.candy_plant), //patch 1 is worth 10 canes
+        Pair(30, R.drawable.candy_plant), //patch 2 is worth 30 canes
+        Pair(45, R.drawable.candy_plant), //patch 3 is worth 45 canes
+        Pair(60, R.drawable.candy_plant), //patch 4 is worth 60 canes
+        Pair(65, R.drawable.candy_plant), //patch 5 is worth 65 canes
+        Pair(80, R.drawable.candy_plant) //patch 6 is worth 80 canes
+    )
 
 
     private lateinit var progressBar: ProgressBar
@@ -50,7 +59,7 @@ class Light_Achievment_Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       val view= inflater.inflate(R.layout.fragment_light__achievment_, container, false)
+        val view= inflater.inflate(R.layout.fragment_light__achievment_, container, false)
 
 
 
@@ -87,16 +96,39 @@ class Light_Achievment_Fragment : Fragment() {
         rewardDatabase.child(userId).child("reward")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-
-                  val  reward= snapshot.getValue(Reward::class.java) ?: Reward()
-
-                  animateCanes(totalCanes, reward.totalCanes)
+                    val  reward= snapshot.getValue(Reward::class.java) ?: Reward()
                     totalCanes = reward.totalCanes
-                    updateGardenInfo()
+                    val currentLevel =reward.currentLevel
+
+                    if (currentLevel < gardenLevels.size) {
+                        val (cost, _) = gardenLevels[currentLevel]
+
+                        if (totalCanes >= cost) {
+                            unlock(currentLevel, cost)
+                            return
+                        }
+                    }
+                    animateCanes(totalCanes, reward.totalCanes)
+
+                    updateGardenInfo(currentLevel)
                 }
 
                 override fun onCancelled(error: DatabaseError) {}
             })
+    }
+
+    private fun unlock(levelIndex: Int, cost: Int) {
+    val newTotal = totalCanes -cost
+        val nextLevel =levelIndex + 1
+        val rewardRef = rewardDatabase.child(userId).child("reward")
+
+        //minus canes
+        rewardRef.child("totalCanes").setValue(newTotal).addOnSuccessListener {
+            if (isAdded) {
+                Toast.makeText(context, "New Swwet Unlocked! -$cost Canes", Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
     // load goals
     private fun loadGoals() {
@@ -106,7 +138,9 @@ class Light_Achievment_Fragment : Fragment() {
 
 
                 override fun onDataChange(snapshot: DataSnapshot) {
-                  if (!isAdded) return
+                    if (!isAdded) {
+                        return
+                    }
                     goalList.clear()
                     for (child in snapshot.children) {
                         val goal = child.getValue(Goal::class.java) ?: continue
@@ -129,39 +163,43 @@ class Light_Achievment_Fragment : Fragment() {
     //check completion
     private fun handleCompletion(goal: Goal) {
         if(!isAdded || context == null) return
-       val  newCanes = totalCanes + 5
-       rewardDatabase.child(userId).child("reward").child("totalCanes").setValue(newCanes)
-           .addOnSuccessListener {
-               totalCanes=newCanes
-               goalDatabase.child(userId).child(goal.goalId).child("completed").setValue(true) //card goes away when goal is complete
-               loadGoals()
-               activity?.runOnUiThread {
-                   if (isAdded) {
-                       Toast.makeText(context, "Goal Done! +5canes!", Toast.LENGTH_SHORT).show()
-                   }
-               }
-           }
+        val  newCanes = totalCanes + 5
+        rewardDatabase.child(userId).child("reward").child("totalCanes").setValue(newCanes)
+            .addOnSuccessListener {
+                totalCanes=newCanes
+                goalDatabase.child(userId).child(goal.goalId).child("completed").setValue(true) //card goes away when goal is complete
+                loadGoals()
+                activity?.runOnUiThread {
+                    if (isAdded) {
+                        Toast.makeText(context, "Goal Done! +5canes!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
     }
 
 
 
 
     //Reward Garden
-    private fun updateGardenInfo() {
-        val unlockedCount = totalCanes / 10
-       for (i in 0 until  gardenGrid.childCount) {
-           val  patch = gardenGrid.getChildAt(i) as ImageView
-           if (i < unlockedCount) {
-               patch.setImageResource(R.drawable.candy_plant)
-               patch.alpha = 1.0f
-           } else {
-               patch.setImageResource(R.drawable.locked_patch)
-               patch.alpha = 0.3f
-           }
-       }
+    private fun updateGardenInfo(currentLevel: Int) {
+        //loop through each patch
+        for (i in 0 until gardenGrid.childCount) {
+            val patch = gardenGrid.getChildAt(i) as ImageView
+            if (i < currentLevel) {
+                   //points taken candy unlocked
+                    patch.setImageResource(R.drawable.candy_plant)
+                    patch.alpha = 1.0f
+                } else {
+                    // show the locked state
+                    patch.setImageResource(R.drawable.locked_patch)
+                    patch.alpha = 0.3f
+                }
+            }
+        }
 
 
-    }
+
+
 
     //    /*Medium, 2021*/
     private fun animateCanes( old: Int, new: Int) {
@@ -174,7 +212,7 @@ class Light_Achievment_Fragment : Fragment() {
 
 
 
-/*Bhosale, 2024*/
+    /*Bhosale, 2024*/
     companion object {
         @JvmStatic
         fun newInstance() = Light_Achievment_Fragment()
