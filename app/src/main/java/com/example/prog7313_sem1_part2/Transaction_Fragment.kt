@@ -253,6 +253,30 @@ class Transaction_Fragment : Fragment() {
 
     }
 
+    private fun updateGoalProgress(transactionAmount: Double, transactionType: String) {
+        val uid = MainActivity.getUserID()
+        val goalDatabase = FirebaseDatabase.getInstance().getReference("goals").child(uid)
+
+        //search for goals that match the transaction type
+        goalDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (child in snapshot.children) {
+                    val goal = child.getValue(Goal::class.java)
+
+                    //if goal matches type, the goal progress increases
+                    if (goal != null && goal.goalType == transactionType && !goal.completed){
+                        val newAmount = goal.currentAmount + transactionAmount
+
+                        //update specific goal in firebase
+                        child.ref.child("currentAmount").setValue(newAmount)
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+
     //Firebase, 2026)
     //transaction is saved in firebase DB
     private fun saveTransaction(
@@ -287,7 +311,8 @@ class Transaction_Fragment : Fragment() {
 
         transactionRef.setValue(newTransaction)
             .addOnSuccessListener {
-
+             //Update goal progress
+                updateGoalProgress(amount, type)
                 //call function to update wallet balance when transaction is saved successfully
                 updateWalletBalance(wallet, amount, type)
 
