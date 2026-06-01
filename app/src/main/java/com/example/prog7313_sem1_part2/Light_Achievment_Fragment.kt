@@ -62,7 +62,11 @@ class Light_Achievment_Fragment : Fragment() {
         adapter = GoalAdapter(goalList)
         recyclerView.layoutManager= LinearLayoutManager(requireContext())
         recyclerView.adapter =adapter
-
+        view.findViewById<Button>(R.id.btnHistory).setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, GoalHistoryFragment())
+                .addToBackStack(null).commit()
+        }
         view.findViewById<Button>(R.id.btnCreateGoal).setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, CreateGoalFragment())
