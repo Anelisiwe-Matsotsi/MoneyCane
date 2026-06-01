@@ -156,8 +156,9 @@ class ExpensesFragment : Fragment() {
 
             //database error
             override fun onCancelled(error: DatabaseError) {
-                if(isAdded)
-                Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+                if(isAdded) {
+                    Toast.makeText(requireContext(), error.message, Toast.LENGTH_SHORT).show()
+                }
             }
         })
     }

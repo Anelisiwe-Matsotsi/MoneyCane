@@ -31,6 +31,10 @@ import android.media.AudioAttributes
 import  android.media.AudioManager
 import  android.media.SoundPool
 import android.os.Build
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import java.time.temporal.TemporalAmount
 
 class Transaction_Fragment : Fragment() {
 
@@ -264,7 +268,8 @@ saveSound = soundPool.load(requireContext(), R.raw.universfield_happy_message_pi
 
             transactionRef.setValue(newTransaction)
                 .addOnSuccessListener {
-
+                    //Update goal progress
+                    updateGoalProgress(amount, type)
                     //Play success sound
                     requireView().postDelayed({
                         soundPool.play(saveSound,1f,1f,0,0,1f)
@@ -382,7 +387,28 @@ requireActivity().supportFragmentManager.popBackStack()
     }
 
 
+private fun updateGoalProgress(transactionAmount: Double, transactionType: String) {
+    val uid = MainActivity.getUserID()
+    val goalDatabase = FirebaseDatabase.getInstance().getReference("goals").child(uid)
 
+    //search for goals that match the transaction type
+    goalDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            for (child in snapshot.children) {
+                val goal = child.getValue(Goal::class.java)
+
+                //if goal matches type, the goal progress increases
+                if (goal != null && goal.goalType == transactionType && !goal.completed){
+                val newAmount = goal.currentAmount + transactionAmount
+
+                //update specific goal in firebase
+                child.ref.child("currentAmount").setValue(newAmount)
+            }
+        }
+    }
+        override fun onCancelled(error: DatabaseError) {}
+    })
+}
 
 
     private fun uploadSelectedImage() {

@@ -1,25 +1,24 @@
 package com.example.prog7313_sem1_part2
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import kotlin.apply
-import kotlin.let
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import android.animation.ValueAnimator
-import android.util.Log
+import android.widget.GridLayout
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 
 class Light_Achievment_Fragment : Fragment() {
@@ -27,21 +26,23 @@ class Light_Achievment_Fragment : Fragment() {
     /*(Firebase, 2026)*/
     private val goalDatabase = FirebaseDatabase.getInstance().getReference("goals")
     private val transactionDatabase = FirebaseDatabase.getInstance().getReference("transactions")
-
+    private val rewardDatabase = FirebaseDatabase.getInstance().getReference("rewards")
     private val auth = FirebaseAuth.getInstance()
     private val userId = auth.currentUser?.uid ?: "guest"
 
-    private var currentSpending: Double = 0.0
-    private var totalCanesEarned: Int = 0
-    private var rewardGiven: Boolean = false
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: GoalAdapter
+    private val goalList = ArrayList<Goal>()
 
-    private var minGoal: Double = 0.0
-    private var maxGoal: Double = 0.0
+
+    private var rewardData = Reward()
 
 
     private lateinit var progressBar: ProgressBar
     private lateinit var tvPercent: TextView
     private lateinit var tvCaneCount: TextView
+    private lateinit var gardenGrid: GridLayout
+    private var totalCanes =0
     private lateinit var tvStatus: TextView
     private lateinit var caneIcon: ImageView
 
@@ -49,179 +50,127 @@ class Light_Achievment_Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_light__achievment_, container, false)
+       val view= inflater.inflate(R.layout.fragment_light__achievment_, container, false)
 
-        val etMinGoal = view.findViewById<EditText>(R.id.etMinGoal)
-        val etMaxGoal = view.findViewById<EditText>(R.id.etMaxGoal)
-        val btnSave = view.findViewById<Button>(R.id.btnSaveGoals)
 
-        progressBar = view.findViewById(R.id.progressBar)
-        tvPercent = view.findViewById(R.id.textView20)
+
         tvCaneCount = view.findViewById(R.id.textView30)
-        tvStatus = view.findViewById(R.id.tvStatus)
+        gardenGrid =view.findViewById(R.id.gardenGrid)
         caneIcon = view.findViewById(R.id.imageView3)
+        //Recycler View
+        recyclerView = view.findViewById(R.id.rvGoals)
+        adapter = GoalAdapter(goalList)
+        recyclerView.layoutManager= LinearLayoutManager(requireContext())
+        recyclerView.adapter =adapter
 
-        // Load goals
-        /*Stackoverflow, 2018*/
-        goalDatabase.child(userId).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val goal = snapshot.getValue(Goal::class.java)
-                if (goal != null) {
-                    minGoal = goal.minMonthlyGoal
-                    maxGoal = goal.maxMonthlyGoal
-                    totalCanesEarned = goal.totalCanesEarned
-
-                    etMinGoal.setText(minGoal.toString())
-                    etMaxGoal.setText(maxGoal.toString())
-                    tvCaneCount.text = totalCanesEarned.toString()
-
-                    Log.d("FIREBASE_GOAL", "Loaded: Min=$minGoal, Max=$maxGoal, Canes=$totalCanesEarned")
-                    refreshUI()
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Failed to load goals", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        // Load transactions
-        /*Firebase, 2026*/
-        transactionDatabase.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var total = 0.0
-
-
-                for (child in snapshot.children) {
-                    val transaction = child.getValue(Transaction::class.java)
-
-
-                    if (transaction != null && transaction.type.lowercase() == "expense") {
-                        total += transaction.amount
-                    }
-                }
-
-                currentSpending = total
-                Log.d("FIREBASE_TRANS", "Total Global Expenses: $currentSpending")
-                refreshUI()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "Error fetching transactions", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        btnSave.setOnClickListener {
-            val minInput = etMinGoal.text.toString().toDoubleOrNull() ?: 0.0
-            val maxInput = etMaxGoal.text.toString().toDoubleOrNull() ?: 0.0
-
-            if (minInput > 0 && maxInput > minInput) {
-                minGoal = minInput
-                maxGoal = maxInput
-                rewardGiven = false // Allow new reward for new goals
-
-                val goalObject = Goal(minGoal, maxGoal, totalCanesEarned)
-                goalDatabase.child(userId).setValue(goalObject).addOnSuccessListener {
-                    Toast.makeText(context, "Goals Saved", Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                Toast.makeText(context, "Please enter valid goals (Min < Max)", Toast.LENGTH_SHORT).show()
-            }
+        view.findViewById<Button>(R.id.btnCreateGoal).setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, CreateGoalFragment())
+                .addToBackStack(null).commit()
         }
+
+
+
+        loadReward()
+        loadGoals()
+
         return view
     }
 
-    private fun refreshUI() {
-        if (::progressBar.isInitialized) {
-            updateProgress(progressBar, tvPercent, tvStatus, tvCaneCount, caneIcon)
-        }
-    }
+    //Load reward
+    private fun loadReward() {
 
-    /*Stackoverflow, 2019*/
-    private fun updateProgress(
-        progressBar: ProgressBar,
-        tvPercent: TextView,
-        tvStatus: TextView,
-        tvCaneCount: TextView,
-        caneIcon: ImageView
-    ) {
-        if (maxGoal <= 0) {
-            tvStatus.text = "Set a Max Goal to see progress"
-            progressBar.progress = 0
-            tvPercent.text = "0%"
-            return
-        }
+        rewardDatabase.child(userId).child("reward")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
 
+                  val  reward= snapshot.getValue(Reward::class.java) ?: Reward()
 
-        val percentage = ((currentSpending * 100.0) / maxGoal).toInt()
-        progressBar.progress = percentage.coerceAtMost(100)
-
-        tvPercent.text = "${percentage.coerceAtMost(100)}%" //this code is so that the progress bar does not go past 100%
-
-
-        /*Stackoverflow, 2021*/
-        when {
-            percentage > 100 -> {
-                tvPercent.setTextColor(Color.RED)
-                tvStatus.text = "Budget Exceeded"
-            }
-            percentage == 100 -> {
-                tvPercent.setTextColor(Color.YELLOW)
-                tvStatus.text = "At Limit"
-            }
-            currentSpending >= minGoal && currentSpending <= maxGoal -> {
-                tvPercent.setTextColor(Color.GREEN)
-                tvStatus.text = "Goal Achieved!"
-
-                // Trigger reward only if within goal range
-                if (!rewardGiven) {
-                    triggerReward(tvCaneCount, caneIcon)
+                  animateCanes(totalCanes, reward.totalCanes)
+                    totalCanes = reward.totalCanes
+                    updateGardenInfo()
                 }
-            }
-            else -> {
-                tvPercent.setTextColor(Color.GREEN)
-                val remaining = maxGoal - currentSpending
-                tvStatus.text = "Spend R%.2f/day to stay safe".format(remaining / 30)
-            }
-        }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+    }
+    // load goals
+    private fun loadGoals() {
+
+        goalDatabase.child(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                  if (!isAdded) return
+                    goalList.clear()
+                    for (child in snapshot.children) {
+                        val goal = child.getValue(Goal::class.java) ?: continue
+
+                        if (goal.currentAmount >= goal.targetAmount && !goal.completed) {
+                            handleCompletion(goal)
+                        } else if(!goal.completed) {
+                            goalList.add(goal)
+                        }
+                    }
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
     }
 
-    private fun triggerReward(tvCaneCount: TextView, caneIcon: ImageView) {
-        rewardGiven = true
-        val oldCount = totalCanesEarned
-        totalCanesEarned++
 
-        // Update Firebase
-        val goalObject = Goal(minGoal, maxGoal, totalCanesEarned)
-        goalDatabase.child(userId).setValue(goalObject)
 
-        // Animations
-        animateCaneCount(tvCaneCount, oldCount, totalCanesEarned)
-        popAnimation(tvCaneCount)
-        bounce(caneIcon)
-        Toast.makeText(context, "Green Cane Earned!", Toast.LENGTH_SHORT).show()
+    //check completion
+    private fun handleCompletion(goal: Goal) {
+        if(!isAdded || context == null) return
+       val  newCanes = totalCanes + 5
+       rewardDatabase.child(userId).child("reward").child("totalCanes").setValue(newCanes)
+           .addOnSuccessListener {
+               totalCanes=newCanes
+               goalDatabase.child(userId).child(goal.goalId).child("completed").setValue(true) //card goes away when goal is complete
+               loadGoals()
+               activity?.runOnUiThread {
+                   if (isAdded) {
+                       Toast.makeText(context, "Goal Done! +5canes!", Toast.LENGTH_SHORT).show()
+                   }
+               }
+           }
     }
 
-    /*Medium, 2021*/
-    private fun animateCaneCount(textView: TextView, start: Int, end: Int) {
-        ValueAnimator.ofInt(start, end).apply {
-            duration = 600
-            addUpdateListener { textView.text = it.animatedValue.toString() }
+
+
+
+    //Reward Garden
+    private fun updateGardenInfo() {
+        val unlockedCount = totalCanes / 10
+       for (i in 0 until  gardenGrid.childCount) {
+           val  patch = gardenGrid.getChildAt(i) as ImageView
+           if (i < unlockedCount) {
+               patch.setImageResource(R.drawable.candy_plant)
+               patch.alpha = 1.0f
+           } else {
+               patch.setImageResource(R.drawable.locked_patch)
+               patch.alpha = 0.3f
+           }
+       }
+
+
+    }
+
+    //    /*Medium, 2021*/
+    private fun animateCanes( old: Int, new: Int) {
+        ValueAnimator.ofInt(old, new).apply {
+            duration = 800
+            addUpdateListener { tvCaneCount.text = it.animatedValue.toString() }
             start()
         }
     }
 
-    private fun popAnimation(view: View) {
-        view.animate().scaleX(1.2f).scaleY(1.2f).setDuration(150).withEndAction {
-            view.animate().scaleX(1f).scaleY(1f).setDuration(150).start()
-        }.start()
-    }
 
-    private fun bounce(view: View) {
-        view.animate().translationY(-30f).setDuration(200).withEndAction {
-            view.animate().translationY(0f).setDuration(200).start()
-        }.start()
-    }
-    /*Bhosale, 2024*/
+
+/*Bhosale, 2024*/
     companion object {
         @JvmStatic
         fun newInstance() = Light_Achievment_Fragment()
