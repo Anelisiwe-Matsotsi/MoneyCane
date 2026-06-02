@@ -249,6 +249,18 @@
                 app:iconTint="@color/white" />
 
 
+            <!--Select Goal to Add Transactioin To -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add to Goal? (Optional)"
+                android:layout_marginTop="10dp"/>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgGoals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"/>
+
             <!-- Select Category Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_select_category"

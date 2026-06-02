@@ -10,7 +10,9 @@ val date: String="",
 val content:String="",
 val imageUrl: String="",
 val categoryId: String="",
-val walletId: String=""
+val walletId: String="",
+val selectedGoalId: String? =null
+
 )
 /*
 References
