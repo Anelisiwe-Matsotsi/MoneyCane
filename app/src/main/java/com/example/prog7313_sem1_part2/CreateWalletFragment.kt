@@ -27,7 +27,9 @@ class CreateWalletFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        parentFragmentManager.setFragmentResultListener("sharedWalletInvite", this) {_, bundle ->
+        //(Android Developers, 2026b)
+        //Passing email between parent and child fragment
+        parentFragmentManager.setFragmentResultListener("sharedWalletInvite", this) {sharedWalletInvite, bundle ->
             //(StackOverflow,2023b)
             //getStringArrayList- store selected emails to pass it to next activity as a group
             val emails = bundle.getStringArrayList("selectedEmails")
@@ -137,11 +139,12 @@ class CreateWalletFragment : Fragment() {
 References
 
 Android Developers. 2026. Fragment manager | App architecture. (version 8) [source code]. Available at: < https://developer.android.com/guide/fragments/fragmentmanager > [Accessed 26 April 2026]
+Android Developers. 2026b. Communicate with fragments. (version 8) [Source Code]. Available at: <https://developer.android.com/guide/fragments/communicate#pass-parent-child> [Accessed 2 June 2026]
 Android Knowledge. 2023. CRUD using Firebase Realtime Database in Android Studio using Kotlin | Create, Read, Update, Delete. (version 8) [source code] Available at: < https://youtu.be/oGyQMBKPuNY?si=Nj0DRStlfvfFvane > [Accessed 26 April 2026]
 Bak, K. 2023. Validating user input in kotlin: a guide to adding validation to a new transaction. (version 8) [source code]. Available at: < https://53jk1.medium.com/validating-user-input-in-kotlin-a-guide-to-adding-validation-to-a-new-transaction-2e486f176674 > [Accessed 26 April 2026]
 Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
 Kotlin Programming Language. 2026. EmptyList | Core API- Kotlin Programming Language. (version 8) [Source Code]. Available at: <https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/empty-list.html> [Accessed 1 June 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8) [source code]. Available at: < https://stackoverflow.com/questions/77541256/set-variable-depending-on-radiogroup-button-selected-in-kotlin > [Accessed 26 April 2026]
-StackOverflow. 2023b. getStringArrayList(key) in adnroid generating null result. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/11402050/getstringarraylistkey-in-android-generating-null-result> [Accessed 1 June 2026]
+StackOverflow. 2023b. getStringArrayList(key) in android generating null result. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/11402050/getstringarraylistkey-in-android-generating-null-result> [Accessed 1 June 2026]
 StackOverflow. 2018. Checking the array size and list size inside a when statement in Kotlin. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/48753475/checking-the-array-size-and-list-size-inside-a-when-statement-in-kotlin> [Accessed 1 June 2026]
  */
