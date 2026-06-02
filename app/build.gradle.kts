@@ -84,5 +84,7 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
     implementation(libs.androidx.navigation.fragment.ktx.v250)
     implementation(libs.androidx.navigation.ui.ktx.v250)
+    /*Firebase Cloud Messaging dependancy*/
+    implementation ("com.google.firebase:firebase-messaging-ktx")
 
 }
