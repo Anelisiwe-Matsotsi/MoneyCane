@@ -125,121 +125,177 @@
         app:strokeColor="#008000"
         app:strokeWidth="1dp" />
 
-<androidx.core.widget.NestedScrollView
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:layout_marginTop="12dp"
-    android:fillViewport="true"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/btnCreateGoal">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:background="?attr/colorSurface"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateGoal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <!--Active Goals -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Active Goals"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+            <!--Active Goals -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Active Goals"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-    <!--Goals Recylcler View -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGoals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:nestedScrollingEnabled="false"
-        tools:itemCount="2"
-        tools:listitem="@layout/card_items_goal" />
+            <!--Goals Recylcler View -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGoals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="2"
+                tools:listitem="@layout/card_items_goal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Candy Garden"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="Candy Garden"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text= "Every 10 Canes unlocks a new candy plant patch!"
-        android:textColor="@color/black"
-        android:textSize="13sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:text="Every 10 Canes unlocks a new candy plant patch!"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-    <!-- Garden Patch Grid System -->
-    <!--on below line we are creating a grid view-->
-    <GridLayout
-        android:id="@+id/gardenGrid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:alignmentMode="alignMargins"
-        android:columnCount="3"
-        android:columnOrderPreserved="false"
-        android:rowCount="2"
-        android:useDefaultMargins="true">
-        
-        <!--Patch 1-->
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:contentDescription="Garden patch one"
-            android:src="@drawable/locked_patch" />
+            <!-- Garden Patch Grid System -->
+            <!--on below line we are creating a grid view-->
+            <GridLayout
+                android:id="@+id/gardenGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alignmentMode="alignMargins"
+                android:background="@drawable/gb_grass"
+                android:columnCount="3"
+                android:columnOrderPreserved="false"
+                android:rowCount="2"
+                android:useDefaultMargins="true">
 
-        <!--Patch 2-->
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:contentDescription="Garden patch two"
-            android:src="@drawable/locked_patch" />
+                <!--Patch 1-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch one"
+                    android:src="@drawable/lock"
+                    />
 
-        <!--Patch 3-->
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:contentDescription="Garden patch three"
-            android:src="@drawable/locked_patch" />
+                <!--Patch 2-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch two"
+                    android:src="@drawable/lock"
+                    />
 
-        <!--Patch 4-->
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:contentDescription="Garden patch four"
-            android:src="@drawable/locked_patch" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch three"
+                    android:src="@drawable/lock"
+                     />
 
-        <!--Patch 5-->
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:contentDescription="Garden patch five"
-            android:src="@drawable/locked_patch" />
+                <!--Patch 3-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch two"
+                    android:src="@drawable/lock"
+                    />
 
-        <!--Patch 6-->
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_columnWeight="1"
-            android:contentDescription="Garden patch six"
-            android:src="@drawable/locked_patch" />
+                <!--Patch 4-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch five"
+                    android:src="@drawable/lock"
+                     />
 
-    </GridLayout>
+                <!--Patch 5-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch six"
+                    android:src="@drawable/lock"
+                    />
 
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+                <!--Patch 6-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch seven"
+                    android:src="@drawable/lock"
+                     />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch eight"
+                    android:src="@drawable/lock"
+                     />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch nine"
+                    android:src="@drawable/lock"
+                     />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch ten"
+                    android:src="@drawable/lock"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch eleven"
+                    android:src="@drawable/lock"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_columnWeight="1"
+                    android:contentDescription="Garden patch twelve"
+                    android:src="@drawable/lock"
+                     />
+
+            </GridLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

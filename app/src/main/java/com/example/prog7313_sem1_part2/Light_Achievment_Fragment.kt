@@ -43,7 +43,14 @@ class Light_Achievment_Fragment : Fragment() {
         Pair(45, R.drawable.candy_plant), //patch 3 is worth 45 canes
         Pair(60, R.drawable.candy_plant), //patch 4 is worth 60 canes
         Pair(65, R.drawable.candy_plant), //patch 5 is worth 65 canes
-        Pair(80, R.drawable.candy_plant) //patch 6 is worth 80 canes
+        Pair(80, R.drawable.candy_plant), //patch 6 is worth 80
+        Pair(80, R.drawable.candy_plant), //patch 7 is worth 80 canes
+        Pair(80, R.drawable.candy_plant), //patch 8 is worth 80 canes
+        Pair(80, R.drawable.candy_plant), //patch 9 is worth 80 canes
+        Pair(80, R.drawable.candy_plant), //patch 10 is worth 80 canes
+        Pair(80, R.drawable.candy_plant), //patch 11 is worth 80 canes
+        Pair(80, R.drawable.candy_plant), //patch 12 is worth 80 canes
+
     )
 
 
@@ -172,7 +179,7 @@ class Light_Achievment_Fragment : Fragment() {
                     patch.alpha = 1.0f
                 } else {
                     // show the locked state
-                    patch.setImageResource(R.drawable.locked_patch)
+                    patch.setImageResource(R.drawable.lock)
                     patch.alpha = 0.3f
                 }
             }
