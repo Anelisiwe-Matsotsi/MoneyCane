@@ -203,7 +203,20 @@
         android:id="@+id/createWalletFragment"
         android:name="com.example.prog7313_sem1_part2.CreateWalletFragment"
         android:label="CreateWalletFragment"
-        tools:layout="@layout/add_wallet"/>
+        tools:layout="@layout/add_wallet">
+
+        <action
+            android:id="@+id/action_createWalletFragment_to_shareWalletFragment"
+            app:destination="@id/ShareWalletFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ShareWalletFragment"
+        android:name="com.example.prog7313_sem1_part2.ShareWalletFragment"
+        android:label="ShareWalletFragment"
+        tools:layout="@layout/share_wallet"/>
+
     <fragment
         android:id="@+id/createCategoryFragment"
         android:name="com.example.prog7313_sem1_part2.CreateCategoryFragment"

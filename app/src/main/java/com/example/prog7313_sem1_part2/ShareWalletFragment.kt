@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import androidx.core.os.bundleOf
 
 class ShareWalletFragment : Fragment() {
 
@@ -46,6 +47,10 @@ class ShareWalletFragment : Fragment() {
             //get the list of people the wallet is being shared with to pass the variable to the create wallet fragment
             val selectedPeople = adapter.getSelectedEmails()
 
+            //creating bundle to pass selected emails to Wallet fragment
+            val bundle = bundleOf ("selectedEmails" to ArrayList(selectedPeople))
+
+            parentFragmentManager.setFragmentResult("sharedWalletInvite", bundle)
             findNavController().navigateUp()
         }
 

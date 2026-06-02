@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +20,26 @@ class CreateWalletFragment : Fragment() {
     // Firebase Realtime Database reference
     private val database = FirebaseDatabase.getInstance().getReference("wallets")
     private val uid = MainActivity.getUserID()
+
+    //stores the emails chosen by user to share wallet with
+    private var selectedPeopleList: List<String> = emptyList() //type parameter is inferred from the expected type (Kotlin Programming Language, 2026)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        parentFragmentManager.setFragmentResultListener("sharedWalletInvite", this) {_, bundle ->
+            //(StackOverflow,2023b)
+            //getStringArrayList- store selected emails to pass it to next activity as a group
+            val emails = bundle.getStringArrayList("selectedEmails")
+            if (emails != null) {
+                selectedPeopleList = emails
+
+                //number of emails chosen is displayed before creating wallet
+                val tvShareWallet = view?.findViewById<TextView>(R.id.tvShareWallet)
+                tvShareWallet?.text = "Share Wallet with Other people: ${selectedPeopleList.size} selected >" //(StackOverflow, 2018)
+            }
+        }
+    }
 
     //(Gaurav, 2025)
     override fun onCreateView(
@@ -31,6 +52,7 @@ class CreateWalletFragment : Fragment() {
         val editWalletBalance = view.findViewById<EditText>(R.id.editWalletBalance)
         val btnAddWallet = view.findViewById<Button>(R.id.btnAddWallet)
         val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
+        val tvShareWallet = view.findViewById<TextView>(R.id.tvShareWallet)
 
 //        val radioGroupType = view.findViewById<RadioGroup>(R.id.radioGroupType)
 //        val radioExpense = view.findViewById<RadioButton>(R.id.radioExpense)
@@ -41,6 +63,11 @@ class CreateWalletFragment : Fragment() {
         // Navigate back to the categories list
         btnBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+
+        //when user clicks the textview they are redirected to the invite people UI to choose wallet members
+        tvShareWallet.setOnClickListener {
+            findNavController().navigate(R.id.action_createWalletFragment_to_shareWalletFragment)
         }
 
         btnAddWallet.setOnClickListener {
@@ -71,7 +98,7 @@ class CreateWalletFragment : Fragment() {
 //                else -> "expense"
 //            }
 
-            saveWallet(name, limit)
+            saveWallet(name, limit, selectedPeopleList)
         }
 
         return view
@@ -79,7 +106,7 @@ class CreateWalletFragment : Fragment() {
 
     //Firebase, 2026)
     //wallet is saved in firebase DB
-    private fun saveWallet(name: String, limit: Double) {
+    private fun saveWallet(name: String, limit: Double, sharedPeople: List<String>) {
         // push creates a unique key for the new wallet
 
         val walletRef = database.child(uid).push()//saves the data under the user ID, as a child
@@ -89,7 +116,8 @@ class CreateWalletFragment : Fragment() {
         val newWallet = Wallet(
             id = walletId,
             name = name,
-            balance = limit
+            balance = limit,
+            people = sharedPeople
         )
 
         walletRef.setValue(newWallet)
@@ -112,5 +140,8 @@ Android Developers. 2026. Fragment manager | App architecture. (version 8) [sour
 Android Knowledge. 2023. CRUD using Firebase Realtime Database in Android Studio using Kotlin | Create, Read, Update, Delete. (version 8) [source code] Available at: < https://youtu.be/oGyQMBKPuNY?si=Nj0DRStlfvfFvane > [Accessed 26 April 2026]
 Bak, K. 2023. Validating user input in kotlin: a guide to adding validation to a new transaction. (version 8) [source code]. Available at: < https://53jk1.medium.com/validating-user-input-in-kotlin-a-guide-to-adding-validation-to-a-new-transaction-2e486f176674 > [Accessed 26 April 2026]
 Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
+Kotlin Programming Language. 2026. EmptyList | Core API- Kotlin Programming Language. (version 8) [Source Code]. Available at: <https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/empty-list.html> [Accessed 1 June 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8) [source code]. Available at: < https://stackoverflow.com/questions/77541256/set-variable-depending-on-radiogroup-button-selected-in-kotlin > [Accessed 26 April 2026]
+StackOverflow. 2023b. getStringArrayList(key) in adnroid generating null result. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/11402050/getstringarraylistkey-in-android-generating-null-result> [Accessed 1 June 2026]
+StackOverflow. 2018. Checking the array size and list size inside a when statement in Kotlin. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/48753475/checking-the-array-size-and-list-size-inside-a-when-statement-in-kotlin> [Accessed 1 June 2026]
  */
