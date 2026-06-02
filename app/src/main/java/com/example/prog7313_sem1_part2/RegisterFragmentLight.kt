@@ -101,7 +101,7 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
 
                         //(Firebase, 2026)
                         //save email address to database
-                        val uid = rootNode.currentUser?.uid
+                        //val uid = rootNode.currentUser?.uid
                         if (uid != null) {
                             val newUser = User(uid = uid, email = Email)
                             FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(newUser)
