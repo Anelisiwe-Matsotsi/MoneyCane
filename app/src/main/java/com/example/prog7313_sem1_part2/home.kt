@@ -1,15 +1,14 @@
 package com.example.prog7313_sem1_part2
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.database.DataSnapshot
@@ -26,6 +25,7 @@ class home : Fragment(R.layout.fragment_home) {
         val profile = view.findViewById<ImageButton>(R.id.ib_arrow_forward)
         val wallet = view.findViewById<Button>(R.id.btn_add_wallet)
         val budget = view.findViewById<Button>(R.id.btn_add_budget)
+        val tvWelcomeName = view.findViewById<TextView>(R.id.tv_welcome_name)
         //val goal = view.findViewById<Button>(R.id.btn_set_goal)
         //dont know what this is for yet
         val transaction = view.findViewById<Button>(R.id.btn_add_transaction)
@@ -40,6 +40,29 @@ class home : Fragment(R.layout.fragment_home) {
         bottomSheetBehavior.peekHeight = 110
 
         bottomSheetBehavior.isFitToContents = true
+
+        //to get the users name to appear
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid != null) {
+            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+            userRef.get().addOnSuccessListener { snapshot ->
+                // Using your userInfo data class
+                val userInfo = snapshot.getValue(userInfo::class.java)
+                if (userInfo != null && userInfo.name.isNotEmpty()) {
+                    tvWelcomeName.text = userInfo.name
+                } else {
+                    tvWelcomeName.text = "userInfo"
+                }
+            }.addOnFailureListener {
+                tvWelcomeName.text = "userInfo"
+                // Optional: show error toast
+                Toast.makeText(context, "Failed to load name", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            tvWelcomeName.text = "userInfo"
+        }
+
+
 
 
         //load transaction fragment into sheet

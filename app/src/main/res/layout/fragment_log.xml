@@ -11,13 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#F6F6F6"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Header -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
@@ -36,6 +38,7 @@
 
             </FrameLayout>
 
+            <!-- Form Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,117 +48,77 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="24dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="16dp">
+                        android:padding="20dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="12dp"
-                            android:text="FILL TO LOGIN"
-                            android:textColor="#888888"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                        <RelativeLayout
+                        <!-- Email field -->
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="11dp"
-                            android:paddingBottom="11dp">
+                            android:layout_marginBottom="16dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:hintEnabled="true"
+                            app:hintTextColor="#888888">
 
-                            <TextView
-                                android:id="@+id/tvUsername"
-                                android:layout_width="wrap_content"
-                                android:layout_height="45dp"
-                                android:layout_alignParentStart="true"
-                                android:text="Please Enter Your Email:"
-                                android:textColor="@color/black"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <EditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/tbUsername"
-                                android:layout_width="125dp"
-                                android:layout_height="48dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginEnd="-11dp"
-                                android:hint="Name"
-                                android:paddingStart="10dp"
-                                android:paddingTop="4dp"
-                                android:paddingEnd="10dp"
-                                android:paddingBottom="4dp"
-                                android:textColor="#6E6C6C"
-                                android:textSize="13sp" />
-                        </RelativeLayout>
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Email"
+                                android:inputType="textEmailAddress"
+                                android:textColor="#001430"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#E0E0E0" />
-
-                        <RelativeLayout
+                        <!-- Password field -->
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="11dp"
-                            android:paddingBottom="11dp">
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:hintEnabled="true"
+                            app:hintTextColor="#888888"
+                            app:endIconMode="password_toggle">
 
-                            <TextView
-                                android:id="@+id/tvPassword"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginStart="3dp"
-                                android:text="Please Enter Your Password:"
-                                android:textColor="@color/black"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                            <EditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/tbPassword"
-                                android:layout_width="125dp"
-                                android:layout_height="48dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:hint="password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Password"
                                 android:inputType="textPassword"
-                                android:paddingStart="10dp"
-                                android:paddingTop="4dp"
-                                android:paddingEnd="10dp"
-                                android:paddingBottom="4dp"
-                                android:textColor="#6E6C6C"
-                                android:textSize="13sp" />
-                        </RelativeLayout>
+                                android:textColor="#001430"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- Login Button -->
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
                     android:text="Login"
                     android:textColor="@android:color/white"
                     android:textSize="15sp"
                     android:backgroundTint="#A3C2A3"
-                    android:drawableLeft="@android:drawable/ic_menu_save"
-                    android:drawablePadding="8dp" />
+                    app:cornerRadius="12dp" />
 
                 <TextView
-                    android:id="@+id/tvText"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:text="Don't have an account?"
-                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textColor="#888888"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_marginBottom="8dp" />
 
                 <Button
                     android:id="@+id/btnRegister"
@@ -166,8 +129,9 @@
                     android:textColor="#FFC107"
                     android:textSize="15sp"
                     android:backgroundTint="@android:color/white"
-                    android:drawablePadding="8dp"
-                    android:drawableLeft="@android:drawable/ic_menu_edit" />
+                    app:cornerRadius="12dp"
+                    app:strokeColor="#FFC107"
+                    app:strokeWidth="1dp" />
 
             </LinearLayout>
         </LinearLayout>
