@@ -183,12 +183,12 @@
             <GridLayout
                 android:id="@+id/gardenGrid"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
+                android:layout_height="match_parent"
+
                 android:background="@drawable/gb_grass"
                 android:columnCount="3"
-                android:columnOrderPreserved="false"
-                android:rowCount="2"
+
+
                 android:useDefaultMargins="true">
 
                 <!--Patch 1-->
@@ -196,6 +196,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch one"
                     android:src="@drawable/lock"
                     />
@@ -205,6 +208,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch two"
                     android:src="@drawable/lock"
                     />
@@ -213,6 +219,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch three"
                     android:src="@drawable/lock"
                      />
@@ -222,6 +231,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch two"
                     android:src="@drawable/lock"
                     />
@@ -231,6 +243,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch five"
                     android:src="@drawable/lock"
                      />
@@ -240,6 +255,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch six"
                     android:src="@drawable/lock"
                     />
@@ -249,6 +267,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch seven"
                     android:src="@drawable/lock"
                      />
@@ -257,6 +278,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch eight"
                     android:src="@drawable/lock"
                      />
@@ -265,6 +289,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch nine"
                     android:src="@drawable/lock"
                      />
@@ -273,6 +300,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch ten"
                     android:src="@drawable/lock"
                     />
@@ -281,6 +311,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch eleven"
                     android:src="@drawable/lock"
                     />
@@ -289,6 +322,9 @@
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    android:scaleType="centerInside"
+                    android:alpha="0.1"
                     android:contentDescription="Garden patch twelve"
                     android:src="@drawable/lock"
                      />

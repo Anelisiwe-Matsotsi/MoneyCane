@@ -38,18 +38,18 @@ class Light_Achievment_Fragment : Fragment() {
     //define the worth of the candy rewards
     //kotlin
     private val gardenLevels = listOf(
-        Pair(10, R.drawable.candy_plant), //patch 1 is worth 10 canes
-        Pair(30, R.drawable.candy_plant), //patch 2 is worth 30 canes
-        Pair(45, R.drawable.candy_plant), //patch 3 is worth 45 canes
-        Pair(60, R.drawable.candy_plant), //patch 4 is worth 60 canes
-        Pair(65, R.drawable.candy_plant), //patch 5 is worth 65 canes
-        Pair(80, R.drawable.candy_plant), //patch 6 is worth 80
-        Pair(80, R.drawable.candy_plant), //patch 7 is worth 80 canes
-        Pair(80, R.drawable.candy_plant), //patch 8 is worth 80 canes
-        Pair(80, R.drawable.candy_plant), //patch 9 is worth 80 canes
-        Pair(80, R.drawable.candy_plant), //patch 10 is worth 80 canes
-        Pair(80, R.drawable.candy_plant), //patch 11 is worth 80 canes
-        Pair(80, R.drawable.candy_plant), //patch 12 is worth 80 canes
+        Pair(1, R.drawable.cotton_candybluecloud), //patch 1 is worth 10 canes
+        Pair(2, R.drawable.rainbow), //patch 2 is worth 30 canes
+        Pair(3, R.drawable.unicorn), //patch 3 is worth 45 canes
+        Pair(4, R.drawable.cotton_candysmile), //patch 4 is worth 60 canes
+        Pair(5, R.drawable.cotton_candycane), //patch 5 is worth 65 canes
+        Pair(6, R.drawable.gummy), //patch 6 is worth 80
+        Pair(7, R.drawable.candies), //patch 7 is worth 80 canes
+        Pair(8, R.drawable.easter_bunny), //patch 8 is worth 80 canes
+        Pair(9, R.drawable.wedding_cake), //patch 9 is worth 80 canes
+        Pair(10, R.drawable.gingerbread_house), //patch 10 is worth 80 canes
+        Pair(11, R.drawable.bunny), //patch 11 is worth 80 canes
+        Pair(12, R.drawable.gingerbread_housecane), //patch 12 is worth 80 canes
 
     )
 
@@ -171,16 +171,17 @@ class Light_Achievment_Fragment : Fragment() {
         for (i in 0 until gardenGrid.childCount) {
             val patch = gardenGrid.getChildAt(i) as ImageView
             if (i < gardenLevels.size) {
-                val (requiredCanes, imageResource) = gardenLevels[i]
+                val (requiredCanes, resource) = gardenLevels[i]
 
                 if (totalCanes >= requiredCanes) {
                     //unlock the sweet for this level
-                    patch.setImageResource(R.drawable.candy_plant)
+                    patch.setImageResource(resource)
                     patch.alpha = 1.0f
+                    if (i >= 6) patch.elevation = 10f else patch.elevation = 0f
                 } else {
                     // show the locked state
                     patch.setImageResource(R.drawable.lock)
-                    patch.alpha = 0.3f
+                    patch.alpha = 0.05f
                 }
             }
         }
@@ -192,7 +193,7 @@ class Light_Achievment_Fragment : Fragment() {
     //    /*Medium, 2021*/
     private fun animateCanes( old: Int, new: Int) {
         ValueAnimator.ofInt(old, new).apply {
-            duration = 800
+            duration = 1000
             addUpdateListener { tvCaneCount.text = it.animatedValue.toString() }
             start()
         }
