@@ -31,15 +31,21 @@ import android.media.AudioAttributes
 import  android.media.AudioManager
 import  android.media.SoundPool
 import android.os.Build
+import android.util.Log.e
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.time.temporal.TemporalAmount
 
 class Transaction_Fragment : Fragment() {
 
     //Add image code
     private val storageService = SupabaseStorageService()
+
+    private val storageRef: StorageReference = FirebaseStorage.getInstance().reference
+
     private var selectedImageUri: Uri? = null
     private var uploadedImageUrl: String? = null
     private lateinit var imgSelected: ImageView
@@ -535,44 +541,38 @@ class Transaction_Fragment : Fragment() {
             Log.e("ProfileBadge", "Upload attempted with no image selected")
             return
         }
-
+        // get current user Id
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
+     // update ui to show progress
         txtStatus.text = "Status: Uploading..."
+btnUpload.isEnabled =false //prevent multiple upload accidents
 
-        thread {
-            try {
-                val fileBytes = FileUtils.readBytes(requireContext(), uri)//Ghanem, A. 2024
 
-                val extension = MimeTypeMap.getFileExtensionFromUrl("image.jpg")
-                val filePath = "demo_${System.currentTimeMillis()}.$extension"
+              val fileName = "transaction_${System.currentTimeMillis()}.jpg"
+        val fileRef = storageRef.child("transaction_images/$uid/$fileName")
 
-                Log.d("ProfileBadge", "Uploading file: $filePath")
-
-                val result = storageService.uploadImage(
-                    fileBytes,
-                    filePath,
-                    requireContext().contentResolver.getType(uri) ?: "image/jpeg"
-                )
-                //Ghanem, A. 2024
-                requireActivity().runOnUiThread {
-                    result.onSuccess {
-                        uploadedImageUrl = it
+                     fileRef.putFile(uri)
+                         .addOnSuccessListener { taskSnapshot ->
+                             //fetch downloaded url to save in the database
+                             fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                        uploadedImageUrl = downloadUri.toString()
                         txtStatus.text = "Status: Upload successful"
-                        Log.d("ProfileBadge", "Upload success: $it")
-                    }.onFailure {
-                        txtStatus.text = "Status: ${it.message}"
+                       btnUpload.isEnabled=true
 
-                        Log.e("ProfileBadge", "Upload failed", it)
+
+                        Log.d("Storage", "Image URL: $uploadedImageUrl")
+                                 Toast.makeText(requireContext(),"Image upload successful!", Toast.LENGTH_SHORT).show()
                     }
                 }
-
-            } catch (e: Exception) {
-                requireActivity().runOnUiThread {
-                    txtStatus.text = "Status: Error"
-                    Log.e("ProfileBadge", "Exception during upload", e)
+                         .addOnFailureListener { e ->
+                    txtStatus.text = "Status: Error: ${e.message}"
+              btnUpload.isEnabled=true
+                    Log.e("ProfileBadge", "Exception during upload ${e.message}")
+              Toast.makeText(requireContext(),"Error${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-    }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
