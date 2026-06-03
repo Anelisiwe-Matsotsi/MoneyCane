@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F6F6F6">
+    android:background="?android:attr/colorBackground">
 
     <!-- GREEN HEADER -->
     <RelativeLayout
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="@drawable/custom_rectangle"
-        android:backgroundTint="#A3C2A3">
+        >
 
         <ImageButton
             android:id="@+id/btnBack"

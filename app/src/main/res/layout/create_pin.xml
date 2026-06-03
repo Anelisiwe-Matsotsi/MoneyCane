@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#F6F6F6"
+    android:background="?android:attr/colorBackground"
     tools:ignore="HardcodedText">
 
     <!-- HEADER -->
@@ -19,14 +19,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/customized_rectangle"
-            android:backgroundTint="#A3C2A3"/>
+            android:background="@drawable/custom_rectangle"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create PIN Code"
-            android:textColor="#001430"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="26sp"
             android:textStyle="bold"
             android:layout_marginStart="16dp"

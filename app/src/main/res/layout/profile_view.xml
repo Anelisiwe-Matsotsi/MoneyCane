@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F6F6"
+    android:background="?android:attr/colorBackground"
     tools:ignore="HardcodedText">
 
     <LinearLayout
@@ -15,8 +15,8 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@drawable/customized_rectangle"
-            android:backgroundTint="#A3C2A3">
+            android:background="@drawable/custom_rectangle"
+            >
 
 
             <ImageButton
