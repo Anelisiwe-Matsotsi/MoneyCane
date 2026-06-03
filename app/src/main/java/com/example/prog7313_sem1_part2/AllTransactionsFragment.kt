@@ -126,12 +126,12 @@ adapter= TransactionAdapter(transactionList) {transaction ->
             }
 
             "budget_warning" -> {
-                tvMessage.text = "OMG! YOU REACHED YOUR GOAL! CHECK YOUR CANDY CANES"
+                tvMessage.text = "OH, NO YOU ARE REACHING YOUR LIMIT!"
                 mascotAnimation.setAnimation(R.raw.annoyed)
             }
 
             "budget_exceeded" -> {
-                tvMessage.text = "OMG! YOU REACHED YOUR GOAL! CHECK YOUR CANDY CANES"
+                tvMessage.text = "YOU ACTUALLY WENT OVER YOUR BUDGET, HECTIC."
                 mascotAnimation.setAnimation(R.raw.mindblown)
             }
 
