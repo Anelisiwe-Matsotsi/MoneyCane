@@ -170,6 +170,13 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_home_to_weeklyGoalSetupFragment"
+            app:destination="@id/weeklyGoalSetupFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/more_Light_Fragment"
@@ -360,6 +367,11 @@
         android:name="com.example.prog7313_sem1_part2.LightEditWalletFragment"
         android:label="LightEditWalletFragment"
         tools:layout="@layout/fragment_wallet_edit_light"/>
+    <fragment
+        android:id="@+id/weeklyGoalSetupFragment"
+        android:name="com.example.prog7313_sem1_part2.WeeklyGoalSetupFragment"
+        android:label="fragment_weekly_goal_setup"
+        tools:layout="@layout/fragment_weekly_goal_setup" />
 
 
 </navigation>

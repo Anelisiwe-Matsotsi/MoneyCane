@@ -205,48 +205,37 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_monthly_budget"
                 android:layout_width="374dp"
-                android:layout_height="234dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="110dp"
                 android:layout_marginEnd="20dp"
                 android:elevation="12dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="28dp"
-
-                app:layout_constraintBottom_toTopOf="@+id/cv_weekly_goal"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cv_wallet_balance">
 
                 <LinearLayout
-                    android:layout_width="381dp"
-                    android:layout_height="250dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-
-                    <!--TopSection -->
-
-
-                    <!--Bottom section -->
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
-                        android:background="@drawable/custome_rectangle">
-
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_rectangle"
+                        android:padding="20dp">
 
                         <TextView
                             android:id="@+id/tv_monthly_budget_title"
-                            android:layout_width="271dp"
-                            android:layout_height="32dp"
-
-                            android:layout_margin="24dp"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="36dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
                             android:text="Monthly Spending"
                             android:textColor="@android:color/white"
                             android:textSize="18sp"
                             android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@id/btn_add_budget_container"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -254,135 +243,86 @@
                             android:id="@+id/tv_monthly_budget_left"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="8dp"
-                            android:text="R 6000,50 left of R 7000"
+                            android:layout_marginTop="6dp"
+                            android:text="R 0,00 left of R 0,00"
                             android:textColor="#F4FFF4"
-                            android:textSize="16dp"
+                            android:textSize="15sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_monthly_budget_title" />
 
                         <FrameLayout
-                            android:layout_width="70dp"
-                            android:layout_height="59dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:background="@android:color/transparent"
+                            android:id="@+id/btn_add_budget_container"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
                             <ImageButton
                                 android:id="@+id/btn_add_budget"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_gravity="start|center_horizontal|fill_vertical"
-                                android:backgroundTint="#00FFFFFF"
+                                android:background="?attr/selectableItemBackgroundBorderless"
                                 android:src="@android:drawable/ic_menu_add"
                                 app:tint="#FFC107" />
                         </FrameLayout>
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="128dp"
-                        android:background="?attr/colorSurface"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="20dp">
 
                         <ProgressBar
                             android:id="@+id/pb_monthly_budget"
                             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                            android:layout_width="337dp"
-                            android:layout_height="52dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="12dp"
+                            android:layout_marginTop="4dp"
                             android:max="100"
                             android:progress="40"
-                            android:progressBackgroundTint="#F8EEEE"
+                            android:progressBackgroundTint="#E5E7EB"
                             android:progressTint="#FFC107" />
 
                         <TextView
                             android:id="@+id/tv_monthly_budget_of"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="14dp"
-                            android:hint="of R 7000"
-                            android:textColor="?attr/colorOnSurface" />
-
+                            android:layout_marginTop="10dp"
+                            android:text="of R 0,00"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-
-            <!-- Weekly Goal card -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_weekly_goal"
-                android:layout_width="375dp"
-                android:layout_height="106dp"
-
-                android:layout_marginTop="625dp"
-                android:layout_marginBottom="195dp"
-                android:clickable="true"
-                android:elevation="16dp"
-                android:focusable="true"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="374dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:elevation="12dp"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/cv_monthly_budget">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/colorSurface">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_set_goal"
-                        style="@style/Widget.Material3.Button.OutlinedButton"
-                        android:layout_width="168dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="52dp"
-                        android:layout_marginTop="52dp"
-                        android:layout_marginBottom="7dp"
-                        android:text="Set Goal"
-                        android:textColor="#162616"
-                        android:textColorLink="#FF9800"
-                        app:icon="@android:drawable/ic_menu_add"
-                        app:iconPadding="4dp"
-                        app:iconSize="30dp"
-                        app:iconTint="#FFC107"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ProgressBar
-                        android:id="@+id/pb_weekly_goal"
-                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                        android:layout_width="228dp"
-                        android:layout_height="34dp"
-                        android:layout_marginStart="64dp"
-                        android:layout_marginTop="72dp"
-                        android:max="100"
-                        android:progress="60"
-                        android:progressBackgroundTint="#F8EEEE"
-                        android:progressTint="#FFC107"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
 
                     <TextView
                         android:id="@+id/tv_weekly_goal_title"
-                        android:layout_width="154dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="42dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginEnd="167dp"
-                        android:text="Weekly Goal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weekly Goal Target"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -390,27 +330,53 @@
                         android:id="@+id/tv_weekly_goal_left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="256dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="34dp"
-                        android:text="R 6000,50 left"
-                        android:textColor="#162616"
+                        android:text="R 0,00 left"
+                        android:textColor="#008000"
                         android:textStyle="bold"
+                        android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/pb_weekly_goal"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="14dp"
+                        android:max="100"
+                        android:progress="60"
+                        android:progressBackgroundTint="#E5E7EB"
+                        android:progressTint="#FFC107"
+                        app:layout_constraintTop_toBottomOf="@id/tv_weekly_goal_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <TextView
                         android:id="@+id/tv_weekly_goal_of"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="273dp"
-                        android:layout_marginTop="54dp"
-                        android:hint="of R 7000"
-                        android:textColor="#F2EFE4"
-
+                        android:layout_marginTop="12dp"
+                        android:text="Min: R 0 | Max: R 0"
+                        android:textColor="#6B7280"
+                        android:textSize="13sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@id/pb_weekly_goal" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_set_goal"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Set Target"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="12sp"
+                        app:icon="@android:drawable/ic_menu_add"
+                        app:iconSize="16dp"
+                        app:iconTint="#FFC107"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/pb_weekly_goal"
+                        app:layout_constraintVertical_bias="1.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
