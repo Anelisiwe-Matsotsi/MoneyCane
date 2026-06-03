@@ -8,6 +8,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 //(Android Knowledge, 2023)
 class GoalAdapter (
@@ -25,6 +28,36 @@ class GoalAdapter (
        // val btnEdit : ImageButton = itemView.findViewById(R.id.btnEditCategory)
 
     }
+//Stack Overflow,2018
+    private fun formatDate(dateString: String): String {
+        return try {
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val date = inputFormat.parse(dateString) ?: return dateString
+
+            //Calender instance
+            val call = Calendar.getInstance()
+            call.time = date
+
+            val todayCal = Calendar.getInstance()
+            val yesterdayCal =Calendar.getInstance()
+            yesterdayCal.add(Calendar.DAY_OF_YEAR,-1)
+
+            if (call.get(Calendar.YEAR)== todayCal.get(Calendar.YEAR) &&
+                call.get(Calendar.DAY_OF_YEAR)== todayCal.get(Calendar.DAY_OF_YEAR)) {
+                return  "Today"
+            }
+            if (call.get(Calendar.YEAR)== yesterdayCal.get(Calendar.YEAR) &&
+                call.get(Calendar.DAY_OF_YEAR)== yesterdayCal.get(Calendar.DAY_OF_YEAR)) {
+                return  "Yesterday"
+            }
+            val outputFormat = SimpleDateFormat("d MMMM yyyy", Locale.getDefault())
+            outputFormat.format(date)
+        }catch (e: Exception){
+            dateString
+        }
+    }
+
+
 
     //(Gaurav, 2025)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalViewHolder {
@@ -51,7 +84,10 @@ class GoalAdapter (
         holder.progressBar.progress = percent.coerceAtMost(100)
         holder.tvReward.text = "🍭${goal.candyReward} Canes"
 
-        holder.tvDates.text = "${goal.startDate} to ${goal.endDate}"
+
+        val startDate = formatDate(goal.startDate)
+        val endDate = formatDate(goal.endDate)
+        holder.tvDates.text = "${startDate} to ${endDate}"
 
         //visual feedback
 ////        if (percent >= 100) {
@@ -77,4 +113,5 @@ Gaurav. 2025. Mastering RecyclerView: Optimizing onCreateViewHolder and onBindVi
 GeeksforGeeks. 2025. RecyclerView in Android with Example. (Version 8) [source code]. Available at: < https://www.geeksforgeeks.org/android/android-recyclerview/ > [Accessed 26 April 2026]
 Kotlin Programming Language. 2026. coerceIn | Core API. (Version 8) [source code]. Available at: < https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/coerce-in.html > [Accessed 26 April 2026]
 Pathak, A. 2025. Kotlin Series: Nested and Inner Classes. (Version 8) [source code]. Available at: < https://medium.com/@myofficework000/kotlin-series-nested-and-inner-classes-0f76f6a13abd > [Accessed 26 April 2026]
+ Stack Overflow.2018. How to check if the date is today or not.(Version 8) [source code]  Available at:<https://stackoverflow.com/questions/49739568/how-to-check-if-the-date-is-today-or-not>[Accessed 2 June 2026]
  */
