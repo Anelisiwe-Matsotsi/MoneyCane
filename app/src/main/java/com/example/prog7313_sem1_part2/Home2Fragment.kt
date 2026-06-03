@@ -14,7 +14,7 @@ import kotlin.apply
 import kotlin.let
 
 val transactionArray = arrayOf(
-    "AllTransactions",
+    "All",
     "Expenses",
     "Incomes"
 )

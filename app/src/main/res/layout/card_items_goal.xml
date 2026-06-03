@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custome_rectangle"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -19,8 +20,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -33,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Goal Name"
-                    android:textColor="#050505"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -43,21 +44,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:text="2026-01-04 t0 2026-01-24"
-                    android:textColor="#2F2F2F"
-                    android:textSize="13sp" />
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
-
-<!--            <ImageButton-->
-<!--                android:id="@+id/btnEditCategory"-->
-<!--                android:layout_width="40dp"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:contentDescription="Edit Category"-->
-<!--                android:src="@android:drawable/ic_menu_edit"-->
-<!--                app:tint="#FFC107" />-->
+            <!--            <ImageButton-->
+            <!--                android:id="@+id/btnEditCategory"-->
+            <!--                android:layout_width="40dp"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:layout_marginEnd="8dp"-->
+            <!--                android:background="?attr/selectableItemBackgroundBorderless"-->
+            <!--                android:contentDescription="Edit Category"-->
+            <!--                android:src="@android:drawable/ic_menu_edit"-->
+            <!--                app:tint="#FFC107" />-->
         </LinearLayout>
 
         <!-- PROGRESS BAR -->
@@ -67,8 +68,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="R0 / R1000"
-            android:textColor="#4C4E4E"
-            android:textSize="14sp" />
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="14sp"
+            android:textStyle="bold" />
         <!-- Candy Reward-->
         <ProgressBar
             android:id="@+id/progressGoal"
@@ -88,7 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="5 Canes Reward"
-            android:textColor="#4C4E4E"
-            android:textSize="14sp" />
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

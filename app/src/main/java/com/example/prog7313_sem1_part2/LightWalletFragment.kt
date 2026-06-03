@@ -1,5 +1,6 @@
 package com.example.prog7313_sem1_part2
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prog7313_sem1_part2.MyMessagingService.Companion.showNotification
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,6 +38,11 @@ class LightWalletFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wallet_light, container, false)
+
+        //loads all existing wallets
+        existingWalletIds.addAll(requireContext()
+            .getSharedPreferences("wallet_prefs", Context.MODE_PRIVATE)
+            .getStringSet("existingWalletIds", emptySet()) ?: emptySet())
 
         // setting up recycler view
         rvWallets = view.findViewById(R.id.rvWallets)
@@ -100,6 +107,10 @@ class LightWalletFragment : Fragment() {
         }
     }
 
+    //private var initialLoad = true //prevents spamming existing wallet notifications
+    private val existingWalletIds = mutableSetOf<String>() //persists between onDataChange function when the walletList is cleared
+    private var initialLoad = true //tracks the existing wallets
+
     //recycler view updates everytime if a wallet is added or edited
     private fun listenToWallets() {
         database.addValueEventListener(object : ValueEventListener {
@@ -107,16 +118,46 @@ class LightWalletFragment : Fragment() {
             //(Firebase, 2026b)
             //fetched correct wallet's unique id to be edited/updated
             override fun onDataChange(snapshot: DataSnapshot) {
-                walletList.clear()
+                //walletList.clear()
+                val stringWallets = mutableSetOf<String>() //(StackOverflow, 2021)
+                val newWalletList = ArrayList<Wallet>()
+
                 for (child in snapshot.children) {
                     val wallet = child.getValue(Wallet::class.java)
+
                     if (wallet != null) {
-                        walletList.add(wallet)
+                        stringWallets.add(wallet.id) //(StackOverflow, 2021)
+                        newWalletList.add(wallet)
+
+                        //logged in user sees notification of new shared wallet created by owner
+                        if(!existingWalletIds.contains(wallet.id) && wallet.createdBy != uid && !initialLoad) {
+                            showNotification(
+                                context=requireContext(),
+                                title = "New Shared Wallet!",
+                                message = "You have been added to a new wallet called '${wallet.name}'."
+                            )
+                        }
+                        //existingWalletIds.add(wallet.id) //ensures existing wallets are added in DB
+                        //walletList.add(wallet)
                     }
                 }
+                //(StackOverflow, 2021)
+                //forcing memory to clear and then adding all wallets again after notification workflow is complete
+                walletList.clear()
+                walletList.addAll(newWalletList)
                 adapter.notifyDataSetChanged()
                 updateTotalBalance() //wallets total updates after wallets are added/edited
-            }
+
+                //clearing existing memory to avoid notifications for existing wallets belonging to user who created the wallets
+                existingWalletIds.clear()
+                existingWalletIds.addAll(stringWallets)
+
+                //persists after every DB wallet update
+                requireContext().getSharedPreferences("wallet_prefs", Context.MODE_PRIVATE).edit()
+                    .putStringSet("existingWalletIds", existingWalletIds.toSet()).apply()
+
+                initialLoad = false
+                }
 
             //database error
             override fun onCancelled(error: DatabaseError) {
@@ -169,6 +210,7 @@ Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Avail
 Firebase. 2026b. Work with Lists of Data on Android.(Version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/lists-of-data#child-events > [Accessed 26 April 2026]
 GeeksforGeeks. 2025. SearchView in Android with Kotlin. (Version 8) [source code]. Available at: < https://www.geeksforgeeks.org/kotlin/searchview-in-android-with-kotlin/ > [Accessed 27 April 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8) [source code]. Available at: < https://stackoverflow.com/questions/77541256/set-variable-depending-on-radiogroup-button-selected-in-kotlin > [Accessed 26 April 2026]
+StackOverflow. 2021. MutableList<Any> addAll kotlin entire arrayList added as object. (version 8) [source Code]. Available at: <https://stackoverflow.com/questions/66074284/mutablelistany-addall-kotlin-entire-arraylist-added-as-object> [Accessed 3 June 2026]
 StackOverflow. 2019. Filter for SearchView in Kotlin. (version 8) [Source Code]. Available at: < https://stackoverflow.com/questions/55537368/filter-for-searchview-in-kotlin > [Accessed 27 April 2026]
 StackOverflow. 2019b. Deleting random 2nd child in firebase realtime database that is created with push in Android Studio. (version 8) [source code]. Available at: < https://stackoverflow.com/questions/54385451/deleting-random-2nd-child-in-firebase-realtime-database-that-is-created-with-pus > [Accessed 27 April 2026]
  */

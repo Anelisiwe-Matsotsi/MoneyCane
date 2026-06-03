@@ -79,6 +79,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.airbnb.android:lottie:6.7.1")
     implementation(libs.play.services.maps3d)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -86,5 +87,7 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
     implementation(libs.androidx.navigation.fragment.ktx.v250)
     implementation(libs.androidx.navigation.ui.ktx.v250)
+    /*Firebase Cloud Messaging dependancy*/
+    implementation ("com.google.firebase:firebase-messaging-ktx")
 
 }

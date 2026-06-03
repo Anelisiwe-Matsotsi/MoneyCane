@@ -110,28 +110,29 @@ class BudgetLight : Fragment() {
                 category = category,
                 budget = amount
             )
+            //Stackoverflow, 2021
+            if(editingCategory != null && editingCategory != category)
+            {
+                budgetRef.child(editingCategory!!).removeValue()
+            }
 
-            val key =
-                editingCategory ?: category
 
-            budgetRef.child(key)
+            budgetRef.child(category)
                 .setValue(budget)
                 .addOnSuccessListener {
 
-                    if (
-                        editingCategory != null &&
-                        editingCategory != category
-                    ) {
-
-                        budgetRef.child(
-                            editingCategory!!
-                        ).removeValue()
-                    }
-
                     editingCategory = null
-
                     etCategory.text.clear()
                     etAmount.text.clear()
+                    editingCategory != category
+
+
+
+                    categories.clear()
+                    adapter.notifyDataSetChanged()
+
+                    loadBudgets()
+
 
                     loadBudgets()
 
@@ -149,14 +150,10 @@ class BudgetLight : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        loadBudgets()
     }
 
     private fun loadBudgets() {
-
-        categories.clear()
-        adapter.notifyDataSetChanged()
-
+        
         budgetRef.addListenerForSingleValueEvent(
 
             object : ValueEventListener {
@@ -164,6 +161,8 @@ class BudgetLight : Fragment() {
                 override fun onDataChange(
                     snapshot: DataSnapshot
                 ) {
+                    categories.clear()
+                    adapter.notifyDataSetChanged()
 
                     for (child in snapshot.children) {
 
@@ -196,6 +195,7 @@ class BudgetLight : Fragment() {
         budgetAmount: Double
     ) {
 
+        // Stackoverflow, 2023b
         categoryRef.addListenerForSingleValueEvent(
 
             object : ValueEventListener {
@@ -207,6 +207,7 @@ class BudgetLight : Fragment() {
                     val categoryMap =
                         mutableMapOf<String, String>()
 
+                    //(Firebase, 2026b)
                     for (cat in categorySnapshot.children) {
 
                         val categoryId =
@@ -306,27 +307,17 @@ class BudgetLight : Fragment() {
         }
 
         tvSpentTotal.text =
-            "R%.2f".format(totalSpent)
+            "R%.2f".format(totalSpent) //Stackoverflow, 2018
 
-        tvBudgetTotal.text =
-            "R%.2f".format(totalBudget)
+        tvBudgetTotal.text = "R%.2f".format(totalBudget)
 
-        val remaining =
-            (totalBudget - totalSpent)
-                .coerceAtLeast(0.0)
+        val remaining = (totalBudget - totalSpent).coerceAtLeast(0.0)
 
-        tvBudgetRemaining.text =
-            "R%.2f left of R%.2f"
-                .format(
-                    remaining,
-                    totalBudget
-                )
+        tvBudgetRemaining.text = "R%.2f left of R%.2f".format(remaining, totalBudget)
 
         val progress =
             if (totalBudget > 0) {
-                ((totalSpent / totalBudget) * 100)
-                    .toInt()
-                    .coerceIn(0, 100)
+                ((totalSpent / totalBudget) * 100).toInt().coerceIn(0, 100)
             } else {
                 0
             }
@@ -334,42 +325,31 @@ class BudgetLight : Fragment() {
         progressTotalBudget.progress =
             progress
 
-        updateDailyBudget(
-            remaining
-        )
+        updateDailyBudget(remaining)
     }
 
-    private fun updateDailyBudget(
-        remainingBudget: Double
-    ) {
+    private fun updateDailyBudget(remainingBudget: Double) {
 
-        val calendar =
-            Calendar.getInstance()
+        val calendar = Calendar.getInstance()
 
-        val today =
-            calendar.get(
-                Calendar.DAY_OF_MONTH
-            )
+        val today = calendar.get(Calendar.DAY_OF_MONTH) //Baeldung, 2024
 
-        val daysInMonth =
-            calendar.getActualMaximum(
-                Calendar.DAY_OF_MONTH
-            )
+        val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
-        val daysLeft =
-            (daysInMonth - today + 1)
-                .coerceAtLeast(1)
+        val daysLeft = (daysInMonth - today + 1).coerceAtLeast(1)
 
-        val dailyAmount =
-            remainingBudget / daysLeft
+        val dailyAmount = remainingBudget / daysLeft
 
-        tvDailyBudget.text =
-            "Spend R%.2f/day to stay within budget"
-                .format(
-                    dailyAmount
-                )
+        tvDailyBudget.text = "Spend R%.2f/day to stay within budget".format(dailyAmount)
     }
 }
 //ib_arrow_forward
 //action_home2_to_wallet_Create_Light_Fragment2
 //action_budgetLight_to_analysisLight
+/*Reference List:
+Baeldung. 2024. Java Date and Calendar: From Legacy to Modern Approaches. [online]. Available at: <https://www.baeldung.com/java-date-time-history>. [Accessed 28 May 2026].
+Firebase. 2026b. Work with Lists of Data on Android.(Version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/lists-of-data#child-events > [Accessed 26 April 2026]
+Stackoverflow. 2018. Kotlin – String formatting. [online]. Available at: < https://stackoverflow.com/questions/23086291/kotlin-string-formatting >. [Accessed 29 May 2026].
+Stackoverflow. 2021. Kotlin firebase realtime database removeValue(). [online]. Available at: < https://stackoverflow.com/questions/68787349/kotlin-firebase-realtime-database-removevalue> .[Accessed 29 May 2026].
+Stackoverflow. 2023b. The best practices using ViewModel and Flow to communicate with Firebase. [online]. Available at: < https://stackoverflow.com/questions/75769524/the-best-practices-using-viewmodel-and-flow-to-communicate-with-firebase >[Accessed 30 May 2026].
+*/

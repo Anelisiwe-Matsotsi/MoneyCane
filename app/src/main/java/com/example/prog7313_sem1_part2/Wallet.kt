@@ -3,7 +3,9 @@ package com.example.prog7313_sem1_part2
 data class Wallet(
     val id: String = "",
     val name: String = "", //Cash, Bank, Savings
-    val balance: Double = 0.0 //initial amount when first created
+    val balance: Double = 0.0, //initial amount when first created
+    val people : List<String> = emptyList(), //nel@gmail.com, natty@gmail.com
+    val createdBy: String = ""
 )
 /*
 References

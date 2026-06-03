@@ -95,7 +95,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Goal Type"
+                android:text="Select Goal Type"
                 android:textColor="#121212"
                 android:textSize="16sp"
                 android:layout_marginBottom="12dp" />
@@ -112,7 +112,7 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:text="Expense"
+                    android:text="Expense Goal"
                     android:textColor="#121212"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -128,7 +128,7 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
-                    android:text="Income"
+                    android:text="Savings Goal"
                     android:textColor="#121212"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -139,12 +139,58 @@
                     android:buttonTint="#FFC107"/>
             </RadioGroup>
 
-            <!-- ADD CATEGORY BUTTON -->
+            <!-- Date Picker -->
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="From:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <DatePicker
+                android:id="@+id/startDate"
+                android:layout_width="363dp"
+                android:layout_height="164dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewDateEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="To:"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <DatePicker
+                android:id="@+id/endDate"
+                android:layout_width="363dp"
+                android:layout_height="164dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+            <!-- ADD Goal BUTTON -->
             <Button
                 android:id="@+id/btnSaveGoal"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:text="ADD CATEGORY"
+                android:text="Save Goal"
                 android:textColor="#001430"
                 android:textStyle="bold"
                 android:textSize="16sp"

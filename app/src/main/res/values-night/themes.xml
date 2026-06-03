@@ -4,9 +4,10 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     <item name="colorPrimary">#5F825F</item>
-        <item name="android:colorBackground">#121212</item>
-        <item name="colorSurface">#1E1E1E</item>
-        <item name="colorOnSurface">#F2F2F2</item>
+        <item name="android:windowBackground">#0F1410</item>
+        <item name="android:colorBackground">#0F1410</item>
+        <item name="colorSurface">#19221B</item>
+        <item name="colorOnSurface">#ECF3EB</item>
 
     </style>
 </resources>

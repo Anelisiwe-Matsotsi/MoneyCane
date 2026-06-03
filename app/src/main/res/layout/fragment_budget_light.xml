@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F9F2"
+    android:background="?android:attr/colorBackground"
     tools:context=".BudgetLight">
 
 
@@ -15,9 +14,9 @@
         android:layout_width="0dp"
         android:layout_height="220dp"
         android:background="#A3C2A3"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageButton
@@ -29,9 +28,9 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:padding="8dp"
         android:src="@drawable/outline_arrow_back_24"
-        app:tint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#FFFFFF" />
 
 
     <TextView
@@ -45,7 +44,7 @@
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_back_arrow"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_back_arrow" />
 
 
     <LinearLayout
@@ -55,9 +54,9 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         android:paddingHorizontal="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_budgets_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tv_budgets_title">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -70,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:text="SPENT"
                 android:textColor="#D1FAE5"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tv_total_spent_val"
@@ -79,7 +78,7 @@
                 android:text="R0.00"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:text="BUDGETED"
                 android:textColor="#D1FAE5"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tv_total_budget_val"
@@ -102,7 +101,7 @@
                 android:text="R0.00"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
@@ -117,9 +116,9 @@
         android:layout_marginEnd="16dp"
         app:cardCornerRadius="18dp"
         app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/ll_summary_row"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/ll_summary_row">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,7 +133,7 @@
                 android:text="R0.00 left of R0.00"
                 android:textColor="#333333"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ProgressBar
                 android:id="@+id/progressTotalBudget"
@@ -143,7 +142,7 @@
                 android:layout_height="10dp"
                 android:layout_marginTop="12dp"
                 android:max="100"
-                android:progress="0"/>
+                android:progress="0" />
 
             <TextView
                 android:id="@+id/tvDailyBudget"
@@ -153,7 +152,7 @@
                 android:text="Spend R0.00/day to stay within budget"
                 android:textColor="#666666"
                 android:textSize="15sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic" />
 
         </LinearLayout>
 
@@ -168,11 +167,11 @@
         android:clipToPadding="false"
         android:padding="16dp"
         android:paddingBottom="24dp"
-        app:layout_constraintTop_toBottomOf="@id/cardBudgetSummary"
         app:layout_constraintBottom_toTopOf="@id/input_container"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/card_items_category"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardBudgetSummary"
+        tools:listitem="@layout/card_items_category" />
 
 
     <LinearLayout
@@ -184,8 +183,8 @@
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/etBudgetCategory"
@@ -193,7 +192,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#A3C2A3"
             android:hint="Budget Category (e.g. Shopping)"
-            android:padding="12dp"/>
+            android:padding="12dp" />
 
         <EditText
             android:id="@+id/etBudgetAmount"
@@ -203,7 +202,7 @@
             android:backgroundTint="#A3C2A3"
             android:hint="Budget Amount"
             android:inputType="numberDecimal"
-            android:padding="12dp"/>
+            android:padding="12dp" />
 
         <Button
             android:id="@+id/btnSaveBudget"
@@ -211,7 +210,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:backgroundTint="#A3C2A3"
-            android:text="Save Budget"/>
+            android:text="Save Budget" />
 
 
     </LinearLayout>
