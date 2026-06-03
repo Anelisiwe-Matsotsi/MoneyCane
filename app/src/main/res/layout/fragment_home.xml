@@ -134,6 +134,7 @@
                         android:text="Your wallet balance"
                         android:textColor="#0E3704"
                         android:textSize="14sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -172,12 +173,13 @@
                         android:id="@+id/tv_welcome_name"
                         android:layout_width="144dp"
                         android:layout_height="28dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="24dp"
                         android:text="-"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="18sp"
                         android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.336"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -224,7 +226,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/custom_rectangle"
+                        android:background="@drawable/custome_rectangle"
                         android:padding="20dp">
 
                         <TextView
@@ -304,6 +306,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:elevation="12dp"
+                android:foreground="@drawable/bg_soft_border"
                 app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -332,8 +335,8 @@
                         android:layout_height="wrap_content"
                         android:text="R 0,00 left"
                         android:textColor="#008000"
-                        android:textStyle="bold"
                         android:textSize="14sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -347,9 +350,9 @@
                         android:progress="60"
                         android:progressBackgroundTint="#E5E7EB"
                         android:progressTint="#FFC107"
-                        app:layout_constraintTop_toBottomOf="@id/tv_weekly_goal_title"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintTop_toBottomOf="@id/tv_weekly_goal_title" />
 
                     <TextView
                         android:id="@+id/tv_weekly_goal_of"
@@ -463,274 +466,3 @@
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-    <!--        <androidx.cardview.widget.CardView-->
-    <!--            android:id="@+id/cv_recent_transactions"-->
-    <!--            android:layout_width="0dp"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="16dp"-->
-    <!--            android:layout_marginTop="16dp"-->
-    <!--            android:layout_marginEnd="16dp"-->
-    <!--            android:elevation="12dp"-->
-    <!--            app:cardBackgroundColor="#E9F4EA"-->
-    <!--            app:cardCornerRadius="16dp"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/cv_promo_banner">-->
-
-    <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="281dp"-->
-    <!--                android:paddingBottom="16dp">-->
-
-    <!--                <Button-->
-    <!--                    android:id="@+id/btn_view_all"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginTop="32dp"-->
-    <!--                    android:layout_marginEnd="8dp"-->
-    <!--                    android:backgroundTint="#008000"-->
-    <!--                    android:paddingStart="16dp"-->
-    <!--                    android:paddingTop="8dp"-->
-    <!--                    android:paddingEnd="16dp"-->
-    <!--                    android:paddingBottom="8dp"-->
-    <!--                    android:text="View All"-->
-    <!--                    android:textColor="#FFFFFF"-->
-    <!--                    android:textSize="14sp"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                <com.google.android.material.tabs.TabLayout-->
-    <!--                    android:id="@+id/tab_layout"-->
-    <!--                    android:layout_width="381dp"-->
-    <!--                    android:layout_height="68dp"-->
-    <!--                    android:layout_marginStart="1dp"-->
-    <!--                    android:layout_marginTop="40dp"-->
-    <!--                    android:layout_marginEnd="1dp"-->
-    <!--                    android:backgroundTint="#A3C2A3"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintHorizontal_bias="0.25"-->
-    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/tv_recent_title"-->
-    <!--                    app:tabIndicatorColor="#FFC107"-->
-    <!--                    app:tabSelectedTextColor="#FFC107"-->
-    <!--                    app:tabTextColor="#162616">-->
-
-    <!--                    <com.google.android.material.tabs.TabItem-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="All" />-->
-
-    <!--                    <com.google.android.material.tabs.TabItem-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="Expenses" />-->
-
-    <!--                    <com.google.android.material.tabs.TabItem-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="Incomes" />-->
-
-    <!--                </com.google.android.material.tabs.TabLayout>-->
-
-    <!--                &lt;!&ndash; Transaction item 1: Gift from mom &ndash;&gt;-->
-    <!--                <TextView-->
-    <!--                    android:id="@+id/tv_recent_title"-->
-    <!--                    android:layout_width="wrap_content"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginStart="16dp"-->
-    <!--                    android:layout_marginTop="36dp"-->
-    <!--                    android:text="Recent Transactions"-->
-    <!--                    android:textColor="#162616"-->
-    <!--                    android:textSize="14sp"-->
-    <!--                    android:textStyle="bold"-->
-    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-    <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--                    android:id="@+id/cl_transaction_gift"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="46dp"-->
-    <!--                    android:layout_marginStart="2dp"-->
-    <!--                    android:layout_marginTop="8dp"-->
-    <!--                    android:layout_marginEnd="2dp"-->
-    <!--                    android:background="#F6F6F6"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/tab_layout">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:id="@+id/iv_transaction_icon_gift"-->
-    <!--                        android:layout_width="68dp"-->
-    <!--                        android:layout_height="38dp"-->
-    <!--                        android:layout_marginStart="6dp"-->
-    <!--                        android:src="@drawable/ic_featured_seasonal_and_gifts"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent"-->
-    <!--                        app:tint="#121212" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_title_gift"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginStart="72dp"-->
-    <!--                        android:text="Gift from mom"-->
-    <!--                        android:textColor="#162616"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_date_gift"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="2 March"-->
-    <!--                        android:textColor="#162616"-->
-    <!--                        android:textSize="10sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintStart_toStartOf="@+id/tv_transaction_title_gift"-->
-    <!--                        app:layout_constraintTop_toBottomOf="@+id/tv_transaction_title_gift" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_amount_gift"-->
-    <!--                        android:layout_width="56dp"-->
-    <!--                        android:layout_height="28dp"-->
-    <!--                        android:layout_marginEnd="16dp"-->
-    <!--                        android:text="+ R200"-->
-    <!--                        android:textColor="#4CAF50"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--                &lt;!&ndash; Transaction item 2: Coffee &ndash;&gt;-->
-    <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--                    android:id="@+id/cl_transaction_coffee"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="49dp"-->
-    <!--                    android:layout_marginStart="3dp"-->
-    <!--                    android:layout_marginTop="4dp"-->
-    <!--                    android:layout_marginEnd="3dp"-->
-    <!--                    android:background="#F6F6F6"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/cl_transaction_gift">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:id="@+id/iv_transaction_icon_coffee"-->
-    <!--                        android:layout_width="68dp"-->
-    <!--                        android:layout_height="38dp"-->
-    <!--                        android:layout_marginStart="6dp"-->
-    <!--                        android:src="@drawable/whatsapp_image_2026_03_17_at_17_25_51__1_"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_title_coffee"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginStart="76dp"-->
-    <!--                        android:text="Coffee"-->
-    <!--                        android:textColor="#162616"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_date_coffee"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="2 March"-->
-    <!--                        android:textColor="#162616"-->
-    <!--                        android:textSize="10sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintStart_toStartOf="@+id/tv_transaction_title_coffee"-->
-    <!--                        app:layout_constraintTop_toBottomOf="@+id/tv_transaction_title_coffee" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_amount_coffee"-->
-    <!--                        android:layout_width="46dp"-->
-    <!--                        android:layout_height="25dp"-->
-    <!--                        android:layout_marginEnd="16dp"-->
-    <!--                        android:text="- R200"-->
-    <!--                        android:textColor="#F44336"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--                &lt;!&ndash; Transaction item 3: Dress &ndash;&gt;-->
-    <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--                    android:id="@+id/cl_transaction_dress"-->
-    <!--                    android:layout_width="0dp"-->
-    <!--                    android:layout_height="47dp"-->
-    <!--                    android:layout_marginStart="-4dp"-->
-    <!--                    android:layout_marginTop="4dp"-->
-    <!--                    android:layout_marginEnd="-4dp"-->
-    <!--                    android:background="#F6F6F6"-->
-    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                    app:layout_constraintStart_toStartOf="parent"-->
-    <!--                    app:layout_constraintTop_toBottomOf="@+id/cl_transaction_coffee">-->
-
-    <!--                    <ImageView-->
-    <!--                        android:id="@+id/iv_transaction_icon_dress"-->
-    <!--                        android:layout_width="68dp"-->
-    <!--                        android:layout_height="38dp"-->
-    <!--                        android:layout_marginStart="12dp"-->
-    <!--                        android:src="@drawable/screenshot_2026_03_14_203223"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_title_dress"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginStart="76dp"-->
-    <!--                        android:text="Dress"-->
-    <!--                        android:textColor="#162616"-->
-    <!--                        android:textSize="14sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_date_dress"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:text="2 March"-->
-    <!--                        android:textColor="#162616"-->
-    <!--                        android:textSize="10sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintStart_toStartOf="@+id/tv_transaction_title_dress"-->
-    <!--                        app:layout_constraintTop_toBottomOf="@+id/tv_transaction_title_dress" />-->
-
-    <!--                    <TextView-->
-    <!--                        android:id="@+id/tv_transaction_amount_dress"-->
-    <!--                        android:layout_width="50dp"-->
-    <!--                        android:layout_height="27dp"-->
-    <!--                        android:layout_marginEnd="16dp"-->
-    <!--                        android:text="- R200"-->
-    <!--                        android:textColor="#F44336"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-    <!--        </androidx.cardview.widget.CardView>-->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
