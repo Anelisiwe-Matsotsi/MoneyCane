@@ -9,12 +9,14 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 //Ipek Birinci.2024
 //There are 3 tabs in the layout
 private const val NUM_TABS = 3
+
 class ViewPageAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
-private val types= arrayOf("All transactions", "Expenses", "Incomes")
+  //  private val types = arrayOf("All", "Expenses", "Incomes")
     override fun getItemCount(): Int {
         return NUM_TABS
-}
+    }
+
     override fun createFragment(position: Int): Fragment {
         when (position) {
             0 -> return AllTransactionsFragment()

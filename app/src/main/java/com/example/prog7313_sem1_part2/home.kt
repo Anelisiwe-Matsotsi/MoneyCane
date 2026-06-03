@@ -24,7 +24,7 @@ class home : Fragment(R.layout.fragment_home) {
 
         val profile = view.findViewById<ImageButton>(R.id.ib_arrow_forward)
         val wallet = view.findViewById<Button>(R.id.btn_add_wallet)
-        val budget = view.findViewById<Button>(R.id.btn_add_budget)
+        val budget = view.findViewById<ImageButton>(R.id.btn_add_budget)
         val tvWelcomeName = view.findViewById<TextView>(R.id.tv_welcome_name)
         //val goal = view.findViewById<Button>(R.id.btn_set_goal)
         //dont know what this is for yet
