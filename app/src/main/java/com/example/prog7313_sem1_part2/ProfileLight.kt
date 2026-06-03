@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 
 class ProfileLight :  Fragment(R.layout.profile_view) {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,13 +34,13 @@ class ProfileLight :  Fragment(R.layout.profile_view) {
             // Perform a one-time read using the modern get() method (Firebase. 2026.)
             userRef.get().addOnSuccessListener { snapshot ->
 
-                val userInfo = snapshot.getValue(userInfo::class.java)
-                if (userInfo != null) {
-                    tvUsername.text = userInfo.username
-                    tvFullName.text = "${userInfo.name} ${userInfo.surname}".trim()
+                val Users = snapshot.getValue(Users::class.java)
+                if (Users != null) {
+                    tvUsername.text = Users.username
+                    tvFullName.text = "${Users.name} ${Users.surname}".trim()
                     tvEmail.text =  email
                 } else {
-                    Toast.makeText(context, "userInfo data not found", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Users data not found", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener { e ->
 

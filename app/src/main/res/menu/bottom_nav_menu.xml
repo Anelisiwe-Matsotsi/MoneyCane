@@ -10,9 +10,9 @@
         android:id = "@+id/budgetLight"
         android:icon="@drawable/budgets_white"/>
     <item
-        android:title="Analysis"
-        android:id = "@+id/analysisLight"
-        android:icon="@drawable/analysis_gold"/>
+        android:title=""
+        android:id = "@+id/transaction_Fragment"
+        android:icon="@drawable/add"/>
     <item
         android:title="Rewards"
         android:id = "@+id/light_Achievment_Fragment"

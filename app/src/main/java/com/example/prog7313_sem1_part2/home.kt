@@ -15,6 +15,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.example.prog7313_sem1_part2.GraphPreviewFragment
+import com.google.android.material.button.MaterialButton
 
 
 class home : Fragment(R.layout.fragment_home) {
@@ -23,13 +25,11 @@ class home : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         val profile = view.findViewById<ImageButton>(R.id.ib_arrow_forward)
-        val wallet = view.findViewById<Button>(R.id.btn_add_wallet)
-        val budget = view.findViewById<Button>(R.id.btn_add_budget)
+        val wallet = view.findViewById<MaterialButton>(R.id.btn_add_wallet)   // MaterialButton is fine
+        val budget = view.findViewById<ImageButton>(R.id.btn_add_budget)      // ← ImageButton, not Button
+        val transaction = view.findViewById<MaterialButton>(R.id.btn_add_transaction)
         val tvWelcomeName = view.findViewById<TextView>(R.id.tv_welcome_name)
-        //val goal = view.findViewById<Button>(R.id.btn_set_goal)
-        //dont know what this is for yet
-        val transaction = view.findViewById<Button>(R.id.btn_add_transaction)
-        //  val transactionView= view.findViewById<Button>(R.id.btn_view_all)
+
         val bottomSheet = view.findViewById<LinearLayout>(R.id.bottom_sheet)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         val walletBalance = view.findViewById<TextView>(R.id.tvWalletBalance)
@@ -46,21 +46,26 @@ class home : Fragment(R.layout.fragment_home) {
         if (uid != null) {
             val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
             userRef.get().addOnSuccessListener { snapshot ->
-                // Using your userInfo data class
-                val userInfo = snapshot.getValue(userInfo::class.java)
-                if (userInfo != null && userInfo.name.isNotEmpty()) {
-                    tvWelcomeName.text = userInfo.name
+                // Using your Users data class
+                val Users = snapshot.getValue(Users::class.java)
+                if (Users != null && Users.name.isNotEmpty()) {
+                    var welcome = "Welcome, "+Users.name
+                    tvWelcomeName.text ="Welcome, "+Users.username
                 } else {
-                    tvWelcomeName.text = "userInfo"
+                    tvWelcomeName.text = "Users"
                 }
             }.addOnFailureListener {
-                tvWelcomeName.text = "userInfo"
+                tvWelcomeName.text = "Users"
                 // Optional: show error toast
                 Toast.makeText(context, "Failed to load name", Toast.LENGTH_SHORT).show()
             }
         } else {
-            tvWelcomeName.text = "userInfo"
+            tvWelcomeName.text = "Users"
         }
+        val graphPreview = GraphPreviewFragment()
+        childFragmentManager.beginTransaction()
+            .replace(R.id.graph_preview_container, graphPreview)
+            .commit()
 
 
 

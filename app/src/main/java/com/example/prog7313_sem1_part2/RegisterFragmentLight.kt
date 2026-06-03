@@ -45,10 +45,10 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
             val Confirm_password = confirm_password.text.toString()
 
             if (Email.isEmpty() || Password.isEmpty()) {
-                Toast.makeText(context, "please enter credentials", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "please enter credentials", Toast.LENGTH_LONG).show()
             } else if (Password != Confirm_password) {
                 Toast.makeText(
-                    context,"Passwords do not match, please try again",Toast.LENGTH_LONG
+                    requireContext(),"Passwords do not match, please try again",Toast.LENGTH_LONG
                 ).show()
             } else {
                 // create new user or register new user
@@ -61,33 +61,21 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
 
                         if (uid != null) {
 
-                            val userInfo = userInfo(
+                            val Users = Users(
                                 username = Username,
                                 name =Name,
                                 surname =Surname
                             )
 
-                            FirebaseDatabase.getInstance()
-                                .getReference("Users")
-                                .child(uid)
-                                .setValue(userInfo)
-                                .addOnSuccessListener {
+                            FirebaseDatabase.getInstance().getReference("Users").child(uid).setValue(Users).addOnSuccessListener {
 
-                                    Toast.makeText(
-                                        context,
-                                        "Registration successful!",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    Toast.makeText( requireContext(),"Registration successful!",Toast.LENGTH_LONG).show()
 
                                     findNavController().navigateUp()
                                 }
                                 .addOnFailureListener {
 
-                                    Toast.makeText(
-                                        context,
-                                        "Failed to save username",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    Toast.makeText(requireContext(),"Failed to save username",Toast.LENGTH_LONG).show()
                                 }
                         }
                         //(Firebase, 2026)
@@ -101,7 +89,7 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
 
                         //(Firebase, 2026)
                         //save email address to database
-                        val uid = rootNode.currentUser?.uid
+                        //val uid = rootNode.currentUser?.uid
                         if (uid != null) {
                             val newUser = User(uid = uid, email = Email)
                             FirebaseDatabase.getInstance().getReference("users").child(uid).setValue(newUser)
@@ -113,7 +101,7 @@ class RegisterFragmentLight : Fragment(R.layout.fragment_register_light) {
 
                     } else {
                         // Registration failed
-                        Toast.makeText(context,"Registration failed!!" + " Please try again later",Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(),"Registration failed!!" + " Please try again later",Toast.LENGTH_LONG).show()
                     }
                 }
 

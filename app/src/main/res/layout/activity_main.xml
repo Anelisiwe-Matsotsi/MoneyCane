@@ -27,10 +27,11 @@
         android:paddingTop="0dp"
 
         android:paddingBottom="0dp"
-        app:itemGravity="center"
+        android:translationY="30dp"
 
+        app:itemGravity="center"
         app:itemIconGravity="top"
-        app:itemIconSize="20dp"
+        app:itemIconSize="30dp"
         app:itemIconTint="#008000"
         app:itemPaddingBottom="0dp"
         app:itemTextColor="#008000"
