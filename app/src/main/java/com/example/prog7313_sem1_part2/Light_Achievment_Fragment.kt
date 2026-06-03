@@ -39,18 +39,18 @@ class Light_Achievment_Fragment : Fragment() {
     //Jetbrains,2024
     //All images from FLATICON
     private val gardenLevels = listOf(
-        Pair(1, R.drawable.cotton_candybluecloud), //patch 1 is worth 10 canes
-        Pair(2, R.drawable.rainbow), //patch 2 is worth 30 canes
-        Pair(3, R.drawable.unicorn), //patch 3 is worth 45 canes
-        Pair(4, R.drawable.cotton_candysmile), //patch 4 is worth 60 canes
-        Pair(5, R.drawable.cotton_candycane), //patch 5 is worth 65 canes
-        Pair(6, R.drawable.gummy), //patch 6 is worth 80
-        Pair(7, R.drawable.candies), //patch 7 is worth 80 canes
-        Pair(8, R.drawable.easter_bunny), //patch 8 is worth 80 canes
-        Pair(9, R.drawable.wedding_cake), //patch 9 is worth 80 canes
-        Pair(10, R.drawable.gingerbread_house), //patch 10 is worth 80 canes
-        Pair(11, R.drawable.bunny), //patch 11 is worth 80 canes
-        Pair(12, R.drawable.gingerbread_housecane), //patch 12 is worth 80 canes
+        Pair(5, R.drawable.cotton_candybluecloud), //patch 1 is worth 10 canes
+        Pair(10, R.drawable.rainbow), //patch 2 is worth 30 canes
+        Pair(15, R.drawable.unicorn), //patch 3 is worth 45 canes
+        Pair(20, R.drawable.cotton_candysmile), //patch 4 is worth 60 canes
+        Pair(25, R.drawable.cotton_candycane), //patch 5 is worth 65 canes
+        Pair(30, R.drawable.gummy), //patch 6 is worth 80
+        Pair(50, R.drawable.candies), //patch 7 is worth 80 canes
+        Pair(60, R.drawable.easter_bunny), //patch 8 is worth 80 canes
+        Pair(70, R.drawable.wedding_cake), //patch 9 is worth 80 canes
+        Pair(80, R.drawable.gingerbread_house), //patch 10 is worth 80 canes
+        Pair(90, R.drawable.bunny), //patch 11 is worth 80 canes
+        Pair(100, R.drawable.gingerbread_housecane), //patch 12 is worth 80 canes
 
     )
 
@@ -154,6 +154,14 @@ class Light_Achievment_Fragment : Fragment() {
                totalCanes=newCanes
                goalDatabase.child(userId).child(goal.goalId).child("completed").setValue(true) //card goes away when goal is complete
                loadGoals()
+
+               //Mascott
+               requireActivity().supportFragmentManager.setFragmentResult(
+                   "mascot_request", Bundle()
+                       .apply {
+                           putString("type", "goal")
+                       }
+               )
                activity?.runOnUiThread {
                    if (isAdded) {
                        Toast.makeText(context, "Goal Done! +5canes!", Toast.LENGTH_SHORT).show()
