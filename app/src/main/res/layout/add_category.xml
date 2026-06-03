@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F7F9F2">
+    android:background="?android:attr/colorBackground">
 
     <!-- GREEN HEADER -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:background="@drawable/custom_rectangle"
-        android:backgroundTint="#A3C2A3">
+        >
 
         <ImageButton
             android:id="@+id/btnBack"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="CREATE CATEGORY"
-            android:textColor="#001430"
+            android:textColor="?attr/colorOnSurface"
             android:textStyle="bold"
             android:textSize="32sp" />
     </RelativeLayout>

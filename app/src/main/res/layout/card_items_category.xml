@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
     app:cardCornerRadius="16dp"
-    app:cardBackgroundColor="#A3C2A3
-">
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +43,7 @@
                     android:layout_marginTop="2dp"
                     android:text="Expense"
                     android:textColor="#2F2F2F"
-                    android:textSize="13sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
@@ -86,6 +85,6 @@
             android:layout_marginTop="6dp"
             android:text="Limit: R0"
             android:textColor="#4C4E4E"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
