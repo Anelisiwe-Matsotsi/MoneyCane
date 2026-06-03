@@ -184,9 +184,7 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"/>
-        <action
-            android:id="@+id/action_home_to_weeklyGoalSetupFragment"
-            app:destination="@id/weeklyGoalSetupFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/more_Light_Fragment"
