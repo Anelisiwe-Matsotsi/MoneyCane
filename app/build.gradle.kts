@@ -78,7 +78,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:31.5.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.airbnb.android:lottie:6.7.1")
-    implementation(libs.play.services.maps)
+    implementation(libs.play.services.maps)   // if you use key "play-services-maps"
     implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
