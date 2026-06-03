@@ -22,7 +22,8 @@ class CreateWalletFragment : Fragment() {
     private val uid = MainActivity.getUserID()
 
     //stores the User information from data class chosen by current user to share wallet with
-    private var selectedPeopleList: List<User> = emptyList() //type parameter is inferred from the expected type (Kotlin Programming Language, 2026)
+    private var selectedEmails: ArrayList<String> = arrayListOf() //type parameter is inferred from the expected type (Kotlin Programming Language, 2026)
+    private var selectedUids: ArrayList<String> = arrayListOf() //type parameter is inferred from the expected type (Kotlin Programming Language, 2026)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +33,16 @@ class CreateWalletFragment : Fragment() {
         parentFragmentManager.setFragmentResultListener("sharedWalletInvite", this) {sharedWalletInvite, bundle ->
             //(StackOverflow,2023b)
             //getStringArrayList- store selected emails to pass it to next activity as a group
+            val emails = bundle.getStringArrayList("selectedEmails")
+            val uids = bundle.getStringArrayList("selectedUids")
 
-            //getting the full serialized user object to store in an array form to link the User ID to the correct email to send the notification linked to the correct FCM token
-            val emails = bundle.getSerializable("selectedEmails") as? ArrayList<User>
-            if (emails != null) {
-                selectedPeopleList = emails
+            if (emails != null && uids !=null) {
+                selectedEmails = emails
+                selectedUids = uids
 
                 //number of emails chosen is displayed before creating wallet
                 val tvShareWallet = view?.findViewById<TextView>(R.id.tvShareWallet)
-                tvShareWallet?.text = "Share Wallet with Other people: ${selectedPeopleList.size} selected >" //(StackOverflow, 2018)
+                tvShareWallet?.text = "Share Wallet with Other people: ${selectedEmails.size} selected >" //(StackOverflow, 2018)
             }
         }
     }
@@ -57,11 +59,6 @@ class CreateWalletFragment : Fragment() {
         val btnAddWallet = view.findViewById<Button>(R.id.btnAddWallet)
         val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
         val tvShareWallet = view.findViewById<TextView>(R.id.tvShareWallet)
-
-//        val radioGroupType = view.findViewById<RadioGroup>(R.id.radioGroupType)
-//        val radioExpense = view.findViewById<RadioButton>(R.id.radioExpense)
-//        val radioIncome = view.findViewById<RadioButton>(R.id.radioIncome)
-
 
         //(Android Developers, 2026)
         // Navigate back to the categories list
@@ -95,14 +92,7 @@ class CreateWalletFragment : Fragment() {
                 return@setOnClickListener
             }
 
-//            // Determine selected type from the RadioGroup
-//            //(StackOverflow, 2023)
-//            val selectedType = when (radioGroupType.checkedRadioButtonId) {
-//                R.id.radioIncome -> "income"
-//                else -> "expense"
-//            }
-
-            saveWallet(name, limit, selectedPeopleList)
+            saveWallet(name, limit)
         }
 
         return view
@@ -110,41 +100,40 @@ class CreateWalletFragment : Fragment() {
 
     //Firebase, 2026)
     //wallet is saved in firebase DB
-    private fun saveWallet(name: String, limit: Double, sharedPeople: List<User>) {
+    private fun saveWallet(name: String, limit: Double) {
         // push creates a unique key for the new wallet
         val getDatabase = FirebaseDatabase.getInstance().reference
-        val walletRef = getDatabase.child(uid).push()//saves the data under the user ID, as a child
+        val walletRef = getDatabase.child("wallets").child(uid).push()//saves the data under the user ID, as a child
         val walletId = walletRef.key ?: return
-
-        //fetch the email address to save other wallet data into new wallet only
-        val getEmails = sharedPeople.map{it.email}
 
         val newWallet = Wallet(
             id = walletId,
             name = name,
             balance = limit,
-            people = getEmails
+            people = selectedEmails, //list of emails are passed into people variable
+            createdBy = uid
         )
 
-        //multi-node database update map pathing
+        //(Firebase, 2017)
+        //atomic multi-path database update through hash map for all users simultaneously
         val childUpdates = HashMap<String, Any>()
 
         //saves to the wallet creators Wallets UI
         childUpdates["/wallets/$uid/$walletId"] = newWallet
 
+        //(East, 2015)
         //saves to the other added wallet members wallets UI
-        for (user in sharedPeople) {
-            if(user.uid.isNotEmpty()) {
-                childUpdates["/wallets/${user.uid}/$walletId"] = newWallet
+        for (user in selectedUids) {
+            if(user.isNotEmpty()) {
+                childUpdates["/wallets/$user/$walletId"] = newWallet
             }
         }
 
-        getDatabase.updateChildren(childUpdates)
+        getDatabase.updateChildren(childUpdates) //atomic updating
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "$name wallet created!", Toast.LENGTH_SHORT).show()
 
-                //notification is sent to emails chosen via token
-                sendNotification(name, sharedPeople)
+                //notification sent once save button is clicked
 
                 // Return to the wallet list
                 //(Android Developers, 2026)
@@ -153,14 +142,6 @@ class CreateWalletFragment : Fragment() {
             .addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
             }
-    }
-
-    private fun sendNotification(walletName: String, receivers: List<User>) {
-        for (user in receivers) {
-            if(user.fcmToken.isNotEmpty()) {
-
-            }
-        }
     }
 }
 
@@ -171,7 +152,9 @@ Android Developers. 2026. Fragment manager | App architecture. (version 8) [sour
 Android Developers. 2026b. Communicate with fragments. (version 8) [Source Code]. Available at: <https://developer.android.com/guide/fragments/communicate#pass-parent-child> [Accessed 2 June 2026]
 Android Knowledge. 2023. CRUD using Firebase Realtime Database in Android Studio using Kotlin | Create, Read, Update, Delete. (version 8) [source code] Available at: < https://youtu.be/oGyQMBKPuNY?si=Nj0DRStlfvfFvane > [Accessed 26 April 2026]
 Bak, K. 2023. Validating user input in kotlin: a guide to adding validation to a new transaction. (version 8) [source code]. Available at: < https://53jk1.medium.com/validating-user-input-in-kotlin-a-guide-to-adding-validation-to-a-new-transaction-2e486f176674 > [Accessed 26 April 2026]
+East, D. 2015. Client-side fan-out for data consistency. (version 8) [source code]. Available at: <https://firebase.blog/posts/2015/10/client-side-fan-out-for-data-consistency_73/>[Accessed 3 June 2026]
 Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
+Firebase. 2017. Data consistency with multi-path updates- The firebase database for SQL Developers #7. (version 8) [source code]. Available at: <https://youtu.be/i1n9Kw3AORw?si=oBKfT2f5nWdfq3QT> [Accessed 3 June 2026]
 Kotlin Programming Language. 2026. EmptyList | Core API- Kotlin Programming Language. (version 8) [Source Code]. Available at: <https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/empty-list.html> [Accessed 1 June 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8) [source code]. Available at: < https://stackoverflow.com/questions/77541256/set-variable-depending-on-radiogroup-button-selected-in-kotlin > [Accessed 26 April 2026]
 StackOverflow. 2023b. getStringArrayList(key) in android generating null result. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/11402050/getstringarraylistkey-in-android-generating-null-result> [Accessed 1 June 2026]

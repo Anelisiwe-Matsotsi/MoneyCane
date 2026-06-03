@@ -62,6 +62,7 @@ class EmailAdapter (
     //(GeeksforGeeks, 2025)
     override fun getItemCount(): Int = users.size
 
+    //(StackOverflow, 2022)
     fun getSelectedEmails(): List<String> {
         return selectedEmails.toList()
     }
@@ -77,5 +78,6 @@ GeeksforGeeks. 2025. RecyclerView in Android with Example. (Version 8) [source c
 GeeksforGeeks. 2025b. Kotlin mutableListOf(). (version 8) [Source Code]. Available at:<https://www.geeksforgeeks.org/kotlin/kotlin-mutablelistof/> [Accessed 1 June 2026]
 Kotlin Programming Language. 2026. coerceIn | Core API. (Version 8) [source code]. Available at: < https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.ranges/coerce-in.html > [Accessed 26 April 2026]
 Pathak, A. 2025. Kotlin Series: Nested and Inner Classes. (Version 8) [source code]. Available at: < https://medium.com/@myofficework000/kotlin-series-nested-and-inner-classes-0f76f6a13abd > [Accessed 26 April 2026]
+StackOverflow. 2022. How to stream map list of array object in kotlin. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/73473972/how-to-stream-map-list-of-array-object-in-kotlin> [Accessed 1 June 2026]
 StackOverflow. 2018. How to change the backgroundcolor of a cardview when it is selected?. (version 8) [Source Code]. Available at: <https://stackoverflow.com/questions/47441893/how-to-change-the-backgroundcolor-of-a-cardview-when-it-is-selected> [Accessed 1 June 2026]
 */

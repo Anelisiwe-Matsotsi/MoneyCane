@@ -4,7 +4,8 @@ data class Wallet(
     val id: String = "",
     val name: String = "", //Cash, Bank, Savings
     val balance: Double = 0.0, //initial amount when first created
-    val people : List<String> //nel@gmail.com, natty@gmail.com
+    val people : List<String> = emptyList(), //nel@gmail.com, natty@gmail.com
+    val createdBy: String = ""
 )
 /*
 References

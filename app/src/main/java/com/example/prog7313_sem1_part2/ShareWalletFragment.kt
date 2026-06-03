@@ -47,11 +47,17 @@ class ShareWalletFragment : Fragment() {
             //get the list of people the wallet is being shared with to pass the variable to the create wallet fragment
             val selectedPeople = adapter.getSelectedEmails()
 
-            //matching the selected peuple to their user data to get fcmtoken
+            //filtering User.kt objects to extract email addresses and User ID
             val selectedUser = emailList.filter {it.email in selectedPeople}
+            //(Felker, 2021)
+            val emailsSelected = ArrayList(selectedUser.map{it.email})
+            val uidsSelected = ArrayList(selectedUser.map{it.uid})
 
-            //creating bundle to pass selected emails to Wallet fragment
-            val bundle = bundleOf ("selectedEmails" to ArrayList(selectedUser)) //passing all the data from User.kt
+            //(StackOverflow, 2018)
+            //bundleOf return key and value pair
+            //creating bundle to pass selected emails and User ID to Wallet fragment
+            val bundle = bundleOf ("selectedEmails" to emailsSelected,
+                                            "selectedUids" to uidsSelected)
 
             parentFragmentManager.setFragmentResult("sharedWalletInvite", bundle)
             findNavController().navigateUp()
@@ -124,10 +130,12 @@ Android Knowledge. 2023. CRUD using Firebase Realtime Database in Android Studio
 Bak, K. 2023. Validating user input in kotlin: a guide to adding validation to a new transaction. (version 8) [source code]. Available at: < https://53jk1.medium.com/validating-user-input-in-kotlin-a-guide-to-adding-validation-to-a-new-transaction-2e486f176674 > [Accessed 26 April 2026]
 Bhosale, A. 2024. Kotlin under the hood: exploring objects, companion objects, and annotations: @JvmStatic, @JvmField, @JvmOverloads. (version 8) [source code]. Available at: < https://proandroiddev.com/kotlin-under-the-hood-exploring-objects-companion-objects-and-annotations-jvmstatic-71e1bf1128df > [Accessed 26 April 2026]
 CodingSTUFF. 2022. SearchView with RecyclerView in Kotlin - Android Studio Tutorial (2022). (Version 8) [source code]. Available at: < https://youtu.be/SD097oVVrPE?si=DlBMjYGsFJOLdLWo > [Accessed 26 April 2026]
+Felker, D. 2021. How to filter and Transform Maps in Kotlin. (version 8) [Source Code]. Available at: <https://youtu.be/O6t6V_qtw8E?si=pGm9pwR_CqYDaBAI> [Accessed 3 June 2026]
 Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
 Firebase. 2026b. Work with Lists of Data on Android.(Version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/lists-of-data#child-events > [Accessed 26 April 2026]
 GeeksforGeeks. 2025. SearchView in Android with Kotlin. (Version 8) [source code]. Available at: < https://www.geeksforgeeks.org/kotlin/searchview-in-android-with-kotlin/ > [Accessed 27 April 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8) [source code]. Available at: < https://stackoverflow.com/questions/77541256/set-variable-depending-on-radiogroup-button-selected-in-kotlin > [Accessed 26 April 2026]
 StackOverflow. 2019. Filter for SearchView in Kotlin. (version 8) [Source Code]. Available at: < https://stackoverflow.com/questions/55537368/filter-for-searchview-in-kotlin > [Accessed 27 April 2026]
 StackOverflow. 2019b. Deleting random 2nd child in firebase realtime database that is created with push in Android Studio. (version 8) [source code]. Available at: < https://stackoverflow.com/questions/54385451/deleting-random-2nd-child-in-firebase-realtime-database-that-is-created-with-pus > [Accessed 27 April 2026]
- */
+StackOverflow. 2018. Kotlin extensios for Android: how to use bundleOf. (version 8) [source code]. Available at: <https://stackoverflow.com/questions/49342909/kotlin-extensions-for-android-how-to-use-bundleof> [Accessed 1 June 2026]
+*/
