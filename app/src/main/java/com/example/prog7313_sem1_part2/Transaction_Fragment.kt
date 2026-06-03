@@ -670,4 +670,5 @@ Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Avail
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8)
 Ghanem, A. 2024. What is Context? In Android, represents the current state of the application. It provides access to various resources (e. [online] Linkedin.com. Available at: <https://www.linkedin.com/pulse/context-android-abdelrhman-ghanem-zbpcf/ [Accessed 26 Apr. 2026].
 GeekforGeeks.2020.SoundPool in Android with Examples.(version 8) [source code]. Available at: <https://www.geeksforgeeks.org/android/soundpool-in-android-with-examples/ >[Accessed 11 May 2026]
+ LottieFiles. 2026. Getting Started with Lottie Animations in an Android App.(version 8) [source code]. Available at: < https://lottiefiles.com/blog/working-with-lottie-animations/getting-started-with-lottie-animations-in-android-app > [Accessed 3 June 2026].
  */
