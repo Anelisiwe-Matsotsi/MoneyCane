@@ -1,5 +1,6 @@
 package com.example.prog7313_sem1_part2
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -37,6 +38,11 @@ class LightWalletFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wallet_light, container, false)
+
+        //loads all existing wallets
+        existingWalletIds.addAll(requireContext()
+            .getSharedPreferences("wallet_prefs", Context.MODE_PRIVATE)
+            .getStringSet("existingWalletIds", emptySet()) ?: emptySet())
 
         // setting up recycler view
         rvWallets = view.findViewById(R.id.rvWallets)
@@ -101,7 +107,7 @@ class LightWalletFragment : Fragment() {
         }
     }
 
-    private var initialLoad = true //prevents spamming existing wallet notifications
+    //private var initialLoad = true //prevents spamming existing wallet notifications
     private val existingWalletIds = mutableSetOf<String>() //persists between onDataChange function when the walletList is cleared
 
     //recycler view updates everytime if a wallet is added or edited
@@ -118,7 +124,7 @@ class LightWalletFragment : Fragment() {
 
                     if (wallet != null) {
                         //logged in user sees notification of new shared wallet created by owner
-                        if(!initialLoad && !existingWalletIds.contains(wallet.id) && wallet.createdBy != uid) {
+                        if(!existingWalletIds.contains(wallet.id) && wallet.createdBy != uid) {
                             showNotification(
                                 context=requireContext(),
                                 title = "New Shared Wallet!",
@@ -129,9 +135,12 @@ class LightWalletFragment : Fragment() {
                         walletList.add(wallet)
                     }
                 }
+                //persists after every DB wallet update
+                requireContext().getSharedPreferences("wallet_prefs", Context.MODE_PRIVATE).edit()
+                    .putStringSet("existingWalletIds", existingWalletIds.toSet()).apply()
+
                 adapter.notifyDataSetChanged()
                 updateTotalBalance() //wallets total updates after wallets are added/edited
-                initialLoad = false
             }
 
             //database error
