@@ -31,19 +31,31 @@ import android.media.AudioAttributes
 import  android.media.AudioManager
 import  android.media.SoundPool
 import android.os.Build
+import android.util.Log.e
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.time.temporal.TemporalAmount
 
 class Transaction_Fragment : Fragment() {
 
     //Add image code
     private val storageService = SupabaseStorageService()
+
+    private val storageRef: StorageReference = FirebaseStorage.getInstance().reference
+
     private var selectedImageUri: Uri? = null
     private var uploadedImageUrl: String? = null
     private lateinit var imgSelected: ImageView
-    //private lateinit var imgDownloaded: ImageView
+    private lateinit var cgGoals: ChipGroup
 
+    //private lateinit var imgDownloaded: ImageView
     // Firebase Realtime Database reference
     private val database = FirebaseDatabase.getInstance().getReference("transactions")
 
+    private lateinit var radioGroupType: RadioGroup
 
     private var selectedCategoryId: String = ""
     private var selectedWalletId: String = ""
@@ -92,7 +104,7 @@ class Transaction_Fragment : Fragment() {
         // Initialize DatePicker from layout
         val datePicker: DatePicker = view.findViewById(R.id.datePicker)
         val etDescription = view.findViewById<EditText>(R.id.tbDescription)
-        val radioGroupType = view.findViewById<RadioGroup>(R.id.radioGroupType)
+        radioGroupType = view.findViewById(R.id.radioGroupType)
         val radioExpense = view.findViewById<RadioButton>(R.id.radioExpense)
         val radioIncome = view.findViewById<RadioButton>(R.id.radioIncome)
         val btnSelectWallet = view.findViewById<Button>(R.id.btn_select_wallet)
@@ -115,10 +127,11 @@ class Transaction_Fragment : Fragment() {
             uploadSelectedImage()
         }
         back.setOnClickListener {
-            findNavController().navigateUp()
+            parentFragmentManager.popBackStack()
         }
 
-
+        cgGoals = view.findViewById<ChipGroup>(R.id.cgGoals)
+        setupGoalChips()
         //soundpool
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val audioAttributes = AudioAttributes.Builder()
@@ -178,8 +191,15 @@ class Transaction_Fragment : Fragment() {
             val amountText = etAmount.text.toString().trim()
             val content = etDescription.text.toString()
             val imageUrl = uploadedImageUrl ?: ""// if no image is uploaded empty string is returned
+            val checkedChipId = cgGoals.checkedChipId
+            var selectedGoalId: String? = null
 
-
+            if (checkedChipId != -1) {
+                val selectedChip = cgGoals.findViewById<Chip>(checkedChipId)
+                if (selectedChip != null) {
+                    selectedGoalId = selectedChip.tag.toString()
+                }
+            }
 
             if (name.isEmpty()) {
                 etName.error = "Enter Transaction Name"
@@ -243,17 +263,43 @@ class Transaction_Fragment : Fragment() {
                 date,
                 imageUrl,
                 selectedCategoryId,
-                selectedWalletId
+                selectedWalletId,
+                selectedGoalId
             )
         }
 
     }
 
+    private fun updateGoalProgress(transactionAmount: Double, transactionType: String) {
+        val uid = MainActivity.getUserID()
+        val goalDatabase = FirebaseDatabase.getInstance().getReference("goals").child(uid)
+
+        //search for goals that match the transaction type
+        goalDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (child in snapshot.children) {
+                    val goal = child.getValue(Goal::class.java)
+
+                    //if goal matches type, the goal progress increases
+                    if (goal != null && goal.goalType == transactionType && !goal.completed) {
+                        val newAmount = goal.currentAmount + transactionAmount
+
+                        //update specific goal in firebase
+                        child.ref.child("currentAmount").setValue(newAmount)
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+
     //Firebase, 2026)
     //transaction is saved in firebase DB
     private fun saveTransaction(
         name: String, amount: Double, type: String, content: String,
-        date: String, imageUrl: String, category: String, wallet: String
+        date: String, imageUrl: String, category: String, wallet: String, selectedGoalId: String?
     ) {
         // push creates a unique key for the new transaction
 
@@ -268,6 +314,7 @@ class Transaction_Fragment : Fragment() {
 
         val transactionId = transactionRef.key ?: return
 
+
         val newTransaction = Transaction(
             id = transactionId,
             name = name,
@@ -277,13 +324,18 @@ class Transaction_Fragment : Fragment() {
             date = date,
             imageUrl = imageUrl,
             categoryId = category,
-            walletId = wallet
+            walletId = wallet,
+            selectedGoalId = selectedGoalId
         )
 
 
         transactionRef.setValue(newTransaction)
             .addOnSuccessListener {
 
+                //update goal progress
+                if (selectedGoalId != null) {
+                    updateGoalProgress(amount, type, selectedGoalId)
+                }
                 //call function to update wallet balance when transaction is saved successfully
                 updateWalletBalance(wallet, amount, type)
 
@@ -411,6 +463,84 @@ class Transaction_Fragment : Fragment() {
         dialog.show()
     }
 
+    private fun setupGoalChips() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        FirebaseDatabase.getInstance().getReference("goals").child(uid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    cgGoals.removeAllViews()// Clear old
+                    for (child in snapshot.children) {
+                        val goal = child.getValue(Goal::class.java)
+                        if (goal != null && !goal.completed) {
+                            val chip = Chip(requireContext())
+                            chip.text = goal.goalName
+                            chip.id = View.generateViewId()
+                            chip.isCheckable = true //allow selection
+                            chip.tag = goal.goalId //Store the id
+
+
+                            //validate goal type and transaction type match
+                            chip.setOnClickListener {
+                                val currentTransactionType =
+                                    if (radioGroupType.checkedRadioButtonId == R.id.radioIncome) {
+                                        "income"
+                                    } else {
+                                        "expense"
+                                    }
+
+                                //if they dont match user gets warning
+                                if (goal.goalType != currentTransactionType) {
+                                    chip.isChecked = false //uncheck
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Cannot add to this goal: It is an ${goal.goalType} goal",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                }
+                            }
+                            cgGoals.addView(chip)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+    }
+
+
+    private fun updateGoalProgress(
+        transactionAmount: Double,
+        transactionType: String,
+        goalId: String
+    ) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val goalDatabase =
+            FirebaseDatabase.getInstance().getReference("goals").child(uid).child(goalId)
+
+        //search for goals that match the transaction type
+        goalDatabase.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                val goal = snapshot.getValue(Goal::class.java)
+
+                //if goal matches type, the goal progress increases
+                if (goal != null && goal.goalType == transactionType && !goal.completed) {
+                    val newAmount = goal.currentAmount + transactionAmount
+                    //update specific goal in firebase
+                    goalDatabase.child("currentAmount").setValue(newAmount)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
 
     private fun uploadSelectedImage() {
         val uri = selectedImageUri
@@ -419,44 +549,38 @@ class Transaction_Fragment : Fragment() {
             Log.e("ProfileBadge", "Upload attempted with no image selected")
             return
         }
-
+        // get current user Id
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
+        // update ui to show progress
         txtStatus.text = "Status: Uploading..."
+        btnUpload.isEnabled = false //prevent multiple upload accidents
 
-        thread {
-            try {
-                val fileBytes = FileUtils.readBytes(requireContext(), uri)//Ghanem, A. 2024
 
-                val extension = MimeTypeMap.getFileExtensionFromUrl("image.jpg")
-                val filePath = "demo_${System.currentTimeMillis()}.$extension"
+        val fileName = "transaction_${System.currentTimeMillis()}.jpg"
+        val fileRef = storageRef.child("transaction_images/$uid/$fileName")
 
-                Log.d("ProfileBadge", "Uploading file: $filePath")
+        fileRef.putFile(uri)
+            .addOnSuccessListener { taskSnapshot ->
+                //fetch downloaded url to save in the database
+                fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    uploadedImageUrl = downloadUri.toString()
+                    txtStatus.text = "Status: Upload successful"
+                    btnUpload.isEnabled = true
 
-                val result = storageService.uploadImage(
-                    fileBytes,
-                    filePath,
-                    requireContext().contentResolver.getType(uri) ?: "image/jpeg"
-                )
-                //Ghanem, A. 2024
-                requireActivity().runOnUiThread {
-                    result.onSuccess {
-                        uploadedImageUrl = it
-                        txtStatus.text = "Status: Upload successful"
-                        Log.d("ProfileBadge", "Upload success: $it")
-                    }.onFailure {
-                        txtStatus.text = "Status: ${it.message}"
 
-                        Log.e("ProfileBadge", "Upload failed", it)
-                    }
-                }
-
-            } catch (e: Exception) {
-                requireActivity().runOnUiThread {
-                    txtStatus.text = "Status: Error"
-                    Log.e("ProfileBadge", "Exception during upload", e)
+                    Log.d("Storage", "Image URL: $uploadedImageUrl")
+                    Toast.makeText(requireContext(), "Image upload successful!", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
-        }
+            .addOnFailureListener { e ->
+                txtStatus.text = "Status: Error: ${e.message}"
+                btnUpload.isEnabled = true
+                Log.e("ProfileBadge", "Exception during upload ${e.message}")
+                Toast.makeText(requireContext(), "Error${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -511,12 +635,12 @@ class Transaction_Fragment : Fragment() {
 
         //get the current users created categories
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val categoryRef = FirebaseDatabase.getInstance().getReference("categories").child(uid).child(categoryId)
+        val categoryRef =
+            FirebaseDatabase.getInstance().getReference("categories").child(uid).child(categoryId)
 
         //get the current spent value based on transactions
         categoryRef.get().addOnSuccessListener { snapshot ->
-            val category = snapshot.getValue(Category::class.java) ?:
-                return@addOnSuccessListener
+            val category = snapshot.getValue(Category::class.java) ?: return@addOnSuccessListener
 
             //adds the expense amount to the current spent amount of the specific category
             val update = category.spent + amount
@@ -524,12 +648,14 @@ class Transaction_Fragment : Fragment() {
             //spent variable is updated to influence the progress bar
             categoryRef.child("spent").setValue(update) //saved to DB
                 .addOnFailureListener { error ->
-                    Toast.makeText(requireContext(), "Category failed to updated" + error, Toast.LENGTH_SHORT
+                    Toast.makeText(
+                        requireContext(), "Category failed to updated" + error, Toast.LENGTH_SHORT
                     ).show()
 
                 }
                 .addOnFailureListener { error ->
-                    Toast.makeText(requireContext(), "Category Not Found" + error, Toast.LENGTH_SHORT
+                    Toast.makeText(
+                        requireContext(), "Category Not Found" + error, Toast.LENGTH_SHORT
                     ).show()
                 }
         }
