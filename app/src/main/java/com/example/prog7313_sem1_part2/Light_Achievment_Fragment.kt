@@ -36,7 +36,8 @@ class Light_Achievment_Fragment : Fragment() {
 
 
     //define the worth of the candy rewards
-    //kotlin
+    //Jetbrains,2024
+    //All images from FLATICON
     private val gardenLevels = listOf(
         Pair(1, R.drawable.cotton_candybluecloud), //patch 1 is worth 10 canes
         Pair(2, R.drawable.rainbow), //patch 2 is worth 30 canes
@@ -163,7 +164,7 @@ class Light_Achievment_Fragment : Fragment() {
 
 
 
-
+//Android Developers, 2026
     //Reward Garden
     private fun updateGardenInfo() {
 
@@ -177,6 +178,7 @@ class Light_Achievment_Fragment : Fragment() {
                     //unlock the sweet for this level
                     patch.setImageResource(resource)
                     patch.alpha = 1.0f
+                    patch.imageAlpha= 255
                     if (i >= 6) patch.elevation = 10f else patch.elevation = 0f
                 } else {
                     // show the locked state
@@ -208,11 +210,13 @@ class Light_Achievment_Fragment : Fragment() {
     }
 }
 /*Reference List:
+Android Developers. 2026. ViewGroup | API reference.(Version 8) [source code]. Available at: < https://developer.android.com/reference/android/view/ViewGroup > [Accessed 1 June 2026].
 Bhosale, A. 2024. Kotlin under the hood: exploring objects, companion objects, and annotations: @JvmStatic, @JvmField, @JvmOverloads.(version 8) [source code].Available at:<https://proandroiddev.com/kotlin-under-the-hood-exploring-objects-companion-objects-and-annotations-jvmstatic-71e1bf1128df>.[Accessed 26 April 2026].
 Firebase. 2026. Work with Lists of Data on Android.(Version 8) [source code]. Available at:<https://firebase.google.com/docs/database/android/lists-of-data#child-events>.[Accessed 26 April 2026].
 Medium.2021.Value Animator : Android Animation.[online].Available at:<https://medium.com/@rajatnfo/value-animator-android-animation-6841e856e5a8>.[Accessed 27 April 2026].
+JetBrains. 2024. Collections overview | Kotlin Documentation.(Version 8) [source code]. Available at: < https://kotlinlang.org/docs/collections-overview.html > [Accessed 1 June 2026].
 Stackoverflow.2018.Firebase Database setValue() and updateChildren() overwrites previous value.[online].Available at:<https://stackoverflow.com/questions/52697580/firebase-database-setvalue-and-updatechildren-overwrites-previous-value>.[Accessed 27 April 2026].
 Stackoverflow.2019.How to calculate percentage in Kotlin.[online].Available at:<https://stackoverflow.com/questions/58156090/how-to-calculate-percentage-in-kotlin>.[Accessed 26 April 2026].
 Stackoverflow.2011.How to set the text color of TextView in code?[online].Available at:<https://stackoverflow.com/questions/4602902/how-to-set-the-text-color-of-textview-in-code>.[Accessed 26 April 2026].
-Stackoverflow.2021.How to use when statement in Kotlin?[online].Available at:<https://stackoverflow.com/questions/68081321/how-to-use-when-statement-in-kotlin>.[Accessed 26 April 2026].
+Stackoverflow.2021.How to use when statement in Kotlin?(Version 8) [source code]..Available at:<https://stackoverflow.com/questions/68081321/how-to-use-when-statement-in-kotlin>.[Accessed 26 April 2026].
 */
