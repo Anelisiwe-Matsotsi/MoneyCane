@@ -8,161 +8,114 @@
     android:background="?android:attr/colorBackground"
     tools:context=".onboarding.screens.SecondScreenFragment">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Create a budget"
-        android:textAlignment="center"
-        android:textColor="#1E293B"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/tv_subtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="sans-serif"
-        android:lineSpacingMultiplier="1.2"
-        android:text="Set a planned limit for spending to keep your visual analytics tracking accurately from day one."
-        android:textAlignment="center"
-        android:textColor="#64748B"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/card_input_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_input_container"
+        android:id="@+id/cv_feature_card"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
         app:cardBackgroundColor="#F8FAFC"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
-        app:strokeColor="#E2E8F0"
         app:strokeWidth="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/next"
+        app:strokeColor="#E2E8F0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_subtitle">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="24dp">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieTracking"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginBottom="12dp"
+                app:lottie_rawRes="@raw/raining_candies"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
 
             <TextView
-                android:id="@+id/tv_currency_symbol"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="R"
+                android:fontFamily="sans-serif-black"
+                android:text="Track Habits"
+                android:textAlignment="center"
                 android:textColor="#1E293B"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/et_budget_amount"
-                app:layout_constraintEnd_toStartOf="@+id/et_budget_amount"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/et_budget_amount" />
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/et_budget_amount"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:background="@android:color/transparent"
-                android:fontFamily="sans-serif-medium"
-                android:hint="0,00"
-                android:inputType="numberDecimal"
-                android:textColor="#1E293B"
-                android:textColorHint="#94A3B8"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/btn_info_tooltip"
-                app:layout_constraintStart_toEndOf="@+id/tv_currency_symbol"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/btn_info_tooltip"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Budget Definition Info"
-                android:src="@android:drawable/ic_menu_info_details"
-                app:layout_constraintBottom_toBottomOf="@+id/et_budget_amount"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/et_budget_amount"
-                app:layout_constraintTop_toTopOf="@+id/et_budget_amount"
-                app:tint="#64748B" />
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#CBD5E1"
-                app:layout_constraintEnd_toEndOf="@+id/et_budget_amount"
-                app:layout_constraintStart_toStartOf="@+id/tv_currency_symbol"
-                app:layout_constraintTop_toBottomOf="@+id/et_budget_amount" />
-
-            <TextView
-                android:id="@+id/tv_timeframe_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="sans-serif"
-                android:text="Budget limit applies per month"
-                android:textColor="#64748B"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/next"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+    <TextView
+        android:id="@+id/tv_feature_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardBackgroundColor="#A3C2A3"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingMultiplier="1.4"
+        android:text="Log your daily cash flows and expenses seamlessly. Staying close to your logs gives you powerful, clear control over where your wealth grows."
+        android:textAlignment="center"
+        android:textColor="#64748B"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_feature_card" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom_navigation_bar"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_media_next"
-            app:tint="#FFC107" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-    </com.google.android.material.card.MaterialCardView>
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="4dp"
+                android:background="@android:color/darker_gray" />
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/next"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#E2E8F0"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_media_next"
+                app:tint="#001430" />
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

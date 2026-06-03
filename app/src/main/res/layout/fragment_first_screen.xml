@@ -8,82 +8,130 @@
     android:background="?android:attr/colorBackground"
     tools:context=".onboarding.screens.FirstScreenFragment">
 
-    <ImageView
-        android:id="@+id/iv_illustration"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="24dp"
-        android:contentDescription="Welcome Onboarding Illustration"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/tv_title"
-        app:layout_constraintDimensionRatio="4:3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Track your spending habits!"
-        android:textAlignment="center"
-        android:textColor="#1E293B"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_subtitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_illustration" />
-
-    <TextView
-        android:id="@+id/tv_subtitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="sans-serif"
-        android:lineSpacingMultiplier="1.2"
-        android:text="Enter your daily transactions to gain powerful, immediate insights into your financial health."
-        android:textAlignment="center"
-        android:textColor="#64748B"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/next"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardBackgroundColor="#A3C2A3"
-        app:cardCornerRadius="16dp"
+        android:id="@+id/cv_hero_brand"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        app:cardBackgroundColor="#F8FAFC"
+        app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:strokeWidth="1dp"
+        app:strokeColor="#E2E8F0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_media_next"
-            app:tint="#FFC107" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottieWelcome"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginBottom="12dp"
+                app:lottie_rawRes="@raw/partydance"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Welcome to"
+                android:textColor="#94A3B8"
+                android:textSize="16sp"
+                android:letterSpacing="0.05"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Moneycane"
+                android:textColor="#1E293B"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:id="@+id/tv_welcome_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingMultiplier="1.4"
+        android:text="Your smart, lightweight companion for effortless budget architecture and clear financial oversight."
+        android:textAlignment="center"
+        android:textColor="#64748B"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_hero_brand" />
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <View
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_margin="4dp"
+                android:background="@android:color/darker_gray" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/next"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#E2E8F0"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_media_next"
+                app:tint="#001430" />
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

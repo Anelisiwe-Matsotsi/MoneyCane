@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.airbnb.lottie.LottieAnimationView
 import com.example.prog7313_sem1_part2.R
 import com.google.android.material.card.MaterialCardView
 
@@ -23,6 +24,10 @@ class SecondScreenFragment : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         val nextButton2 = view.findViewById<MaterialCardView>(R.id.next)
+        val lottieTracking = view.findViewById<LottieAnimationView>(R.id.lottieTracking)
+
+        lottieTracking.setAnimation(R.raw.raining_candies)
+        lottieTracking.playAnimation()
 
         nextButton2.setOnClickListener{
             viewPager?.currentItem = 2

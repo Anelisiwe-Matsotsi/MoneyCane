@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.airbnb.lottie.LottieAnimationView
 import com.example.prog7313_sem1_part2.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -26,6 +27,11 @@ class ThirdScreenFragment : Fragment() {
 
         // onboarding (StevdzaSan, 2020)
         val finish = view.findViewById<MaterialButton>(R.id.btn_get_started)
+
+        val lottieVisualisation = view.findViewById<LottieAnimationView>(R.id.lottieTracking)
+
+        lottieVisualisation.setAnimation(R.raw.eating_candy)
+        lottieVisualisation.playAnimation()
 
         finish.setOnClickListener {
 
