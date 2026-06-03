@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.airbnb.lottie.LottieAnimationView
 import com.example.prog7313_sem1_part2.R
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -23,6 +24,11 @@ class FirstScreenFragment : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         val nextButton = view.findViewById<MaterialCardView>(R.id.next)
+        val lottieWelcome = view.findViewById<LottieAnimationView>(R.id.lottieWelcome)
+
+        lottieWelcome.setAnimation(R.raw.partydance)
+        lottieWelcome.playAnimation()
+
 
         nextButton.setOnClickListener{
             viewPager?.currentItem = 1
