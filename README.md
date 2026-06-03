@@ -50,7 +50,7 @@
 
 <br>
 
-### On-Boarding Screen 
+### On-Boarding Screen 🎰
 - This Page appears for first time users rigt after the splash screen.
 - It informs the user of what to expect.
 - It does not overwhelm the user with too much content but allows them to see how Money Cane will help them and the features to expect
@@ -92,6 +92,12 @@
 - User can see their goal history
 - The cancy canes earned can be used to unlock new plant patches in the Candy Garden
 <br>
+
+### Analysis 📊
+- The user can see the pie chart and line chart
+- Filters according to date
+- Pie chart is based on categories spending budgets
+- Pie chart can be divided into expenses and incomes
 
 ### Set Goal Target 🎯
 - User can set a minimum weekly goal and maximum weekly expenditure limit
