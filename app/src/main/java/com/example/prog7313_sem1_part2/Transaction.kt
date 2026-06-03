@@ -1,7 +1,7 @@
 package com.example.prog7313_sem1_part2
 
 //(Android Knowledge, 2023)
-    data class Transaction(
+data class Transaction(
 val id: String = "",
 val name: String = "",
 val type: String = "expense", //or income
@@ -10,7 +10,9 @@ val date: String="",
 val content:String="",
 val imageUrl: String="",
 val categoryId: String="",
-val walletId: String=""
+val walletId: String="",
+val selectedGoalId: String? =null
+
 )
 /*
 References

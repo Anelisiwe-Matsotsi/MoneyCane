@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F7F9F2">
+
+    <!-- GREEN HEADER -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_rectangle"
+        android:backgroundTint="#A3C2A3">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="#001430"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Invite People"
+            android:textColor="#001430"
+            android:textStyle="bold"
+            android:textSize="28sp" />
+    </RelativeLayout>
+
+    <!-- search bar -->
+    <SearchView
+        android:id="@+id/searchEmails"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_white_rounded"
+        android:backgroundTint="#EDE8D7"
+        android:queryHint="Search friends email" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEmails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false" />
+
+</LinearLayout>
