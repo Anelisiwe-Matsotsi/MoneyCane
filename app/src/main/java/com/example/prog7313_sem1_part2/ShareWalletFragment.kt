@@ -22,7 +22,7 @@ class ShareWalletFragment : Fragment() {
     //firebase instance
     private val uid = MainActivity.getUserID()
 
-    private val database = FirebaseDatabase.getInstance().getReference("wallets") .child(uid)
+    private val database = FirebaseDatabase.getInstance().getReference("users")
     private lateinit var rvEmails: RecyclerView
     private lateinit var adapter: EmailAdapter
     private val emailList = ArrayList<User>() //list emails through recycler view
@@ -47,8 +47,11 @@ class ShareWalletFragment : Fragment() {
             //get the list of people the wallet is being shared with to pass the variable to the create wallet fragment
             val selectedPeople = adapter.getSelectedEmails()
 
+            //matching the selected peuple to their user data to get fcmtoken
+            val selectedUser = emailList.filter {it.email in selectedPeople}
+
             //creating bundle to pass selected emails to Wallet fragment
-            val bundle = bundleOf ("selectedEmails" to ArrayList(selectedPeople))
+            val bundle = bundleOf ("selectedEmails" to ArrayList(selectedUser)) //passing all the data from User.kt
 
             parentFragmentManager.setFragmentResult("sharedWalletInvite", bundle)
             findNavController().navigateUp()
@@ -74,7 +77,7 @@ class ShareWalletFragment : Fragment() {
     //(CodingSTUFF, 2022)
     //filters the wallets populated in the arraylist
     private fun filterEmails(query: String?) {
-        emailList.clear()
+        registeredUsers.clear()
         if (query.isNullOrEmpty()) {
             registeredUsers.addAll(emailList)
         } else {
