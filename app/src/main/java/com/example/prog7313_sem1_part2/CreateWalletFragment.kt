@@ -21,18 +21,20 @@ class CreateWalletFragment : Fragment() {
     private val database = FirebaseDatabase.getInstance().getReference("wallets")
     private val uid = MainActivity.getUserID()
 
-    //stores the emails chosen by user to share wallet with
-    private var selectedPeopleList: List<String> = emptyList() //type parameter is inferred from the expected type (Kotlin Programming Language, 2026)
+    //stores the User information from data class chosen by current user to share wallet with
+    private var selectedPeopleList: List<User> = emptyList() //type parameter is inferred from the expected type (Kotlin Programming Language, 2026)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //(Android Developers, 2026b)
-        //Passing email between parent and child fragment
+        //Passing email & UserID & fcmToken between parent and child fragment
         parentFragmentManager.setFragmentResultListener("sharedWalletInvite", this) {sharedWalletInvite, bundle ->
             //(StackOverflow,2023b)
             //getStringArrayList- store selected emails to pass it to next activity as a group
-            val emails = bundle.getStringArrayList("selectedEmails")
+
+            //getting the full serialized user object to store in an array form to link the User ID to the correct email to send the notification linked to the correct FCM token
+            val emails = bundle.getSerializable("selectedEmails") as? ArrayList<User>
             if (emails != null) {
                 selectedPeopleList = emails
 
@@ -108,23 +110,42 @@ class CreateWalletFragment : Fragment() {
 
     //Firebase, 2026)
     //wallet is saved in firebase DB
-    private fun saveWallet(name: String, limit: Double, sharedPeople: List<String>) {
+    private fun saveWallet(name: String, limit: Double, sharedPeople: List<User>) {
         // push creates a unique key for the new wallet
-
-        val walletRef = database.child(uid).push()//saves the data under the user ID, as a child
+        val getDatabase = FirebaseDatabase.getInstance().reference
+        val walletRef = getDatabase.child(uid).push()//saves the data under the user ID, as a child
         val walletId = walletRef.key ?: return
 
+        //fetch the email address to save other wallet data into new wallet only
+        val getEmails = sharedPeople.map{it.email}
 
         val newWallet = Wallet(
             id = walletId,
             name = name,
             balance = limit,
-            people = sharedPeople
+            people = getEmails
         )
 
-        walletRef.setValue(newWallet)
+        //multi-node database update map pathing
+        val childUpdates = HashMap<String, Any>()
+
+        //saves to the wallet creators Wallets UI
+        childUpdates["/wallets/$uid/$walletId"] = newWallet
+
+        //saves to the other added wallet members wallets UI
+        for (user in sharedPeople) {
+            if(user.uid.isNotEmpty()) {
+                childUpdates["/wallets/${user.uid}/$walletId"] = newWallet
+            }
+        }
+
+        getDatabase.updateChildren(childUpdates)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "$name wallet created!", Toast.LENGTH_SHORT).show()
+
+                //notification is sent to emails chosen via token
+                sendNotification(name, sharedPeople)
+
                 // Return to the wallet list
                 //(Android Developers, 2026)
                 findNavController().popBackStack()
@@ -132,6 +153,14 @@ class CreateWalletFragment : Fragment() {
             .addOnFailureListener { error ->
                 Toast.makeText(requireContext(), "Failed to save: ${error.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun sendNotification(walletName: String, receivers: List<User>) {
+        for (user in receivers) {
+            if(user.fcmToken.isNotEmpty()) {
+
+            }
+        }
     }
 }
 
