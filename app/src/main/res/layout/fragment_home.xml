@@ -171,9 +171,10 @@
 
                     <TextView
                         android:id="@+id/tv_welcome_name"
-                        android:layout_width="144dp"
-                        android:layout_height="28dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_width="262dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
                         android:text="-"
                         android:textColor="?attr/colorOnSurface"
                         android:textSize="18sp"
@@ -209,11 +210,13 @@
                 android:layout_width="374dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:elevation="12dp"
+                android:translationY="-60dp"
                 app:cardBackgroundColor="?attr/colorSurface"
                 app:cardCornerRadius="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/cv_weekly_goal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cv_wallet_balance">
@@ -300,18 +303,32 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_weekly_goal"
-                android:layout_width="374dp"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/graph_preview_container"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:elevation="12dp"
-                android:foreground="@drawable/bg_soft_border"
-                app:cardBackgroundColor="?attr/colorSurface"
-                app:cardCornerRadius="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cv_monthly_budget">
+                app:layout_constraintTop_toBottomOf="@id/cv_monthly_budget" />
+            <!-- Weekly Goal card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_weekly_goal"
+                android:layout_width="375dp"
+                android:layout_height="106dp"
+
+                android:layout_marginBottom="195dp"
+                android:clickable="true"
+                android:elevation="16dp"
+                android:focusable="true"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/graph_preview_container">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

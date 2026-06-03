@@ -73,10 +73,12 @@ dependencies {
     implementation(libs.androidx.viewpager2)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("io.coil-kt:coil:2.7.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0") //for the line charts
 
     implementation(platform("com.google.firebase:firebase-bom:31.5.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.airbnb.android:lottie:6.7.1")
+    implementation(libs.play.services.maps3d)
     implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

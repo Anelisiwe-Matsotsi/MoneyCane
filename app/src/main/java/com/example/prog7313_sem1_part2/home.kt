@@ -17,6 +17,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.example.prog7313_sem1_part2.GraphPreviewFragment
+import com.google.android.material.button.MaterialButton
 import kotlin.random.Random
 
 
@@ -105,21 +107,26 @@ class home : Fragment(R.layout.fragment_home) {
         if (uid != null) {
             val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
             userRef.get().addOnSuccessListener { snapshot ->
-                // Using your userInfo data class
-                val userInfo = snapshot.getValue(userInfo::class.java)
-                if (userInfo != null && userInfo.name.isNotEmpty()) {
-                    tvWelcomeName.text = userInfo.name
+                // Using your Users data class
+                val Users = snapshot.getValue(Users::class.java)
+                if (Users != null && Users.name.isNotEmpty()) {
+                    var welcome = "Welcome, "+Users.name
+                    tvWelcomeName.text ="Welcome, "+Users.username
                 } else {
-                    tvWelcomeName.text = "userInfo"
+                    tvWelcomeName.text = "Users"
                 }
             }.addOnFailureListener {
-                tvWelcomeName.text = "userInfo"
+                tvWelcomeName.text = "Users"
                 // Optional: show error toast
                 Toast.makeText(context, "Failed to load name", Toast.LENGTH_SHORT).show()
             }
         } else {
-            tvWelcomeName.text = "userInfo"
+            tvWelcomeName.text = "Users"
         }
+        val graphPreview = GraphPreviewFragment()
+        childFragmentManager.beginTransaction()
+            .replace(R.id.graph_preview_container, graphPreview)
+            .commit()
 
 
         //load transaction fragment into sheet

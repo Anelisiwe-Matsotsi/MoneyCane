@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         val navHostFragment =supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 
@@ -116,7 +118,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-//reference https://www.youtube.com/watch?v=0LLlMz2NPhE
+//reference
+// https://www.youtube.com/watch?v=0LLlMz2NPhE
 //https://www.linkedin.com/posts/chauhan-paresh-915340236_androiddevelopment-kotlin-navigationcomponent-activity-7377347549923409920-t3b9
 //https://medium.com/@appdevinsights/companion-object-in-kotlin-c3a1203cd63c how to add and what are companion objects
 //https://developer.android.com/guide/navigation/backstack how to set up the bottom navigation bar to pop back to spesific fragments
