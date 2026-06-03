@@ -9,7 +9,7 @@
 
             <!-- GREEN HEADER -->
 
-            <!-- DYNAMIC CATEGORY LIST -->
+            <!-- CATEGORY LIST -->
             <LinearLayout
                 android:id="@+id/header"
                 android:layout_width="match_parent"

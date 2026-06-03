@@ -101,8 +101,8 @@ class LightWalletFragment : Fragment() {
         }
     }
 
-    //prevents spamming existing wallet notifications
-    private var initialLoad = true
+    private var initialLoad = true //prevents spamming existing wallet notifications
+    private val existingWalletIds = mutableSetOf<String>() //persists between onDataChange function when the walletList is cleared
 
     //recycler view updates everytime if a wallet is added or edited
     private fun listenToWallets() {
@@ -112,17 +112,20 @@ class LightWalletFragment : Fragment() {
             //fetched correct wallet's unique id to be edited/updated
             override fun onDataChange(snapshot: DataSnapshot) {
                 walletList.clear()
+
                 for (child in snapshot.children) {
                     val wallet = child.getValue(Wallet::class.java)
+
                     if (wallet != null) {
                         //logged in user sees notification of new shared wallet created by owner
-                        if(!initialLoad && !walletList.any { it.id == wallet.id} && wallet.createdBy != uid) {
+                        if(!initialLoad && !existingWalletIds.contains(wallet.id) && wallet.createdBy != uid) {
                             showNotification(
                                 context=requireContext(),
                                 title = "New Shared Wallet!",
                                 message = "You have been added to a new wallet called '${wallet.name}'."
                             )
                         }
+                        existingWalletIds.add(wallet.id) //ensures existing wallets are added in DB
                         walletList.add(wallet)
                     }
                 }
