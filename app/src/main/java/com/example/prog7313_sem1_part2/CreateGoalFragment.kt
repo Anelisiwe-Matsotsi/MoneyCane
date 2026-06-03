@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.RadioButton
@@ -13,6 +14,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
+import java.util.Calendar
 
 class CreateGoalFragment : Fragment() {
 
@@ -33,12 +35,40 @@ class CreateGoalFragment : Fragment() {
         val  rgType = view.findViewById<RadioGroup>(R.id.rgGoalType)
         val btnSave = view.findViewById<Button>(R.id.btnSaveGoal)
         val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
-
+        val datePickerStart =view.findViewById<DatePicker>(R.id.startDate)
+        val datePickerEnd=view.findViewById<DatePicker>(R.id.endDate)
         //(Android Developers, 2026)
         // Navigate back to the goals list
         btnBack.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+
+        // Get today's date using Calendar instance
+        val today = Calendar.getInstance()
+        val initYear=today.get(Calendar.YEAR)
+        val initMonth=today.get(Calendar.MONTH)
+        val initDay=today.get(Calendar.DAY_OF_MONTH)
+        // Initialize DatePicker with the current date
+        datePickerStart.init(
+            initYear,
+            initMonth,
+            initDay
+        ) { view, year, month, day ->
+            // Display selected date in Toast message
+            val msg = "You Selected: $year/${month + 1}/$day"
+            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        }
+
+        datePickerEnd.init(
+            initYear,
+            initMonth,
+            initDay
+        ) { view, year, month, day ->
+            // Display selected date in Toast message
+            val msg = "You Selected: $year/${month + 1}/$day"
+            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        }
+
 
         btnSave.setOnClickListener {
             val name = etName.text.toString().trim()
@@ -61,6 +91,17 @@ class CreateGoalFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            val day = datePickerStart.dayOfMonth
+            val month = datePickerStart.month + 1
+            val year = datePickerStart.year
+            val dateStart = String.format("%04d-%02d-%02d", year, month, day)
+
+            val dayEnd = datePickerEnd.dayOfMonth
+            val monthEnd = datePickerStart.month + 1
+            val yearEnd = datePickerStart.year
+            val dateEnd = String.format("%04d-%02d-%02d", yearEnd, monthEnd, dayEnd)
+
+
             // Determine selected type from the RadioGroup
             //(StackOverflow, 2023)
             val selectedType = when (rgType.checkedRadioButtonId) {
@@ -68,7 +109,7 @@ class CreateGoalFragment : Fragment() {
                 else -> "expense"
             }
 
-            saveGoal(name, target, selectedType)
+            saveGoal(name, target, selectedType,dateStart,dateEnd)
         }
 
         return view
@@ -76,7 +117,7 @@ class CreateGoalFragment : Fragment() {
 
     //Firebase, 2026)
     //category is saved in firebase DB
-    private fun saveGoal(name: String, target: Double, type: String, ) {
+    private fun saveGoal(name: String, target: Double, type: String,start: String,end: String ) {
         // push creates a unique key for the new category
 
         val goalRef = database.child(uid).push()
@@ -88,8 +129,8 @@ class CreateGoalFragment : Fragment() {
             targetAmount = target,
             currentAmount = 0.0,
             goalType = type,
-            startDate = "2026/06/01",
-            endDate = "2026/06/30"
+            startDate = start,
+            endDate = end
         )
 
         goalRef.setValue(newGoal)
