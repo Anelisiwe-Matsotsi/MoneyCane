@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prog7313_sem1_part2.MyMessagingService.Companion.showNotification
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -100,6 +101,9 @@ class LightWalletFragment : Fragment() {
         }
     }
 
+    //prevents spamming existing wallet notifications
+    private var initialLoad = true
+
     //recycler view updates everytime if a wallet is added or edited
     private fun listenToWallets() {
         database.addValueEventListener(object : ValueEventListener {
@@ -111,11 +115,20 @@ class LightWalletFragment : Fragment() {
                 for (child in snapshot.children) {
                     val wallet = child.getValue(Wallet::class.java)
                     if (wallet != null) {
+                        //logged in user sees notification of new shared wallet created by owner
+                        if(!initialLoad && !walletList.any { it.id == wallet.id} && wallet.createdBy != uid) {
+                            showNotification(
+                                context=requireContext(),
+                                title = "New Shared Wallet!",
+                                message = "You have been added to a new wallet called '${wallet.name}'."
+                            )
+                        }
                         walletList.add(wallet)
                     }
                 }
                 adapter.notifyDataSetChanged()
                 updateTotalBalance() //wallets total updates after wallets are added/edited
+                initialLoad = false
             }
 
             //database error
