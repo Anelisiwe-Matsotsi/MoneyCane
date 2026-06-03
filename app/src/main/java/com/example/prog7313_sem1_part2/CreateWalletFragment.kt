@@ -111,7 +111,7 @@ class CreateWalletFragment : Fragment() {
             name = name,
             balance = limit,
             people = selectedEmails, //list of emails are passed into people variable
-            createdBy = uid
+            createdBy = MainActivity.getUserID()
         )
 
         //(Firebase, 2017)
