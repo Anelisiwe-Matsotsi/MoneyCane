@@ -45,11 +45,12 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tvGreeting"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=" Good Evening"
                             android:textColor="?attr/colorOnSurface"
-                            android:textSize="35sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
 
@@ -173,9 +174,9 @@
                         android:layout_height="28dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="Hi Natty"
+                        android:text="-"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

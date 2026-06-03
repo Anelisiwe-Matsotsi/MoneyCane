@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -15,6 +16,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlin.random.Random
 
 
 class home : Fragment(R.layout.fragment_home) {
@@ -33,6 +35,43 @@ class home : Fragment(R.layout.fragment_home) {
         val bottomSheet = view.findViewById<LinearLayout>(R.id.bottom_sheet)
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
         val walletBalance = view.findViewById<TextView>(R.id.tvWalletBalance)
+        //Darkmode light mode
+        val themeIcon = view.findViewById<ImageButton>(R.id.themeBtn)
+        //Android Developers, 2026 - check what mode system is currently on
+         val currentModeDark = (resources.configuration.uiMode and
+                 android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                 android.content.res.Configuration.UI_MODE_NIGHT_YES
+
+        val tvGreeting = view.findViewById<TextView>(R.id.tvGreeting)
+        if (currentModeDark) {
+            themeIcon.setImageResource(R.drawable.ic_light_mode)
+            tvGreeting.text = "Hello, how is your day?"
+        }else {
+            themeIcon.setImageResource(R.drawable.ic_dark_mode)
+            tvGreeting.text = "Hello, ready for some sweet budgets?"
+        }
+
+        themeIcon.setOnClickListener {
+            val isDarkMode = (resources.configuration.uiMode and
+                    android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
+                    android.content.res.Configuration.UI_MODE_NIGHT_YES
+
+            //Stackoverflow,2022- switching system to light/dark mode
+            if (isDarkMode) {
+                //switch to light mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                // Update icon to moon
+                themeIcon.setImageResource(R.drawable.ic_dark_mode)
+                tvGreeting.text = "Hello, ready for some sweet budgets?"
+
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                // Update icon to sun
+                themeIcon.setImageResource(R.drawable.ic_light_mode)
+                tvGreeting.text = "Hello, how is your day?"
+            }
+        }
+
 
         //initial state
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -66,10 +105,11 @@ class home : Fragment(R.layout.fragment_home) {
 
 
         //load transaction fragment into sheet
-        childFragmentManager.beginTransaction()
-            .replace(R.id.transaction_container, Home2Fragment())
-            .commit()
-
+        if (savedInstanceState == null) {
+            childFragmentManager.beginTransaction()
+                .replace(R.id.transaction_container, Home2Fragment())
+                .commit()
+        }
         //close button
         val closebtn = view.findViewById<ImageButton>(R.id.btnCloseSheet)
 
@@ -140,7 +180,7 @@ class home : Fragment(R.layout.fragment_home) {
 
 /*
 References
-
+Android Developers. 2026. Implement dark theme | Views. [source code]. Available at: < https://developer.android.com/develop/ui/views/theming/darktheme > [Accessed 3 June 2026].
 Android Developers. 2026. Fragment manager | App architecture. (version 8) [source code]. Available at: < https://developer.android.com/guide/fragments/fragmentmanager > [Accessed 26 April 2026]
 Android Developers. 2026b. fragments transactions. (version 8) [source code]. Available at: < https://developer.android.com/guide/fragments/transactions > [Accessed 26 April 2026]
 Android Knowledge. 2023. CRUD using Firebase Realtime Database in Android Studio using Kotlin | Create, Read, Update, Delete. (version 8) [source code] Available at: < https://youtu.be/oGyQMBKPuNY?si=Nj0DRStlfvfFvane > [Accessed 26 April 2026]
@@ -149,4 +189,5 @@ Bhosale, A. 2024. Kotlin under the hood: exploring objects, companion objects, a
 Firebase. 2026. Read and Write Data on Android. (version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/read-and-write > [Accessed 26 April 2026]
 Firebase. 2026b. Work with Lists of Data on Android.(Version 8) [source code]. Available at: < https://firebase.google.com/docs/database/android/lists-of-data#child-events > [Accessed 26 April 2026]
 StackOverflow. 2023. Set Variable depending on RadioGroup button selected in Kotlin. (Version 8) [source code]. Available at: < https://stackoverflow.com/questions/77541256/set-variable-depending-on-radiogroup-button-selected-in-kotlin > [Accessed 26 April 2026]
+ Stack Overflow. 2022. Proper way to Implement Dark Theme Android Java. [source code]. Available at: https://stackoverflow.com/questions/70723977/proper-way-to-implement-dark-theme-android-java [Accessed 3 June 2026].
  */
