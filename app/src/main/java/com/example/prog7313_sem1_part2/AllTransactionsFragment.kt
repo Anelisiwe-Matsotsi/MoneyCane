@@ -111,13 +111,34 @@ adapter= TransactionAdapter(transactionList) {transaction ->
         val dialog = BottomSheetDialog(requireContext())
         val mascotAnimation = bottomSheetView.findViewById<LottieAnimationView>(R.id.lottieMascot)
         val tvMessage =bottomSheetView.findViewById<TextView>(R.id.tvMascotMessage)
-        if (type == "income") {
-            tvMessage.text ="Yayy! Your income was saved"
 
-            mascotAnimation.setAnimation(R.raw.eating_candy)
-        }else {
-            tvMessage.text ="Yum! Your money tastes sweet"
-            mascotAnimation.setAnimation(R.raw.eating_candy)
+
+        when(type) {
+
+            "income" -> {
+                tvMessage.text = "Yayy! Your income was saved"
+                mascotAnimation.setAnimation(R.raw.raining_candies)
+            }
+
+            "goal" -> {
+                tvMessage.text = "OMG! YOU REACHED YOUR GOAL! CHECK YOUR CANDY CANES"
+                mascotAnimation.setAnimation(R.raw.partydance)
+            }
+
+            "budget_warning" -> {
+                tvMessage.text = "OMG! YOU REACHED YOUR GOAL! CHECK YOUR CANDY CANES"
+                mascotAnimation.setAnimation(R.raw.annoyed)
+            }
+
+            "budget_exceeded" -> {
+                tvMessage.text = "OMG! YOU REACHED YOUR GOAL! CHECK YOUR CANDY CANES"
+                mascotAnimation.setAnimation(R.raw.mindblown)
+            }
+
+            else -> {
+                tvMessage.text = "Yum! Your money tastes sweet"
+                mascotAnimation.setAnimation(R.raw.eating_candy)
+            }
         }
         mascotAnimation.playAnimation()
 

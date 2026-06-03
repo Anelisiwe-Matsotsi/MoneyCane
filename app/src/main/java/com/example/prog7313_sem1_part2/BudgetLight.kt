@@ -272,6 +272,24 @@ class BudgetLight : Fragment() {
                                         limit = budgetAmount
                                     )
 
+                                //Mascot warning
+                                //Lottie, 2026
+                                if(categoryObj.type == "Exceeded") {
+                                    requireActivity().supportFragmentManager.setFragmentResult(
+                                        "mascot_request", Bundle()
+                                            .apply {
+                                                putString("type", "budget_exceeded")
+                                            }
+                                    )
+                                }else if (categoryObj.type == "Near Limit") {
+                                    requireActivity().supportFragmentManager.setFragmentResult(
+                                        "mascot_request", Bundle()
+                                            .apply {
+                                                putString("type", "budget_warning")
+                                            }
+                                    )
+                                }
+
                                 categories.add(
                                     categoryObj
                                 )
